@@ -1,53 +1,535 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=\, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=\, initial-scale=1.0" />
   <title>OwnMart</title>
-  <link rel="stylesheet" href="output.css">
+  <link rel="stylesheet" href="output.css" />
+  <link rel="stylesheet" href="style.css" />
   <script src="script.js" defer></script>
   <link
     href="https://fonts.googleapis.com/css?family=Poppins:100,100italic,200,200italic,300,300italic,regular,italic,500,500italic,600,600italic,700,700italic,800,800italic,900,900italic"
     rel="stylesheet" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.3.1/css/all.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.3.1/css/all.min.css" />
 </head>
 
 <body class="bg-black text-white font-['Poppins']">
   <nav>
-    <div class="w-full h-full bg-white flex items-center flex-wrap p-5 justify-evenly">
-      <div class="flex items-center">
-        <h1 class="text-[#10a390] text-3xl flex items-center">
+    <div
+      class="w-full bg-white border-b border-gray-100 px-4 md:px-6 py-3 flex flex-wrap items-center justify-between gap-x-4 gap-y-3  text-gray-900 shadow-sm">
+      <!-- Left Section: Logo & Delivery Info -->
+
+      <div class="flex items-center gap-3 md:gap-4">
+        <!-- Logo -->
+
+        <a href="#" class="flex items-center gap-2 text-[#096a56]">
+
           <i class="fa-solid fa-cart-shopping"></i>
-          OwnCart
-        </h1>
-        <hr class="bg-gray-500 h-px w-12 rotate-90">
-        </hr>
-        <div class="bg-[#e0e0de] text-black max-w-24 text-center rounded-[5px] py-1">10-20 Delivery</div>
+          <span class="text-[20px] md:text-[22px] font-bold tracking-tight">SwiftCart</span>
+        </a>
+
+        <!-- Vertical Divider (Hidden on small screens) -->
+
+        <div class="hidden md:block w-px h-7 bg-gray-200"></div>
+
+        <!-- Delivery Info Badge (Hidden on small screens) -->
+
+        <div class="hidden md:flex flex-col justify-center bg-[#f5f4ef] px-2.5 py-1 rounded-md">
+          <span class="text-[12px] font-bold leading-none mb-0.5">10-20 min</span>
+
+          <span class="text-[11px] text-gray-700 leading-none">delivery</span>
+        </div>
       </div>
-      <div class="flex relative">
-        <div class="text-black bg-[#e0e0de] w-full max-w-36 px-2 py-3.5 rounded-l-xl">
+
+      <!-- Middle Section: Search Bar -->
+
+      <div
+        class="order-3 md:order-none w-full md:w-auto md:flex-1 max-w-2xl flex items-stretch h-[42px] border border-gray-300 rounded-lg overflow-hidden focus-within:border-[#096a56] transition-colors">
+        <!-- Location Dropdown -->
+
+        <button
+          class="bg-[#f5f4ef] px-3 md:px-4 flex items-center gap-1.5 border-r border-gray-300 hover:bg-[#eae9e4] transition-colors whitespace-nowrap">
+
           <i class="fa-solid fa-location-dot"></i>
-          Location >
-        </div>
-        <input
-          class="bg-[#e0e0de] text-md text-black pl-2 w-full xl:min-w-2xl outline-none border-none min-w-52 rounded-r-xl"
-          type="text" placeholder="Search for groceries">
-        <div class="bg-[#017369] p-3  rounded-r-xl absolute right-0 text-lg">
-          <i class="fa-solid fa-magnifying-glass"></i>
-        </div>
+          <span class="text-[13px] md:text-[14px] font-medium text-gray-800">Location</span>
+
+          <svg class="w-4 h-4 text-gray-500" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5"></path>
+          </svg>
+        </button>
+
+        <!-- Search Input -->
+
+        <input type="text" placeholder="Search for groceries, froits, snacks & more"
+          class="flex-1 w-full px-3 md:px-4 text-[13px] md:text-[14px] outline-none text-gray-800 placeholder-gray-500" />
+
+        <!-- Search Button -->
+
+        <button class="bg-[#096a56] hover:bg-[#065041] px-4 md:px-5 flex items-center justify-center transition-colors">
+          <i class="fa-solid fa-magnifying-glass text-white"></i>
+        </button>
       </div>
-      <ul class="text-black flex items-center gap-2 text-lg">
-        <li><a href="">Login /</a></li>
-        <li><a href="">Account</a></li>
-        <i class="fa-regular fa-circle-user"></i>
-      </ul>
-      <div class="text-black text-xl">
-        <i class="fa-solid fa-cart-shopping"></i>
-        <a href="">Cart</a>
+
+      <!-- Right Section: User Actions -->
+
+      <div class="flex items-center gap-5 md:gap-6">
+        <!-- Login / Account -->
+
+        <a href="#"
+          class="hidden sm:flex items-center gap-2 hover:text-[#096a56] transition-colors cursor-pointer group">
+          <span class="text-[14px] font-semibold text-gray-800 group-hover:text-[#096a56] transition-colors">Login /
+            Account</span>
+          <i class="fa-regular fa-user"></i>
+
+        </a>
+
+        <!-- Cart -->
+
+        <a href="#" class="flex items-center gap-2 hover:text-[#096a56] transition-colors cursor-pointer group">
+          <div class="relative">
+            <i class="fa-solid fa-cart-shopping"></i>
+
+            <!-- Item Count Badge -->
+
+            <span
+              class="absolute -top-1.5 -left-1.5 bg-[#096a56] text-white text-[10px] font-bold w-[18px] h-[18px] rounded-full flex items-center justify-center border-2 border-white">3</span>
+          </div>
+
+          <span
+            class="text-[14px] font-semibold text-gray-800 hidden sm:block group-hover:text-[#096a56] transition-colors">Cart</span>
+        </a>
       </div>
     </div>
   </nav>
+  <main class="">
+    <div class="bg-[#f9f9f8] w-full py-20 px-8">
+      <div class="w-full flex flex-col md:flex-row items-center gap-10">
+        <!-- Left Side: Text and Button -->
+        <div class="md:w-[45%] text-left">
+          <h1 class="text-4xl md:text-[44px] font-bold leading-[1.15] text-black mb-4 tracking-tight">
+            Everything you need,<br />delivered in minutes.
+          </h1>
+          <p class="text-gray-600 text-[15px] mb-8">
+            Fresh groceries and everyday essentials at your doorstop.
+          </p>
+          <button
+            class="bg-[#096a56] hover:bg-[#065041] transition-colors text-white font-semibold text-[15px] px-6 py-2.5 rounded-md">
+            Start Shopping
+          </button>
+        </div>
+
+        <!-- Center: Image -->
+        <div class="md:w-[35%] flex justify-center relative">
+          <img src="images/grocery=image.png" alt="Grocery Basket" class="w-full max-w-[420px] drop-shadow-sm" />
+        </div>
+
+        <!-- Right Side: Features -->
+        <div class="md:w-[20%] flex md:flex-col flex-row gap-8">
+          <!-- Feature 1 -->
+          <div class="flex items-center gap-3">
+            <i class="fa-solid fa-truck-fast text-green-800"></i>
+            <p class="text-black font-semibold text-[13px]">
+              Free delivery<br />above ₹399
+            </p>
+          </div>
+
+          <!-- Feature 2 -->
+          <div class="flex items-center gap-3">
+            <i class="fa-regular fa-circle-check text-green-800"></i>
+            <p class="text-black font-semibold text-[13px]">
+              Fresh<br />products
+            </p>
+          </div>
+
+          <!-- Feature 3 -->
+          <div class="flex items-center gap-3">
+            <i class="fa-solid fa-clock text-green-800"></i>
+            <p class="text-black font-semibold text-[13px]">
+              Fast<br />delivery
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="w-full mx-auto px-4 md:px-6 py-8 font-sans bg-white overflow-hidden">
+      <h2 class="text-xl md:text-3xl font-bold text-gray-900 mb-6">
+        Shop By Category
+      </h2>
+
+      <!-- Carousel Wrapper -->
+      <div class="relative w-full">
+        <!-- Left Arrow Button -->
+        <button
+          class="leftArrow absolute left-0 md:-left-2 top-[40%] -translate-y-1/2 z-10 bg-white border border-gray-200 shadow-lg rounded-full w-9 h-9 md:w-10 md:h-10 flex items-center justify-center text-gray-800 hover:bg-gray-50">
+          <i class="fa-solid fa-left-long"></i>
+        </button>
+
+        <!-- Responsive Horizontal Scroll Container -->
+        <div class="cardContainer gap-4 md:gap-5 overflow-x-auto pb-6 px-1 md:px-2 flex justify-center">
+          <!-- Card 1 -->
+        </div>
+
+        <!-- Right Arrow Button -->
+        <button
+          class="rightArrow absolute right-0 md:-right-2 top-[40%] -translate-y-1/2 z-10 bg-white border border-gray-200 shadow-lg rounded-full w-9 h-9 md:w-10 md:h-10 flex items-center justify-center text-gray-800 hover:bg-gray-50 transition-colors">
+          <i class="fa-solid fa-right-long"></i>
+        </button>
+      </div>
+    </div>
+    <div class="p-8 flex justify-center bg-[#d8d3cf]">
+      <div class="max-w-6xl w-full mt-4">
+        <!-- Header Section -->
+        <div class="mb-6">
+          <p class="text-3xl text-gray-800 font-normal mb-1">Shop by Need</p>
+          <h1 class="md:text-5xl text-2xl font-bold text-black leading-tight">
+            What are you looking for?
+          </h1>
+        </div>
+        <!-- Grid Section -->
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+          <!-- Card 1 -->
+          <div class="relative w-full aspect-[4/4.5] rounded-[1.25rem] overflow-hidden">
+            <img src="https://images.unsplash.com/photo-1555126634-323283e090fa?auto=format&fit=crop&w=500&q=80"
+              alt="Breakfast" class="w-full h-full object-cover" />
+            <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
+            <div class="absolute bottom-4 left-4">
+              <h3 class="text-white font-bold text-[17px] leading-snug">
+                Breakfast
+              </h3>
+            </div>
+          </div>
+
+          <!-- Card 2 -->
+          <div class="relative w-full aspect-[4/4.5] rounded-[1.25rem] overflow-hidden">
+            <img src="https://images.unsplash.com/photo-1504196606672-aef5c9cefc92?auto=format&fit=crop&w=500&q=80"
+              alt="Party Essentials" class="w-full h-full object-cover" />
+            <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
+            <div class="absolute bottom-4 left-4">
+              <h3 class="text-white font-bold text-[17px] leading-snug">
+                Party<br />Essentials
+              </h3>
+            </div>
+          </div>
+
+          <!-- Card 3 -->
+          <div class="relative w-full aspect-[4/4.5] rounded-[1.25rem] overflow-hidden">
+            <img src="https://images.unsplash.com/photo-1604085792782-8d92f276d7d8?auto=format&fit=crop&w=500&q=80"
+              alt="Healthy Snacks" class="w-full h-full object-cover" />
+            <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
+            <div class="absolute bottom-4 left-4">
+              <h3 class="text-white font-bold text-[17px] leading-snug">
+                Healthy<br />Snacks
+              </h3>
+            </div>
+          </div>
+
+          <!-- Card 4 -->
+          <div class="relative w-full aspect-[4/4.5] rounded-[1.25rem] overflow-hidden">
+            <img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=500&q=80"
+              alt="Late Night Crevings" class="w-full h-full object-cover" />
+            <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
+            <div class="absolute bottom-4 left-4">
+              <h3 class="text-white font-bold text-[17px] leading-snug">
+                Late Night<br />Crevings
+              </h3>
+            </div>
+          </div>
+
+          <!-- Card 5 -->
+          <div class="relative w-full aspect-[4/4.5] rounded-[1.25rem] overflow-hidden">
+            <img src="https://images.unsplash.com/photo-1596040033229-a9821ebd058d?auto=format&fit=crop&w=500&q=80"
+              alt="Cooking Essentials" class="w-full h-full object-cover" />
+            <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
+            <div class="absolute bottom-4 left-4">
+              <h3 class="text-white font-bold text-[17px] leading-snug">
+                Cooking<br />Essentials
+              </h3>
+            </div>
+          </div>
+
+          <!-- Card 6 -->
+          <div class="relative w-full aspect-[4/4.5] rounded-[1.25rem] overflow-hidden">
+            <img
+              src="https://static.toiimg.com/thumb/imgsize-23456,msid-124086155,width-600,resizemode-4/roasted-makhana-is-a-light-but-powerful-snack.jpg"
+              alt="Office Snacks" class="w-full h-full object-cover" />
+            <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
+            <div class="absolute bottom-4 left-4">
+              <h3 class="text-white font-bold text-[17px] leading-snug">
+                Office<br />Snacks
+              </h3>
+            </div>
+          </div>
+
+          <!-- Card 7 -->
+          <div class="relative w-full aspect-[4/4.5] rounded-[1.25rem] overflow-hidden">
+            <img src="https://images.unsplash.com/photo-1556228578-0d85b1a4d571?auto=format&fit=crop&w=500&q=80"
+              alt="Personal Care" class="w-full h-full object-cover" />
+            <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
+            <div class="absolute bottom-4 left-4">
+              <h3 class="text-white font-bold text-[17px] leading-snug">
+                Personal<br />Care
+              </h3>
+            </div>
+          </div>
+
+          <!-- Card 8 -->
+          <div class="relative w-full aspect-[4/4.5] rounded-[1.25rem] overflow-hidden">
+            <img src="https://cdn.shopaccino.com/refresh/articles/blog-homecare-14-12-2022-691340_l.png?v=681"
+              alt="Home Cleaning" class="w-full h-full object-cover" />
+            <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
+            <div class="absolute bottom-4 left-4">
+              <h3 class="text-white font-bold text-[17px] leading-snug">
+                Home<br />Cleaning
+              </h3>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="w-full p-6 text-gray-900 bg-white">
+      <!-- Header -->
+      <h2 class="text-[32px] font-bold text-black mb-6 tracking-tight">
+        Bestsellers
+      </h2>
+
+      <!-- Cards Grid -->
+      <div class="mainContainerTwo grid grid-cols-2 md:grid-cols-4 gap-5">
+        <!-- Card 1 -->
+        <!-- Card 2 -->
+      </div>
+    </div>
+
+    <div class="text-gray-900 w-full">
+      <!-- Hero Section -->
+      <div
+        class="bg-[#eaf4f3] py-16 px-6 md:px-12 lg:px-24 flex flex-col md:flex-row items-center justify-between gap-12">
+        <div class="md:w-1/2 flex flex-col justify-center text-center md:text-left">
+          <h1 class="text-4xl md:text-5xl lg:text-[56px] font-bold leading-tight mb-4 text-black tracking-tight">
+            Your groceries.<br />Your way.
+          </h1>
+          <p class="text-gray-700 mb-8 text-lg md:text-xl">
+            Order everyday essentials whenever<br class="hidden md:block" />you need them.
+          </p>
+
+          <!-- QR Code and App Buttons Container -->
+          <div class="flex flex-col sm:flex-row items-center md:items-start justify-center md:justify-start gap-6">
+            <!-- QR Code -->
+            <img src="images/WhatsApp Image 2026-09-11 at 3.19.57 AM.jpeg" alt="Scan to download"
+              class="w-32 md:w-36 rounded-xl shadow-sm border-2 border-white object-cover" />
+
+            <!-- App Buttons using FontAwesome -->
+            <div class="flex flex-col gap-3 w-full sm:w-auto items-center sm:items-start">
+              <!-- App Store Button -->
+              <a href="#"
+                class="bg-black text-white flex items-center justify-center gap-2.5 px-4 py-2 rounded-lg w-[160px] hover:bg-gray-800 transition-colors border border-gray-800">
+                <i class="fa-brands fa-apple text-3xl"></i>
+                <div class="flex flex-col text-left">
+                  <span class="text-[10px] font-medium leading-none mb-1 text-gray-300">Download on the</span>
+                  <span class="text-[16px] font-semibold leading-none">App Store</span>
+                </div>
+              </a>
+
+              <!-- Google Play Button -->
+              <a href="#"
+                class="bg-black text-white flex items-center justify-center gap-2.5 px-4 py-3 rounded-lg w-[160px] hover:bg-gray-800 transition-colors border border-gray-800">
+                <i class="fa-brands fa-google-play text-2xl"></i>
+                <div class="flex flex-col text-left">
+                  <span class="text-[10px] font-medium leading-none mb-1 text-gray-300">GET IT ON</span>
+                  <span class="text-[14px] font-semibold leading-none">Google Play</span>
+                </div>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div class="md:w-1/2 flex justify-center md:justify-end">
+          <!-- Phone Mockup -->
+          <img src="images/Screenshot 2026-09-11 034256.png" alt="SwiftCart App Interface"
+            class="w-64 md:w-72 rounded-[2.5rem] shadow-2xl border-[10px] border-gray-900" />
+        </div>
+      </div>
+
+      <!-- Features Section -->
+      <div class="bg-white py-20 px-8 md:px-24 text-center">
+        <h2 class="text-[32px] font-bold mb-16 text-black">Why SwiftCart</h2>
+        <div class="flex justify-around flex-wrap gap-8">
+          <!-- Feature 1 -->
+          <div class="flex flex-col items-center">
+            <i class="fa-solid fa-bolt text-[#096a56] text-3xl mb-4"></i>
+            <h3 class="font-bold text-black mb-2 text-[15px]">
+              Fast delivery
+            </h3>
+            <p class="text-gray-500 text-[13px] leading-relaxed">
+              Miniwet provitatio snets<br />and cotizable
+            </p>
+          </div>
+
+          <!-- Feature 2 -->
+          <div class="flex flex-col items-center">
+            <i class="fa-solid fa-leaf text-[#096a56] text-3xl mb-4"></i>
+            <h3 class="font-bold text-black mb-2 text-[15px]">
+              Fresh quality
+            </h3>
+            <p class="text-gray-500 text-[13px] leading-relaxed">
+              Fresh staalty ta ir<br />prodcot quality
+            </p>
+          </div>
+
+          <!-- Feature 3 -->
+          <div class="flex flex-col items-center">
+            <i class="fa-regular fa-credit-card text-[#096a56] text-3xl mb-4"></i>
+            <h3 class="font-bold text-black mb-2 text-[15px]">
+              Secure payments
+            </h3>
+            <p class="text-gray-500 text-[13px] leading-relaxed">
+              Secure payment<br />papzatia payments
+            </p>
+          </div>
+
+          <!-- Feature 4 -->
+          <div class="flex flex-col items-center">
+            <i class="fa-solid fa-arrow-rotate-left text-[#096a56] text-3xl mb-4"></i>
+            <h3 class="font-bold text-black mb-2 text-[15px]">
+              Easy returns
+            </h3>
+            <p class="text-gray-500 text-[13px] leading-relaxed">
+              Easy retorns cursies<br />serviciteanatra
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Testimonials Section -->
+      <div class="bg-[#f8f8f6] py-20 px-8 md:px-24 text-center">
+        <h2 class="text-[32px] font-bold mb-12 text-black">
+          What our customers say
+        </h2>
+        <div class="flex lg:flex-nowrap flex-wrap gap-6 mx-auto">
+          <!-- Review Card 1 -->
+          <div class="bg-white p-6 rounded-[20px] shadow-sm text-left flex flex-col border border-gray-100">
+            <div class="flex items-center gap-3 mb-4">
+              <img src="https://placehold.co/40x40/cccccc/ffffff?text=C" alt="Costman 1."
+                class="w-10 h-10 rounded-full" />
+              <div>
+                <h4 class="font-bold text-[14px] text-black">Costman 1.</h4>
+                <div class="flex text-[#f4c150] text-sm">★★★★★</div>
+              </div>
+            </div>
+            <p class="text-gray-500 text-[13px] leading-relaxed flex-grow">
+              Costran+sewess sode azdxiihande ecritsraoa ants atss.fcy suas
+              and cienux and kicicendss.
+            </p>
+            <p class="font-bold text-black text-[14px] mt-6">Name</p>
+          </div>
+
+          <!-- Review Card 2 -->
+          <div class="bg-white p-6 rounded-[20px] shadow-sm text-left flex flex-col border border-gray-100">
+            <div class="flex items-center gap-3 mb-4">
+              <img src="https://placehold.co/40x40/cccccc/ffffff?text=E" alt="Exealen D"
+                class="w-10 h-10 rounded-full" />
+              <div>
+                <h4 class="font-bold text-[14px] text-black">Exealen D</h4>
+                <div class="flex text-[#f4c150] text-sm">★★★★★</div>
+              </div>
+            </div>
+            <p class="text-gray-500 text-[13px] leading-relaxed flex-grow">
+              Ellencor lo asctáfiros diraeo of areat. snal çlosi inotsiutz
+              eords sortomen and toblcrest and diolranaits.
+            </p>
+            <p class="font-bold text-black text-[14px] mt-6">Name</p>
+          </div>
+
+          <!-- Review Card 3 -->
+          <div class="bg-white p-6 rounded-[20px] shadow-sm text-left flex flex-col border border-gray-100">
+            <div class="flex items-center gap-3 mb-4">
+              <img src="https://placehold.co/40x40/cccccc/ffffff?text=C" alt="Customer Reviews"
+                class="w-10 h-10 rounded-full" />
+              <div>
+                <h4 class="font-bold text-[14px] text-black">
+                  Customer Reviews
+                </h4>
+                <div class="flex text-[#f4c150] text-sm">★★★★★</div>
+              </div>
+            </div>
+            <p class="text-gray-500 text-[13px] leading-relaxed flex-grow">
+              Tsirrotrewioxpocoo-awrs, l olatoor k Saogardbdr nieror ahevs
+              rustsbaaas doeercixo,prava, Ne amtange.
+            </p>
+            <p class="font-bold text-black text-[14px] mt-6">Name</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+  <footer>
+    <div class="bg-gray-300 w-full px-6 py-10 md:px-12 md:py-14 text-gray-800">
+      <div class="max-w-6xl mx-auto flex flex-col md:flex-row flex-wrap gap-10 md:gap-16 justify-between">
+        <!-- Left Section -->
+        <div class="md:w-1/4">
+          <h2 class="text-[36px] font-bold text-[#096a56] mb-3">SwiftCart</h2>
+          <p class="text-[14px] font-bold text-gray-800 leading-snug">
+            Grocertas delivered<br />in minutes
+          </p>
+        </div>
+
+        <!-- Links Section -->
+        <div class="flex-1 flex flex-wrap gap-10 justify-between md:justify-end md:gap-24">
+          <!-- Company -->
+          <div class="flex flex-col gap-2.5">
+            <h3 class="font-bold text-black text-[25px] mb-1">Company</h3>
+            <a href="#" class="text-[13px] font-semibold text-gray-600 hover:text-black transition-colors">About</a>
+            <a href="#" class="text-[13px] font-semibold text-gray-600 hover:text-black transition-colors">Careers</a>
+            <a href="#" class="text-[13px] font-semibold text-gray-600 hover:text-black transition-colors">Contact</a>
+          </div>
+
+          <!-- Support -->
+          <div class="flex flex-col gap-2.5">
+            <h3 class="font-bold text-black text-[25px] mb-1">Support</h3>
+            <a href="#" class="text-[13px] font-semibold text-gray-600 hover:text-black transition-colors">Help
+              Center</a>
+            <a href="#" class="text-[13px] font-semibold text-gray-600 hover:text-black transition-colors">Delivery
+              Information</a>
+            <a href="#" class="text-[13px] font-semibold text-gray-600 hover:text-black transition-colors">Rtooma</a>
+          </div>
+
+          <!-- Legal -->
+          <div class="flex flex-col gap-2.5">
+            <h3 class="font-bold text-black text-[25px] mb-1">Legal</h3>
+            <a href="#" class="text-[13px] font-semibold text-gray-600 hover:text-black transition-colors">Privacy
+              Policy</a>
+            <a href="#" class="text-[13px] font-semibold text-gray-600 hover:text-black transition-colors">Terms</a>
+            <a href="#" class="text-[13px] font-semibold text-gray-600 hover:text-black transition-colors">Cookie
+              Policy</a>
+
+            <!-- Social Icons -->
+            <div class="flex items-center gap-2.5 mt-3">
+              <a href="#" class="bg-[#1a1a1a] text-white p-1 rounded-full hover:bg-[#096a56] transition-colors">
+                <i class="fa-brands fa-linkedin text-md"></i>
+              </a>
+              <a href="#" class="bg-[#1a1a1a] text-white p-1 rounded-full hover:bg-[#096a56] transition-colors">
+                <i class="fa-brands fa-instagram text-md"></i>
+              </a>
+              <a href="#" class="bg-[#1a1a1a] text-white p-1 rounded-full hover:bg-[#096a56] transition-colors">
+                <i class="fa-brands fa-youtube text-md"></i>
+              </a>
+              <a href="#" class="bg-[#1a1a1a] text-white p-1 rounded-full hover:bg-[#096a56] transition-colors">
+                <i class="fa-brands fa-x-twitter text-md"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Bottom Border & Copyright -->
+      <div class="max-w-6xl mx-auto mt-10 border-t border-gray-200/80 pt-5">
+        <p class="text-[11px] font-bold text-gray-700">
+          Copyright © SwiftCart Tione Insutited.
+        </p>
+      </div>
+    </div>
+  </footer>
 </body>
 
 </html>
