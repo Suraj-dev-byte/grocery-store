@@ -11,6 +11,7 @@ A modern and responsive grocery shopping website built using **HTML, Tailwind CS
 - 📦 Displays API data dynamically on the website
 - 🎠 Product carousel
 - ⚡ Responsive and clean layout
+- ⚡\* Added dynamic product details page with product-specific navigation and data rendering.
 
 ## Tech Stack
 

@@ -28,7 +28,7 @@
   @apply h-32 flex items-center justify-center mt-6 mb-4;
 }
 
-.imgClass {
+.imgClassTwo {
   @apply h-full object-contain mix-blend-multiply;
 }
 
@@ -50,4 +50,19 @@
 
 .addButton {
   @apply bg-[#096a56] hover:bg-[#065041] transition-colors text-white text-[13px] font-bold px-4 py-1.5 rounded-md;
+}
+
+
+
+::-webkit-scrollbar {
+  height: 1px;
+}
+
+::-webkit-scrollbar-track {
+  background: #c0b6b6;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #b9dcbc;
+  border-radius: 10px;
 }

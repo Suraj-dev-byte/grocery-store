@@ -12,9 +12,9 @@ async function apiCall() {
     const elements = fetchData.slice(0, 12);
     // console.log(data.data.products);
     elements.forEach((el) => {
+
       card(el)
       cardTwo(el)
-
     })
   } catch (error) {
     console.log(error);
@@ -25,11 +25,14 @@ async function apiCall() {
 apiCall()
 
 function card(val) {
-  console.log(val);
+
+
+
   const innerContainer = document.createElement('div')
   innerContainer.classList.add('innerContainer')
   const div = document.createElement('div');
   div.classList.add('class')
+  div.dataset.id = val.id
   const img = document.createElement('img')
   img.classList.add('imgClass')
   img.src = val.images[0]
@@ -39,6 +42,10 @@ function card(val) {
   div.append(img)
   innerContainer.append(div, p)
   cardContainer.append(innerContainer);
+
+  div.addEventListener('click', () => {
+    window.location.href = `product.html?id=${val.id}`
+  })
 }
 
 const mainContainerTwo = document.querySelector('.mainContainerTwo')
@@ -56,7 +63,7 @@ function cardTwo(valTwo) {
   imageContainer.className = "imageContainer";
 
   const image = document.createElement("img");
-  image.className = "imgClass";
+  image.className = "imgClassTwo";
   image.src = valTwo.images[0];
   image.alt = "Ruplestrime";
 
