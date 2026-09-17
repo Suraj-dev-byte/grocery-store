@@ -52,7 +52,9 @@
   @apply bg-[#096a56] hover:bg-[#065041] transition-colors text-white text-[13px] font-bold px-4 py-1.5 rounded-md;
 }
 
-
+.bgGreen {
+  @apply bg-[#096a56] text-white border-2 border-white;
+}
 
 ::-webkit-scrollbar {
   height: 1px;

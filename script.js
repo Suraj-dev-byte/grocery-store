@@ -10,12 +10,12 @@ async function apiCall() {
     const data = await response.json();
     fetchData = data.data.products
     const elements = fetchData.slice(0, 12);
-    // console.log(data.data.products);
     elements.forEach((el) => {
 
       card(el)
       cardTwo(el)
     })
+    addTwoCart()
   } catch (error) {
     console.log(error);
   }
@@ -25,8 +25,6 @@ async function apiCall() {
 apiCall()
 
 function card(val) {
-
-
 
   const innerContainer = document.createElement('div')
   innerContainer.classList.add('innerContainer')
@@ -49,7 +47,7 @@ function card(val) {
 }
 
 const mainContainerTwo = document.querySelector('.mainContainerTwo')
-console.log(mainContainerTwo);
+
 
 function cardTwo(valTwo) {
   const card = document.createElement("div");
@@ -85,26 +83,57 @@ function cardTwo(valTwo) {
   const button = document.createElement("button");
   button.className = "addButton";
   button.textContent = "ADD";
+  button.dataset.id = valTwo.id
 
   imageContainer.append(image);
   bottom.append(price, button);
   card.append(discount, imageContainer, title, quantity, bottom);
   mainContainerTwo.append(card)
+
+
 }
 
-const rightArrow = document.querySelector('.rightArrow')
-const lefttArrow = document.querySelector('.leftArrow')
-console.log(cardContainer);
 
+
+const rightArrow = document.querySelector('.rightArrow')
 rightArrow.addEventListener('click', () => {
   cardContainer.scrollBy({
     left: 300,
     behavior: 'smooth'
   })
 })
+
+const lefttArrow = document.querySelector('.leftArrow')
 lefttArrow.addEventListener('click', () => {
   cardContainer.scrollBy({
     left: -300,
     behavior: 'smooth'
   })
 })
+
+const addToCart = document.querySelector('.addToCart')
+let addTwoCount = localStorage.getItem('addTwoCart')
+let addToCartId = JSON.parse(localStorage.getItem('addCart')) || []
+if (addTwoCount > 0) {
+  addToCart.textContent = addTwoCount;
+  addToCart.classList.add('bgGreen')
+}
+function addTwoCart() {
+  const addBtn = document.querySelectorAll('.addButton')
+  addBtn.forEach((el, i) => {
+    el.addEventListener('click', () => {
+      if (addToCartId[i] === el.dataset.id) {
+        return alert('already added');
+      }
+      addToCartId.push(el.dataset.id)
+      localStorage.setItem('addCart', JSON.stringify(addToCartId));
+      addTwoCount++;
+      localStorage.setItem('addTwoCart', addTwoCount)
+      addToCart.classList.add('bgGreen')
+      addToCart.textContent = addTwoCount;
+    })
+
+  })
+}
+
+
