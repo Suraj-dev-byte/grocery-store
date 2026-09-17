@@ -11,7 +11,12 @@ A modern and responsive grocery shopping website built using **HTML, Tailwind CS
 - 📦 Displays API data dynamically on the website
 - 🎠 Product carousel
 - ⚡ Responsive and clean layout
-- ⚡\* Added dynamic product details page with product-specific navigation and data rendering.
+- 🟢 Added dynamic product details page with product-specific navigation and data rendering
+- 🟢 Added API loading state
+- 🟢 Added API error handling with retry functionality
+- 🟢 Added Add to Cart functionality
+- 🟢 Added cart item count
+- 🟢 Added LocalStorage support for cart data
 
 ## Tech Stack
 
@@ -22,11 +27,15 @@ A modern and responsive grocery shopping website built using **HTML, Tailwind CS
 
 ## Current Progress
 
-- Responsive UI completed
-- Tailwind CSS styling implemented
-- Product data fetched from API
-- API products displayed dynamically in different sections
-- Product carousel implemented
+- 🟢 Responsive UI completed
+- 🟢 Tailwind CSS styling implemented
+- 🟢 Product data fetched from API
+- 🟢 API products displayed dynamically in different sections
+- 🟢 Product carousel implemented
+- 🟢 Dynamic product details page implemented
+- 🟢 Loading and error states implemented
+- 🟢 Add to Cart functionality implemented
+- 🟢 Cart data persistence using LocalStorage implemented
 
 ## Project Status
 
@@ -34,4 +43,4 @@ A modern and responsive grocery shopping website built using **HTML, Tailwind CS
 
 More functionality and features will be added as the project progresses.
 
-## LIVE-LINK -> Coming Soon
+## LIVE-LINK → Coming Soon

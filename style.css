@@ -56,6 +56,14 @@
   @apply bg-[#096a56] text-white border-2 border-white;
 }
 
+.bodyClass {
+  @apply flex items-center justify-center h-[90vh] text-2xl text-red-500;
+}
+
+.reloadBtn {
+  @apply text-3xl pl-5 cursor-pointer;
+}
+
 ::-webkit-scrollbar {
   height: 1px;
 }

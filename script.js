@@ -1,7 +1,13 @@
 const cardContainer = document.querySelector('.cardContainer');
+const loadingScreen = document.querySelector('.Loading')
+const secondBody = document.querySelector('.secondBody')
+
 
 let fetchData = [];
 async function apiCall() {
+  loadingScreen.classList.remove('hidden')
+  secondBody.classList.add('hidden')
+
   try {
     const response = await fetch('data.json');
     if (!response.ok) {
@@ -15,14 +21,40 @@ async function apiCall() {
       card(el)
       cardTwo(el)
     })
+    hideLoading()
     addTwoCart()
+
   } catch (error) {
-    console.log(error);
+    setTimeout(() => {
+      hideLoading()
+      errorMessage()
+    }, 2000)
   }
 
 }
 
 apiCall()
+
+function hideLoading() {
+  loadingScreen.classList.add('hidden')
+  secondBody.classList.remove('hidden')
+}
+
+function errorMessage() {
+  const btn = document.createElement('button')
+  secondBody.classList.add('bodyClass')
+  secondBody.textContent = 'Please check your internet connection and try again.'
+  btn.classList.add('reloadBtn')
+  btn.textContent = '⟳'
+  secondBody.append(btn)
+  btn.addEventListener('click', () => {
+    apiCall()
+    secondBody.textContent = ''
+  })
+
+}
+
+
 
 function card(val) {
 
