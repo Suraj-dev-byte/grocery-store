@@ -17,6 +17,7 @@ A modern and responsive grocery shopping website built using **HTML, Tailwind CS
 - 🟢 Added Add to Cart functionality
 - 🟢 Added cart item count
 - 🟢 Added LocalStorage support for cart data
+- 🟢 Added product search and filtering functionality
 
 ## Tech Stack
 
@@ -36,6 +37,7 @@ A modern and responsive grocery shopping website built using **HTML, Tailwind CS
 - 🟢 Loading and error states implemented
 - 🟢 Add to Cart functionality implemented
 - 🟢 Cart data persistence using LocalStorage implemented
+- 🟢 Product search and filtering implemented
 
 ## Project Status
 

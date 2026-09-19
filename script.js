@@ -1,6 +1,7 @@
 const cardContainer = document.querySelector('.cardContainer');
 const loadingScreen = document.querySelector('.Loading')
 const secondBody = document.querySelector('.secondBody')
+const inputValue = document.querySelector('.inputValue')
 
 
 let fetchData = [];
@@ -14,8 +15,20 @@ async function apiCall() {
       throw new Error('Faild to fetch data')
     }
     const data = await response.json();
-    fetchData = data.data.products
+    fetchData = data.data.products;
     const elements = fetchData.slice(0, 12);
+    inputValue.addEventListener('input', (e) => {
+      e.preventDefault()
+      const query = inputValue.value.trim()
+
+      const searchFilter = fetchData.filter((find) => {
+        return find.name.toLowerCase().includes(query.toLowerCase())
+      })
+      console.log(searchFilter);
+      searchFilter.forEach((el) => {
+        console.log(el);
+      })
+    })
     elements.forEach((el) => {
 
       card(el)
