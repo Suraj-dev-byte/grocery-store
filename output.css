@@ -284,6 +284,12 @@
   .order-3 {
     order: 3;
   }
+  .m-5 {
+    margin: calc(var(--spacing) * 5);
+  }
+  .m-10 {
+    margin: calc(var(--spacing) * 10);
+  }
   .mx-10 {
     margin-inline: calc(var(--spacing) * 10);
   }
@@ -380,17 +386,8 @@
   .h-20 {
     height: calc(var(--spacing) * 20);
   }
-  .h-30 {
-    height: calc(var(--spacing) * 30);
-  }
   .h-32 {
     height: calc(var(--spacing) * 32);
-  }
-  .h-40 {
-    height: calc(var(--spacing) * 40);
-  }
-  .h-50 {
-    height: calc(var(--spacing) * 50);
   }
   .h-\[18px\] {
     height: 18px;
@@ -434,9 +431,6 @@
   .w-32 {
     width: calc(var(--spacing) * 32);
   }
-  .w-42 {
-    width: calc(var(--spacing) * 42);
-  }
   .w-64 {
     width: calc(var(--spacing) * 64);
   }
@@ -445,6 +439,12 @@
   }
   .w-\[160px\] {
     width: 160px;
+  }
+  .w-\[400px\] {
+    width: 400px;
+  }
+  .w-\[1200px\] {
+    width: 1200px;
   }
   .w-full {
     width: 100%;
@@ -461,11 +461,23 @@
   .max-w-6xl {
     max-width: var(--container-6xl);
   }
+  .max-w-\[200px\] {
+    max-width: 200px;
+  }
   .max-w-\[220px\] {
     max-width: 220px;
   }
   .max-w-\[420px\] {
     max-width: 420px;
+  }
+  .max-w-\[500px\] {
+    max-width: 500px;
+  }
+  .max-w-\[800px\] {
+    max-width: 800px;
+  }
+  .max-w-\[1200px\] {
+    max-width: 1200px;
   }
   .max-w-sm {
     max-width: var(--container-sm);
@@ -695,9 +707,6 @@
   .border-green-500 {
     border-color: var(--color-green-500);
   }
-  .border-white {
-    border-color: var(--color-white);
-  }
   .border-t-transparent {
     border-top-color: transparent;
   }
@@ -715,6 +724,9 @@
   }
   .bg-\[\#e6d8bc\] {
     background-color: #e6d8bc;
+  }
+  .bg-\[\#eae9e4\] {
+    background-color: #eae9e4;
   }
   .bg-\[\#eaf4f3\] {
     background-color: #eaf4f3;
@@ -1042,9 +1054,6 @@
   .text-green-800 {
     color: var(--color-green-800);
   }
-  .text-red-500 {
-    color: var(--color-red-500);
-  }
   .text-white {
     color: var(--color-white);
   }
@@ -1205,14 +1214,8 @@
     .md\:w-10 {
       width: calc(var(--spacing) * 10);
     }
-    .md\:w-36 {
-      width: calc(var(--spacing) * 36);
-    }
     .md\:w-40 {
       width: calc(var(--spacing) * 40);
-    }
-    .md\:w-44 {
-      width: calc(var(--spacing) * 44);
     }
     .md\:w-52 {
       width: calc(var(--spacing) * 52);
@@ -1249,9 +1252,6 @@
     }
     .md\:items-start {
       align-items: flex-start;
-    }
-    .md\:justify-around {
-      justify-content: space-around;
     }
     .md\:justify-end {
       justify-content: flex-end;
