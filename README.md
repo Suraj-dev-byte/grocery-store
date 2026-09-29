@@ -1,8 +1,8 @@
+## 🌐 LIVE-LINK → https://grocery-store-ownmart.netlify.app/
+
 # Grocery Store 🛒
 
 A modern and responsive grocery shopping website built using **HTML, Tailwind CSS, and JavaScript**.
-
-## Features
 
 ## Features
 
@@ -86,5 +86,3 @@ A modern and responsive grocery shopping website built using **HTML, Tailwind CS
 🚧 **Currently in development**
 
 More functionality and features will be added as the project progresses.
-
-## LIVE-LINK → (https://grocery-store-ownmart.netlify.app/)
