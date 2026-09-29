@@ -14,6 +14,13 @@ async function api() {
     const filterVal = data.data.products.filter((el) => {
       return el.name.toLowerCase().includes(query)
     })
+    if (filterVal.length === 0) {
+      cardContainer.classList.add('noResult')
+      cardContainer.innerHTML = `
+   No Result Found
+        <i class="fa-regular fa-face-frown"></i>
+      `
+    }
     filterVal.forEach((el) => {
       cardTwo(el)
     })

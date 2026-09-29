@@ -21,12 +21,19 @@ async function apiCall() {
     fetchData = data.data.products;
     const elements = fetchData.slice(0, 12);
     inputValue.addEventListener('input', () => {
-
+      cardContainer.innerHTML = ''
       const searchFilter = fetchData.filter((find) => {
         return find.name.toLowerCase().includes(inputValue.value.toLowerCase())
 
       })
-      console.log(searchFilter);
+      if (searchFilter.length === 0) {
+        cardContainer.classList.add('noResult')
+        cardContainer.innerHTML = `
+           No Result Found
+                <i class="fa-regular fa-face-frown"></i>
+
+                `
+      }
       searchFilter.forEach((el) => {
         card(el)
       })
@@ -175,12 +182,13 @@ if (addTwoCount > 0) {
 }
 function addTwoCart() {
   const addBtn = document.querySelectorAll(".addButton");
-  addBtn.forEach((el, i) => {
-    el.addEventListener("click", () => {
-      if (addToCartId[i] === el.dataset.id) {
-        return alert("already added");
+  addBtn.forEach((el) => {
+    el.addEventListener("click", (e) => {
+      if (addToCartId.includes(el.dataset.id)) {
+        return alert('already added')
       }
-      addToCartId.push(el.dataset.id);
+
+      addToCartId.push(e.currentTarget.dataset.id);
       localStorage.setItem("addCart", JSON.stringify(addToCartId));
       addTwoCount++;
       localStorage.setItem("addTwoCart", addTwoCount);

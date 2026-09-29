@@ -4,9 +4,213 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+  <title>OwnMart Cart</title>
   <link rel="stylesheet" href="output.css">
+  <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.3.1/css/all.min.css">
+  <script src="cart.js" defer></script>
 </head>
+
+<body>
+
+  <!-- ================= HEADER SECTION ================= -->
+  <header>
+    <nav
+      class="w-full bg-white border-b border-gray-100 px-4 md:px-6 py-4 flex flex-wrap items-center justify-between gap-x-4 gap-y-3 text-gray-900 shadow-sm">
+
+      <!-- Left Section: Logo & Delivery Info -->
+      <div class="flex items-center gap-3 md:gap-4">
+        <!-- Logo -->
+        <div class="flex-shrink-0">
+          <a href="#" class="text-2xl font-extrabold text-gray-900 tracking-tight flex items-center gap-2">
+            <i class="fa-solid fa-leaf text-green-500"></i>
+            <span>Own<span class="text-green-600">Mart</span></span>
+          </a>
+        </div>
+
+        <!-- Vertical Divider (Hidden on small screens) -->
+        <div class="hidden md:block w-px h-7 bg-gray-200"></div>
+
+        <!-- Delivery Info Badge (Hidden on small screens) -->
+        <div class="hidden md:flex flex-col justify-center bg-[#f5f4ef] px-2.5 py-1 rounded-md ">
+          <span class="text-[12px] font-bold leading-none mb-0.5">10-20 min</span>
+          <span class="text-[11px] text-gray-700 leading-none">delivery</span>
+        </div>
+      </div>
+
+
+      <!-- Right Section: User Actions -->
+      <div class="flex items-center gap-5 md:gap-6">
+        <!-- Login / Account -->
+        <a href="#"
+          class="hidden sm:flex items-center gap-2 hover:text-[#096a56] transition-colors cursor-pointer group">
+          <span class="text-[14px] font-semibold text-gray-800 group-hover:text-[#096a56] transition-colors">Login /
+            Account</span>
+          <i class="fa-regular fa-user"></i>
+        </a>
+
+        <!-- Cart -->
+        <a href="#" class="flex items-center gap-2 hover:text-[#096a56] transition-colors cursor-pointer group">
+          <div class="relative">
+            <i class="fa-solid fa-cart-shopping"></i>
+            <!-- Item Count Badge -->
+            <span
+              class="addToCart absolute -top-1.5 -left-1.5 text-[10px] font-bold w-[18px] h-[18px] rounded-full flex items-center justify-center"></span>
+          </div>
+          <span
+            class="text-[14px] font-semibold text-gray-800 hidden sm:block group-hover:text-[#096a56] transition-colors">Cart</span>
+        </a>
+      </div>
+    </nav>
+  </header>
+
+  <!-- ================= MAIN CART CONTENT ================= -->
+  <main class="mainPage min-h-screen bg-gray-100 p-3 sm:p-6 lg:p-8 font-sans text-gray-800">
+
+    <div class="max-w-6xl mx-auto">
+      <a href="#" class="text-2xl py-5 font-extrabold text-gray-900 tracking-tight flex items-center gap-2">
+        <i class="fa-solid fa-leaf text-green-500"></i>
+        <span>Own<span class="text-green-600">Mart</span></span>
+      </a>
+      <!-- <span>Own<span class="text-green-600">Mart</span></span> -->
+
+      <!-- Cart Grid Wrapper -->
+      <div class="cart-items-container flex flex-col xl:flex-row gap-6">
+
+        <!-- LEFT SECTION: Cart Items List -->
+        <!-- LEFT SECTION: Cart Items List -->
+
+        <section id="cart-items-container" class="flex-1 cartMainContainer flex flex-col gap-4">
+        </section>
+
+        <!-- RIGHT SECTION: Price Details / Order Summary -->
+
+
+
+        <!-- RIGHT SECTION: Price Details / Order Summary -->
+        <aside class="xl:w-[380px] w-full shrink-0">
+          <div class="bg-white rounded-lg shadow-sm border border-gray-200 sticky top-4 sm:top-6">
+
+            <!-- Card Header -->
+            <div class="px-5 sm:px-6 py-3.5 sm:py-4 border-b border-gray-100">
+              <h3 class="text-gray-500 font-bold uppercase text-xs sm:text-sm tracking-wide">Price Details</h3>
+            </div>
+
+            <!-- Calculations -->
+            <div class="priceDetails p-5 sm:p-6 space-y-3 sm:space-y-4">
+              <div class="flex justify-between text-sm sm:text-[15px] text-gray-700 font-medium">
+                <span class="priceText"></span>
+                <span class="amount">₹390</span>
+              </div>
+              <div class="flex justify-between text-sm sm:text-[15px] text-gray-700 font-medium">
+                <span>Discount</span>
+                <span class="totalDiscount text-green-600">-₹80</span>
+              </div>
+              <div class="flex justify-between text-sm sm:text-[15px] text-gray-700 font-medium">
+                <span>Platform Fee</span>
+                <span>₹10</span>
+              </div>
+              <div class="flex justify-between text-sm sm:text-[15px] text-gray-700 font-medium">
+                <span>Delivery Charge</span>
+                <span class="text-green-600">Free <span
+                    class="line-through text-gray-400 text-xs sm:text-sm ml-1 font-normal">₹40</span></span>
+              </div>
+
+              <!-- Divider for Total Amount -->
+              <div class="border-t border-dashed border-gray-300 pt-3 sm:pt-4 mt-3 sm:mt-4">
+                <div class="flex justify-between text-base sm:text-lg font-bold text-gray-900">
+                  <span>Total Amount</span>
+                  <span class="totalPrice">₹320</span>
+                </div>
+              </div>
+
+              <!-- Savings Message -->
+              <div class="saveMessage text-green-600 text-xs sm:text-sm font-bold pt-1">
+                You will save ₹120 on this order
+              </div>
+            </div>
+
+            <!-- Checkout Button -->
+            <div class="p-3 sm:p-4 bg-gray-50 rounded-b-lg border-t border-gray-100">
+              <button
+                class="placeOrder w-full bg-[#fb641b] hover:bg-[#e05615] text-white font-bold py-3 sm:py-3.5 px-4 rounded shadow-sm transition-colors text-sm sm:text-[15px] uppercase tracking-wide focus:outline-none cursor-pointer">
+                Place Order
+              </button>
+            </div>
+
+          </div>
+        </aside>
+
+      </div> <!-- End Cart Grid Wrapper -->
+
+    </div> <!-- End Max-w-6xl -->
+    <div
+      class="maxLimitBox fixed hidden bottom-4 right-4 flex items-center gap-3 bg-white border border-gray-100 shadow-lg rounded-lg px-4 py-3 max-w-xs z-50">
+      <div class="text-[#155DFC]">
+        <!-- Font Awesome Info/Exclamation Icon -->
+        <i class="fa-solid fa-circle-exclamation text-lg"></i>
+      </div>
+      <p class="text-gray-800 text-sm font-medium m-0">
+        Maximum quantity reached
+      </p>
+    </div>
+  </main>
+
+  <section class="confirmMessage mt-20 mx-5 hidden">
+    <div class="max-w-sm mx-auto bg-white rounded-[24px] shadow-[0_8px_30px_rgb(0,0,0,0.08)] p-8 text-center font-sans">
+
+      <!-- Success Icon with subtle pulse effect -->
+      <!-- Clean green circle with SVG checkmark -->
+      <div
+        class="relative inline-flex items-center justify-center w-20 h-20 bg-green-500 rounded-full mb-4 animate-fade-in">
+        <!-- SVG Checkmark -->
+        <svg class="w-10 h-10 text-white animate-draw-check" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+          xmlns="http://www.w3.org/2000/svg">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path>
+        </svg>
+      </div>
+
+      <!-- Heading and Subtext -->
+      <h2 class="text-2xl font-bold text-green-700 mb-2">Order Placed Successfully!</h2>
+      <p class="text-gray-500 text-sm mb-6">Your order has been placed and is being prepared.</p>
+
+      <!-- Order Details Box -->
+      <div class="bg-gray-50/80 rounded-2xl p-4 mb-8 text-left space-y-3 border border-gray-100">
+
+        <!-- Order ID -->
+        <div class="flex items-center gap-3">
+          <i class="fa-solid fa-receipt text-green-600 w-5 text-center"></i>
+          <div class="text-sm">
+            <span class="font-semibold text-gray-800">Order ID:</span>
+            <span class="text-gray-600">#OM987654</span>
+          </div>
+        </div>
+
+        <div class="border-t border-gray-200"></div>
+
+        <!-- Estimated Delivery -->
+        <div class="flex flex-start gap-3">
+          <i class="fa-solid fa-calendar-day text-green-600 w-5 text-center mt-0.5"></i>
+          <div class="text-sm">
+            <span class="font-semibold text-gray-800">Estimated Delivery:</span><br />
+            <span class="text-gray-600 mt-1 inline-block">Friday, October 27, 2026<br />11:00 AM - 2:00 PM</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Action Buttons -->
+      <button
+        class="w-full bg-green-600 hover:bg-green-700 text-white font-medium py-3.5 rounded-xl transition-colors duration-200 shadow-md shadow-green-200/50 mb-5">
+        Continue Shopping
+      </button>
+
+      <a href="#"
+        class="inline-block text-green-600 hover:text-green-700 font-medium text-sm underline decoration-2 underline-offset-4 transition-colors duration-200">
+        View Order
+      </a>
+
+    </div>
+  </section>
+</body>
 
 </html>

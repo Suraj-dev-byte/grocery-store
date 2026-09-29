@@ -53,7 +53,7 @@
 }
 
 .bgGreen {
-  @apply bg-[#096a56] text-white border-2 border-white;
+  @apply bg-[#096a56] text-white p-1 border flex border-white justify-center items-center;
 }
 
 .bodyClass {
@@ -63,6 +63,128 @@
 .reloadBtn {
   @apply text-3xl pl-5 cursor-pointer;
 }
+
+.noResult {
+  @apply text-2xl flex items-center font-bold text-black gap-2 justify-center mx-auto;
+}
+
+
+
+@layer components {
+
+  /* Main Card Container */
+  .cart-item-card {
+    @apply bg-white rounded-lg shadow-sm border border-gray-200 p-3 sm:p-5;
+  }
+
+  .cart-item-layout {
+    @apply flex;
+  }
+
+  /* Image Section */
+  .cart-img-wrapper {
+    @apply flex-shrink-0 w-20 h-20 sm:w-28 sm:h-28 bg-gray-50 rounded-md overflow-hidden border border-gray-100 p-1 sm:p-2;
+  }
+
+  .cart-img {
+    @apply w-full h-full object-cover rounded;
+  }
+
+  /* Details Section */
+  .cart-details-wrapper {
+    @apply flex-1 min-w-0 flex flex-col pl-3 sm:pl-4;
+  }
+
+  .cart-title {
+    @apply text-sm sm:text-lg font-semibold text-gray-800 truncate hover:text-green-700 cursor-pointer;
+  }
+
+  /* Ratings */
+  .cart-rating-wrapper {
+    @apply flex items-center gap-1.5 sm:gap-2 mt-1;
+  }
+
+  .cart-rating-badge {
+    @apply bg-green-600 text-white text-[10px] sm:text-[11px] font-bold px-1 sm:px-1.5 py-0.5 rounded flex items-center shadow-sm;
+  }
+
+  .cart-rating-text {
+    @apply text-[11px] sm:text-xs text-gray-500 font-medium truncate;
+  }
+
+  /* Price */
+  .cart-price-wrapper {
+    @apply mt-1.5 sm:mt-2.5 flex items-end gap-1.5 sm:gap-2;
+  }
+
+  .cart-price-current {
+    @apply text-base sm:text-xl font-bold text-gray-900 leading-none;
+  }
+
+  .cart-price-old {
+    @apply text-xs sm:text-sm text-gray-500 line-through leading-none;
+  }
+
+  .cart-price-discount {
+    @apply bg-[#e2f3da] text-[#000000] text-xs font-medium px-2.5 py-1 rounded;
+  }
+
+  /* Controls (Qty & Remove) */
+  .cart-controls-wrapper {
+    @apply flex items-center justify-between mt-3 sm:mt-4 pt-3 sm:pt-4 border-t border-gray-100;
+  }
+
+  .cart-qty-wrapper {
+    @apply flex items-center border border-gray-300 rounded shadow-sm bg-white h-7 sm:h-9;
+  }
+
+  .cart-qty-btn {
+    @apply w-7 sm:w-9 h-full flex items-center justify-center text-gray-600 hover:bg-gray-100 font-bold transition-colors focus:outline-none leading-none;
+  }
+
+  .cart-qty-input {
+    @apply w-8 sm:w-10 h-full text-center text-xs sm:text-sm font-semibold text-gray-800 outline-none border-x border-gray-300 bg-gray-50 pointer-events-none;
+  }
+
+  .cart-remove-btn {
+    @apply text-xs sm:text-sm font-semibold text-red-500 hover:text-red-600 uppercase tracking-wide transition-colors focus:outline-none;
+  }
+}
+
+
+/* Circle ko smoothly fade-in karne ke liye (No scaling/bouncing) */
+.animate-fade-in {
+  opacity: 0;
+  animation: fadeIn 0.4s ease-out forwards;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+/* White tick ko draw karne ka smooth effect */
+.animate-draw-check path {
+  /* Path ki total length ke barabar dasharray set kiya hai */
+  stroke-dasharray: 50;
+  stroke-dashoffset: 50;
+  /* Start mein path chupa rahega */
+  /* 0.3s ke delay ke baad draw hona start hoga */
+  animation: drawCheck 0.6s cubic-bezier(0.4, 0, 0.2, 1) 0.3s forwards;
+}
+
+@keyframes drawCheck {
+  to {
+    stroke-dashoffset: 0;
+    /* Path pura draw ho jayega */
+  }
+}
+
 
 ::-webkit-scrollbar {
   height: 1px;

@@ -4,23 +4,24 @@ A modern and responsive grocery shopping website built using **HTML, Tailwind CS
 
 ## Features
 
+## Features
+
 - 📱 Fully responsive design
 - 🎨 Modern grocery store UI
-- 🛍️ Product sections with dynamic data
-- 🔄 Fetches product data from an API
-- 📦 Displays API data dynamically on the website
+- 🛍️ Dynamic product sections
+- 🔄 REST API integration
 - 🎠 Product carousel
-- ⚡ Responsive and clean layout
-- 🟢 Dynamic product details page with product-specific navigation and data rendering
-- 🟢 API loading state
-- 🟢 API error handling with retry functionality
-- 🟢 Add to Cart functionality
-- 🟢 Cart item count
-- 🟢 LocalStorage support for cart data
-- 🟢 Product search and filtering
-- 🟢 Dedicated search results page with query-based product filtering
-- 🟢 Matching products dynamically rendered on the search results page
-- 🟢 Live product filtering while typing in the search input
+- 📄 Dynamic product details
+- ⚡ Loading and error states
+- 🛒 Add to Cart
+- 💾 LocalStorage cart persistence
+- 🔍 Product search and filtering
+- 🧾 Dedicated search results page
+- 🛍️ Cart management
+- ➕➖ Cart quantity controls
+- 💰 Cart total and savings calculation
+- 📦 Order placement
+- ✅ Order confirmation
 
 ## Tech Stack
 
@@ -28,23 +29,57 @@ A modern and responsive grocery shopping website built using **HTML, Tailwind CS
 - Tailwind CSS
 - JavaScript
 - REST API
+- LocalStorage
+
+## Current Progress
 
 ## Current Progress
 
 - 🟢 Responsive UI completed
-- 🟢 Tailwind CSS styling implemented
-- 🟢 Product data fetched from API
-- 🟢 API products displayed dynamically in different sections
-- 🟢 Product carousel implemented
-- 🟢 Dynamic product details page implemented
-- 🟢 Loading and error states implemented
-- 🟢 Add to Cart functionality implemented
-- 🟢 Cart data persistence using LocalStorage implemented
-- 🟢 Product search and filtering implemented
-- 🟢 Search query passed through URL parameters
-- 🟢 Dedicated search results page implemented
-- 🟢 Matching search results rendered dynamically
-- 🟢 Live search filtering implemented
+- 🟢 Product API integration completed
+- 🟢 Product details page completed
+- 🟢 Cart functionality completed
+- 🟢 Search functionality completed
+- 🟢 Order placement flow completed
+- 🟡 Additional e-commerce features in development
+
+## Next Steps
+
+- ⬜ Empty cart state
+- ⬜ Category filtering
+- ⬜ Price filtering
+- ⬜ Rating filtering
+- ⬜ Discount filtering
+- ⬜ Product sorting
+- ⬜ Clear filters
+- ⬜ Wishlist functionality
+- ⬜ Recently viewed products
+- ⬜ Related products
+- ⬜ Stock management
+- ⬜ Coupon and discount system
+- ⬜ Delivery charge logic
+- ⬜ Free delivery logic
+- ⬜ Estimated delivery calculation
+- ⬜ Unique Order ID
+- ⬜ Order snapshot
+- ⬜ Save orders to LocalStorage
+- ⬜ Clear cart after successful order
+- ⬜ Duplicate order prevention
+- ⬜ Page reload handling after order
+- ⬜ Order details page
+- ⬜ Order history
+- ⬜ Multiple orders management
+- ⬜ Delivery address
+- ⬜ Order status
+- ⬜ Empty order history state
+- ⬜ Toast / notification system
+- ⬜ Invalid LocalStorage data handling
+- ⬜ Prevent order placement with an empty cart
+- ⬜ Double-click order prevention
+- ⬜ Final responsive testing
+- ⬜ Code cleanup and refactoring
+- ⬜ README update
+- ⬜ Deployment
 
 ## Project Status
 
@@ -52,4 +87,4 @@ A modern and responsive grocery shopping website built using **HTML, Tailwind CS
 
 More functionality and features will be added as the project progresses.
 
-## LIVE-LINK → Coming Soon
+## LIVE-LINK → (https://grocery-store-ownmart.netlify.app/)
