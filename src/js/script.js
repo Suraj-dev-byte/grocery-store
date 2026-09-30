@@ -20,12 +20,16 @@ async function apiCall() {
     const data = await response.json();
     fetchData = data.data.products;
     const elements = fetchData.slice(0, 12);
+    // const inputVal = inputValue.value.toLowerCase()
     inputValue.addEventListener('input', () => {
       cardContainer.innerHTML = ''
       const searchFilter = fetchData.filter((find) => {
+        // console.log(find.name.toLowerCase().includes(inputValue.value.toLowerCase()));
         return find.name.toLowerCase().includes(inputValue.value.toLowerCase())
 
       })
+      console.log(fetchData);
+      console.log(searchFilter.length);
       if (searchFilter.length === 0) {
         cardContainer.classList.add('noResult')
         cardContainer.innerHTML = `
@@ -41,7 +45,7 @@ async function apiCall() {
     })
     formEvent.addEventListener("submit", (e) => {
       e.preventDefault();
-      const inputVal = inputValue.value.trim();
+      const inputVal = inputValue.value.trim()
       if (!inputVal) return;
 
       window.location.href = "search.html?query=" + inputVal;

@@ -12,7 +12,7 @@ async function api() {
     }
     const data = await response.json();
     const filterVal = data.data.products.filter((el) => {
-      return el.name.toLowerCase().includes(query)
+      return el.name.toLowerCase().includes(query.toLowerCase())
     })
     if (filterVal.length === 0) {
       cardContainer.classList.add('noResult')
