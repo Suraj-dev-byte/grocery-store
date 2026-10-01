@@ -152,7 +152,7 @@
 }
 
 
-/* Circle ko smoothly fade-in karne ke liye (No scaling/bouncing) */
+
 .animate-fade-in {
   opacity: 0;
   animation: fadeIn 0.4s ease-out forwards;
@@ -168,7 +168,7 @@
   }
 }
 
-/* White tick ko draw karne ka smooth effect */
+
 .animate-draw-check path {
   /* Path ki total length ke barabar dasharray set kiya hai */
   stroke-dasharray: 50;
@@ -181,10 +181,25 @@
 @keyframes drawCheck {
   to {
     stroke-dashoffset: 0;
-    /* Path pura draw ho jayega */
+
   }
 }
 
+@keyframes slide-right {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+.animate-slide-right {
+  animation: slide-right 0.4s ease-out forwards;
+}
 
 ::-webkit-scrollbar {
   height: 1px;

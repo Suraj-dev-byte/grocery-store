@@ -1,46 +1,62 @@
-## 🌐 LIVE-LINK → https://grocery-store-ownmart.netlify.app/
-
 # Grocery Store 🛒
 
 A modern and responsive grocery shopping website built using **HTML, Tailwind CSS, and JavaScript**.
+
+## 🌐 Live Link
+
+**https://grocery-store-ownmart.netlify.app/**
 
 ## Features
 
 - 📱 Fully responsive design
 - 🎨 Modern grocery store UI
 - 🛍️ Dynamic product sections
-- 🔄 REST API integration
+- 📦 Product data integration
 - 🎠 Product carousel
 - 📄 Dynamic product details
 - ⚡ Loading and error states
+- 🔄 Retry handling for failed data loading
 - 🛒 Add to Cart
 - 💾 LocalStorage cart persistence
-- 🔍 Product search and filtering
+- 🔍 Product search
+- 🎯 Product filtering based on search query
 - 🧾 Dedicated search results page
 - 🛍️ Cart management
 - ➕➖ Cart quantity controls
+- 🗑️ Remove items from cart
 - 💰 Cart total and savings calculation
 - 📦 Order placement
 - ✅ Order confirmation
+- 🚫 Duplicate cart-item prevention
+- 🔗 Product detail navigation
 
 ## Tech Stack
 
 - HTML5
 - Tailwind CSS
 - JavaScript
-- REST API
+- REST API / Product Data
 - LocalStorage
-
-## Current Progress
+- Font Awesome
 
 ## Current Progress
 
 - 🟢 Responsive UI completed
-- 🟢 Product API integration completed
+- 🟢 Product data integration completed
+- 🟢 Dynamic product sections completed
+- 🟢 Product carousel completed
 - 🟢 Product details page completed
-- 🟢 Cart functionality completed
+- 🟢 Add to Cart completed
+- 🟢 LocalStorage cart persistence completed
 - 🟢 Search functionality completed
+- 🟢 Dedicated search results page completed
+- 🟢 Cart management completed
+- 🟢 Cart quantity controls completed
+- 🟢 Remove cart items completed
+- 🟢 Cart total and savings calculation completed
 - 🟢 Order placement flow completed
+- 🟢 Order confirmation completed
+- 🟢 Netlify deployment completed
 - 🟡 Additional e-commerce features in development
 
 ## Next Steps
@@ -78,11 +94,9 @@ A modern and responsive grocery shopping website built using **HTML, Tailwind CS
 - ⬜ Double-click order prevention
 - ⬜ Final responsive testing
 - ⬜ Code cleanup and refactoring
-- ⬜ README update
-- ⬜ Deployment
 
 ## Project Status
 
 🚧 **Currently in development**
 
-More functionality and features will be added as the project progresses.
+OwnMart is an ongoing e-commerce project. Core shopping functionality, product browsing, search, cart management, and the basic order flow are currently implemented. More e-commerce features will be added as development continues.

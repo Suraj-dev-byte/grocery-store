@@ -4,7 +4,8 @@ const secondBody = document.querySelector(".secondBody");
 const inputValue = document.querySelector(".inputValue");
 const formEvent = document.querySelector(".formBtn");
 const searchBtn = document.querySelector(".searchBtn");
-console.log(formEvent);
+const mainContainerTwo = document.querySelector(".mainContainerTwo");
+
 
 let fetchData = [];
 let searchData = [];
@@ -68,10 +69,7 @@ async function apiCall() {
 
 apiCall();
 
-searchBtn.addEventListener("click", () => {
-  if (!inputValue.value) return;
-  window.location.href = "search.html?query=" + inputValue.value.trim();
-});
+
 
 function hideLoading() {
   loadingScreen.classList.add("hidden");
@@ -113,7 +111,7 @@ function card(val) {
   });
 }
 
-const mainContainerTwo = document.querySelector(".mainContainerTwo");
+
 
 function cardTwo(valTwo) {
   const card = document.createElement("div");
@@ -161,22 +159,28 @@ function cardTwo(valTwo) {
   });
 }
 
-const rightArrow = document.querySelector(".rightArrow");
-rightArrow.addEventListener("click", () => {
-  cardContainer.scrollBy({
-    left: 300,
-    behavior: "smooth",
-  });
-});
+function carousel() {
+  const rightArrow = document.querySelector(".rightArrow");
+  const lefttArrow = document.querySelector(".leftArrow");
 
-const lefttArrow = document.querySelector(".leftArrow");
-lefttArrow.addEventListener("click", () => {
-  cardContainer.scrollBy({
-    left: -300,
-    behavior: "smooth",
+  rightArrow.addEventListener("click", () => {
+    cardContainer.scrollBy({
+      left: 300,
+      behavior: "smooth",
+    });
   });
-});
 
+  lefttArrow.addEventListener("click", () => {
+    cardContainer.scrollBy({
+      left: -300,
+      behavior: "smooth",
+    });
+  });
+}
+
+carousel()
+
+// save addToCart in LocalStorage..
 const addToCart = document.querySelector(".addToCart");
 let addTwoCount = localStorage.getItem("addTwoCart");
 let addToCartId = JSON.parse(localStorage.getItem("addCart")) || [];
@@ -184,13 +188,22 @@ if (addTwoCount > 0) {
   addToCart.textContent = addTwoCount;
   addToCart.classList.add("bgGreen");
 }
+
 function addTwoCart() {
+  const itemAddedToast = document.querySelector('.itemAddedToast')
   const addBtn = document.querySelectorAll(".addButton");
+  let intervalID = null
   addBtn.forEach((el) => {
     el.addEventListener("click", (e) => {
       if (addToCartId.includes(el.dataset.id)) {
-        return alert('already added')
+        if (intervalID) return;
+        intervalID = setTimeout(() => {
+          itemAddedToast.classList.add('hidden')
+          intervalID = null
+        }, 2000)
+        return itemAddedToast.classList.remove('hidden');
       }
+
 
       addToCartId.push(e.currentTarget.dataset.id);
       localStorage.setItem("addCart", JSON.stringify(addToCartId));
@@ -200,4 +213,11 @@ function addTwoCart() {
       addToCart.textContent = addTwoCount;
     });
   });
+
 }
+
+// search Condition..
+searchBtn.addEventListener("click", () => {
+  if (!inputValue.value) return;
+  window.location.href = "search.html?query=" + inputValue.value.trim();
+});

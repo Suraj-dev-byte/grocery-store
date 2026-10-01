@@ -1,5 +1,10 @@
+
+
 const query = new URLSearchParams(window.location.search).get('query')
 const cardContainer = document.querySelector('.mainContainerTwo')
+const inputValue = document.querySelector(".inputValue");
+const formEvent = document.querySelector(".formBtn");
+
 console.log(cardContainer);
 console.log(query);
 
@@ -14,16 +19,45 @@ async function api() {
     const filterVal = data.data.products.filter((el) => {
       return el.name.toLowerCase().includes(query.toLowerCase())
     })
-    if (filterVal.length === 0) {
-      cardContainer.classList.add('noResult')
-      cardContainer.innerHTML = `
-   No Result Found
-        <i class="fa-regular fa-face-frown"></i>
-      `
-    }
+
+
+    inputValue.addEventListener('input', () => {
+      cardContainer.innerHTML = ''
+      const searchFilter = filterVal.filter((el) => {
+        return el.name.toLowerCase().includes(inputValue.value.toLowerCase())
+      })
+
+
+
+
+      if (searchFilter.length === 0) {
+        cardContainer.classList.add('noResult')
+        cardContainer.innerHTML = `
+     No Result Found
+          <i class="fa-regular fa-face-frown"></i>
+        `
+      }
+      searchFilter.forEach((val) => {
+        cardContainer.classList.remove('noResult')
+        cardTwo(val)
+        addTwoCart()
+
+      })
+
+
+
+
+
+    })
+    formEvent.addEventListener("submit", (e) => {
+      e.preventDefault();
+
+    });
+
     filterVal.forEach((el) => {
       cardTwo(el)
     })
+    addTwoCart()
   } catch (error) {
     console.log(error);
   }
@@ -76,5 +110,40 @@ function cardTwo(valTwo) {
     window.location.href = `product.html?id=${valTwo.id}`
   })
 
+
+}
+
+const addToCart = document.querySelector(".addToCart");
+let addTwoCount = localStorage.getItem("addTwoCart");
+let addToCartId = JSON.parse(localStorage.getItem("addCart")) || [];
+if (addTwoCount > 0) {
+  addToCart.textContent = addTwoCount;
+  addToCart.classList.add("bgGreen");
+}
+
+function addTwoCart() {
+  const itemAddedToast = document.querySelector('.itemAddedToast')
+  const addBtn = document.querySelectorAll(".addButton");
+  let intervalID = null
+  addBtn.forEach((el) => {
+    el.addEventListener("click", (e) => {
+      if (addToCartId.includes(el.dataset.id)) {
+        if (intervalID) return;
+        intervalID = setTimeout(() => {
+          itemAddedToast.classList.add('hidden')
+          intervalID = null
+        }, 2000)
+        return itemAddedToast.classList.remove('hidden');
+      }
+
+
+      addToCartId.push(e.currentTarget.dataset.id);
+      localStorage.setItem("addCart", JSON.stringify(addToCartId));
+      addTwoCount++;
+      localStorage.setItem("addTwoCart", addTwoCount);
+      addToCart.classList.add("bgGreen");
+      addToCart.textContent = addTwoCount;
+    });
+  });
 
 }

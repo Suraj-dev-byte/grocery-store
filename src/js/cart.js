@@ -35,7 +35,7 @@ async function api() {
 api();
 
 function cardTwo(valTwo) {
-  // console.log(valTwo);
+
   let timeoutId;
   const maxLimitBox = document.querySelector('.maxLimitBox')
 
@@ -208,19 +208,24 @@ function totalAddCart(cartItem) {
 
 // placeOrder logic..
 
-const placeOrder = document.querySelector('.placeOrder');
-const confirmMessage = document.querySelector('.confirmMessage');
-const mainPage = document.querySelector('.mainPage')
+function placeOrderLogic() {
+  const placeOrder = document.querySelector('.placeOrder');
+  const confirmMessage = document.querySelector('.confirmMessage');
+  const mainPage = document.querySelector('.mainPage')
 
-placeOrder.addEventListener('click', () => {
-  placeOrder.disabled = true;
-  mainPage.classList.add('hidden')
-  confirmMessage.classList.remove('hidden')
+  placeOrder.addEventListener('click', () => {
+    placeOrder.disabled = true;
+    mainPage.classList.add('hidden')
+    confirmMessage.classList.remove('hidden')
 
 
-})
+  })
 
-setInterval(() => {
-  mainPage.classList.remove('hidden')
-  confirmMessage.classList.add('hidden')
-}, 5000)
+  setInterval(() => {
+    mainPage.classList.remove('hidden')
+    confirmMessage.classList.add('hidden')
+  }, 5000)
+
+}
+
+placeOrderLogic()
