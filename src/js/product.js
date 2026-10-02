@@ -9,6 +9,7 @@ if (addTwoCount > 0) {
 }
 const id = params.get("id");
 
+
 async function api() {
 
   try {
@@ -19,6 +20,7 @@ async function api() {
     const data = await response.json();
     const product = data.data.products.find((item) => item.id == id);
     productCard(product);
+
 
     const someProduct = data.data.products.slice(0, 8);
     someProduct.forEach((el) => {
@@ -36,6 +38,7 @@ function productCard(val) {
   if (val.offer_price == val.mrp) {
     val.offer_price = 1;
   }
+  const addToCartBtn = document.querySelector('.addButton')
   const miniImg = document.querySelectorAll(".miniImg");
   const mainImg = document.querySelector(".mainImg img");
   const productName = document.querySelector(".productName");
@@ -45,8 +48,7 @@ function productCard(val) {
   const productQuantity = document.querySelector(".quantity");
   const productDiscount = document.querySelector(".discountOffer");
   const deliveryTime = document.querySelector(".deliveryDuration");
-  console.log(productDiscount);
-  console.log(val);
+
   miniImg.forEach((el) => {
     el.src = val.images[0];
   });
@@ -58,8 +60,37 @@ function productCard(val) {
   productQuantity.textContent = val.quantity;
   productDiscount.textContent = `${Math.floor(((val.mrp - val.offer_price) / 100) * 100)}% Off`;
   deliveryTime.textContent = `Delivery by ${val.platform.sla}`;
+  addToCartBtn.dataset.id = val.id
+
 }
 
+
+function MaxLimitAlert() {
+  let timeoutId;
+  const plusBtn = document.querySelector('.plusBtn');
+  const minusBtn = document.querySelector('.minsBtn');
+  const inputQty = document.querySelector('.inputQty')
+  const maxLimitBox = document.querySelector('.maxLimitBox')
+
+  plusBtn.addEventListener('click', () => {
+    if (inputQty.value == 5) {
+      if (timeoutId) return;
+      maxLimitBox.classList.remove('hidden')
+      timeoutId = setTimeout(() => {
+        maxLimitBox.classList.add('hidden')
+        timeoutId = null
+      }, 2000)
+      return;
+    }
+    inputQty.value++;
+  })
+  minusBtn.addEventListener('click', () => {
+    if (inputQty.value == 1) return;
+    inputQty.value--;
+  })
+}
+
+MaxLimitAlert()
 function cardTwo(valTwo) {
   const card = document.createElement("div");
   card.className = "card";
@@ -121,7 +152,6 @@ function addTwoCart() {
         return itemAddedToast.classList.remove('hidden');
       }
 
-
       addToCartId.push(e.currentTarget.dataset.id);
       localStorage.setItem("addCart", JSON.stringify(addToCartId));
       addTwoCount++;
@@ -129,6 +159,7 @@ function addTwoCart() {
       addToCart.classList.add("bgGreen");
       addToCart.textContent = addTwoCount;
     });
+
   });
 
 }

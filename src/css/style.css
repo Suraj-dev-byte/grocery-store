@@ -68,6 +68,9 @@
   @apply text-2xl flex items-center font-bold text-black gap-2 justify-center mx-auto;
 }
 
+.productBtn {
+  @apply p-4 w-full max-w-60 bg-green-600
+}
 
 
 @layer components {

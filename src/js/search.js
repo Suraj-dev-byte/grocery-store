@@ -4,9 +4,9 @@ const query = new URLSearchParams(window.location.search).get('query')
 const cardContainer = document.querySelector('.mainContainerTwo')
 const inputValue = document.querySelector(".inputValue");
 const formEvent = document.querySelector(".formBtn");
-
-console.log(cardContainer);
 console.log(query);
+const searchQueryMessage = document.getElementById('search-query-display')
+searchQueryMessage.textContent = `${query}`
 
 async function api() {
 

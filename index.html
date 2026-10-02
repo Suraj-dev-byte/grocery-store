@@ -45,7 +45,7 @@
   <div class="secondBody">
     <nav>
       <div
-        class="w-full bg-white border-b border-gray-200 px-4 md:px-5 md:py-4 py-2 flex flex-wrap items-center justify-between gap-x-4 gap-y-3 text-gray-900 shadow-sm">
+        class="w-full bg-white border-b border-gray-200 px-2 md:px-5 md:py-4 py-2 flex flex-wrap  items-center justify-between gap-x-4 gap-y-3 text-gray-900 shadow-sm">
         <!-- Left Section: Logo & Delivery Info -->
 
         <div class="flex items-center gap-3 md:gap-4">
@@ -53,7 +53,7 @@
 
 
 
-          <a href="#" class="text-2xl py-2 font-extrabold text-gray-900 tracking-tight flex items-center gap-2">
+          <a class="text-2xl py-2 font-extrabold text-gray-900 tracking-tight flex items-center gap-2">
             <i class="fa-solid fa-leaf text-green-500"></i>
             <span>Own<span class="text-green-600">Mart</span></span>
           </a>
@@ -81,7 +81,7 @@
           <button
             class="bg-[#f5f4ef] px-3 md:px-4 flex items-center gap-1.5 border-r border-gray-300 hover:bg-[#eae9e4] transition-colors whitespace-nowrap">
             <i class="fa-solid fa-location-dot"></i>
-            <span class="text-[13px] md:text-[14px] font-medium text-gray-800">Location</span>
+            <span class="xl:inline hidden text-[13px] md:text-[14px] font-medium text-gray-800">Location</span>
 
             <svg class="w-4 h-4 text-gray-500" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"
               xmlns="http://www.w3.org/2000/svg">
@@ -108,11 +108,14 @@
         <div class="flex items-center gap-5 md:gap-6">
           <!-- Login / Account -->
 
-          <a href="#"
-            class="hidden sm:flex items-center gap-2 hover:text-[#096a56] transition-colors cursor-pointer group">
-            <span class="text-[14px] font-semibold text-gray-800 group-hover:text-[#096a56] transition-colors">Login /
+          <a href="#" class="flex items-center gap-2">
+            <span
+              class="hidden xl:flex text-[14px] font-semibold text-gray-800 group-hover:text-[#096a56] transition-colors">Login
+              /
               Account</span>
-            <i class="fa-regular fa-user"></i>
+            <span>
+              <i class="fa-regular fa-user"></i>
+            </span>
           </a>
 
           <!-- Cart -->
@@ -223,7 +226,7 @@
         <div class="relative w-full">
           <!-- Left Arrow Button -->
           <button
-            class="leftArrow absolute left-0 md:-left-2 top-[40%] -translate-y-1/2 z-10 bg-white border border-gray-200 shadow-lg rounded-full w-9 h-9 md:w-10 md:h-10 flex items-center justify-center text-gray-800 hover:bg-gray-50">
+            class="leftArrow absolute  left-0 md:-left-2 top-[40%] -translate-y-1/2 z-10 bg-white border border-gray-200 shadow-lg rounded-full w-9 h-9 md:w-10 md:h-10 sm:flex hidden items-center justify-center text-gray-800 hover:bg-gray-50">
             <i class="fa-solid fa-left-long"></i>
           </button>
 
@@ -234,7 +237,7 @@
 
           <!-- Right Arrow Button -->
           <button
-            class="rightArrow absolute right-0 md:-right-2 top-[40%] -translate-y-1/2 z-10 bg-white border border-gray-200 shadow-lg rounded-full w-9 h-9 md:w-10 md:h-10 flex items-center justify-center text-gray-800 hover:bg-gray-50 transition-colors">
+            class="rightArrow absolute right-0 md:-right-2 top-[40%] -translate-y-1/2 z-10 bg-white border border-gray-200 shadow-lg rounded-full w-9 h-9 md:w-10 md:h-10 sm:flex hidden items-center justify-center text-gray-800 hover:bg-gray-50 transition-colors">
             <i class="fa-solid fa-right-long"></i>
           </button>
         </div>
@@ -570,7 +573,9 @@
         <div class="max-w-6xl mx-auto flex flex-col md:flex-row flex-wrap gap-10 md:gap-16 justify-between">
           <!-- Left Section -->
           <div class="md:w-1/4">
-            <h2 class="text-[36px] font-bold text-[#096a56] mb-3">SwiftCart</h2>
+            <h3 class="text-4xl py-2 font-extrabold text-gray-900 tracking-tight flex items-center gap-2">
+              <span>Own<span class="text-green-600">Mart</span></span>
+            </h3>
             <p class="text-[14px] font-bold text-gray-800 leading-snug">
               Grocertas delivered<br />in minutes
             </p>
@@ -607,17 +612,28 @@
 
               <!-- Social Icons -->
               <div class="flex items-center gap-2.5 mt-3">
-                <a href="#" class="bg-[#1a1a1a] text-white p-1 rounded-full hover:bg-[#096a56] transition-colors">
-                  <i class="fa-brands fa-linkedin text-md"></i>
+                <!-- LinkedIn (Blue) -->
+                <a href="#"
+                  class="w-9 h-9 flex items-center justify-center bg-[#1a1a1a] text-white rounded-full transition-all duration-300 hover:-translate-y-1 hover:bg-[#0A66C2] hover:shadow-lg">
+                  <i class="fa-brands fa-linkedin text-sm"></i>
                 </a>
-                <a href="#" class="bg-[#1a1a1a] text-white p-1 rounded-full hover:bg-[#096a56] transition-colors">
-                  <i class="fa-brands fa-instagram text-md"></i>
+
+                <!-- Instagram (Pink/Red) -->
+                <a href="#"
+                  class="w-9 h-9 flex items-center justify-center bg-[#1a1a1a] text-white rounded-full transition-all duration-300 hover:-translate-y-1 hover:bg-[#E4405F] hover:shadow-lg">
+                  <i class="fa-brands fa-instagram text-sm"></i>
                 </a>
-                <a href="#" class="bg-[#1a1a1a] text-white p-1 rounded-full hover:bg-[#096a56] transition-colors">
-                  <i class="fa-brands fa-youtube text-md"></i>
+
+                <!-- YouTube (Red) -->
+                <a href="#"
+                  class="w-9 h-9 flex items-center justify-center bg-[#1a1a1a] text-white rounded-full transition-all duration-300 hover:-translate-y-1 hover:bg-[#FF0000] hover:shadow-lg">
+                  <i class="fa-brands fa-youtube text-sm"></i>
                 </a>
-                <a href="#" class="bg-[#1a1a1a] text-white p-1 rounded-full hover:bg-[#096a56] transition-colors">
-                  <i class="fa-brands fa-x-twitter text-md"></i>
+
+                <!-- X / Twitter (Black) -->
+                <a href="#"
+                  class="w-9 h-9 flex items-center justify-center bg-[#1a1a1a] text-white rounded-full transition-all duration-300 hover:-translate-y-1 hover:bg-black hover:shadow-lg">
+                  <i class="fa-brands fa-x-twitter text-sm"></i>
                 </a>
               </div>
             </div>
