@@ -4,7 +4,8 @@ const query = new URLSearchParams(window.location.search).get('query')
 const cardContainer = document.querySelector('.mainContainerTwo')
 const inputValue = document.querySelector(".inputValue");
 const formEvent = document.querySelector(".formBtn");
-console.log(query);
+const addToCart = document.querySelector(".addToCart");
+let addToCartId = JSON.parse(localStorage.getItem("addCart")) || [];
 const searchQueryMessage = document.getElementById('search-query-display')
 searchQueryMessage.innerHTML = `Search results for  ${query} <i class="fa-regular fa-face-laugh text-black"></i>`
 
@@ -115,12 +116,16 @@ function cardTwo(valTwo) {
 
 }
 
-const addToCart = document.querySelector(".addToCart");
-let addToCartId = JSON.parse(localStorage.getItem("addCart")) || [];
-if (addToCartId.length > 0) {
+
+window.addEventListener('pageshow', () => {
+  addToCartId = JSON.parse(localStorage.getItem("addCart")) || [];
   addToCart.textContent = addToCartId.length;
   addToCart.classList.add("bgGreen");
-}
+  if (addToCartId.length === 0) {
+    addToCart.textContent = '';
+    addToCart.classList.remove("bgGreen");
+  }
+})
 
 function addTwoCart() {
   const itemAddedToast = document.querySelector('.itemAddedToast')

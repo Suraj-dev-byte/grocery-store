@@ -16,7 +16,7 @@
   <!-- ================= HEADER SECTION ================= -->
   <header>
     <nav
-      class="w-full bg-white border-b border-gray-100 px-4 md:px-6 py-4 flex flex-wrap items-center justify-between gap-x-4 gap-y-3 text-gray-900 shadow-sm">
+      class="w-full bg-white border-b border-gray-100 px-4 md:px-6 py-5 flex flex-wrap items-center justify-between gap-x-4 gap-y-3 text-gray-900 shadow-sm">
 
       <!-- Left Section: Logo & Delivery Info -->
       <div class="flex items-center gap-3 md:gap-4">
@@ -64,10 +64,12 @@
     </nav>
   </header>
 
-  <!-- ================= MAIN CART CONTENT ================= -->
-  <main class="mainPage min-h-screen bg-gray-100 p-3 sm:p-6 lg:p-8 font-sans text-gray-800">
 
-    <div class="max-w-6xl mx-auto">
+  <!-- ================= MAIN CART CONTENT ================= -->
+  <main class="mainPage min-h-[93vh] bg-gray-100 p-3 sm:p-6 lg:p-8 font-sans text-gray-800">
+
+    <!-- heading And Price -->
+    <div class="headingAndPrice max-w-6xl mx-auto">
       <a href="#" class="text-2xl py-5 font-extrabold text-gray-900 tracking-tight flex items-center gap-2">
         <i class="fa-solid fa-leaf text-green-500"></i>
         <span>Own<span class="text-green-600">Mart</span></span>
@@ -143,7 +145,11 @@
 
       </div> <!-- End Cart Grid Wrapper -->
 
-    </div> <!-- End Max-w-6xl -->
+    </div>
+
+
+
+    <!-- MaxLimitBox alert -->
     <div
       class="maxLimitBox fixed hidden bottom-10 right-8 flex items-center gap-3 bg-white border border-gray-100 shadow-lg rounded-lg px-4 py-3 max-w-xs z-50">
       <div class="text-[#155DFC]">
@@ -154,63 +160,89 @@
         Maximum quantity reached
       </p>
     </div>
-  </main>
+    <!-- empty card UI -->
+    <section class="emptyCardBox hidden w-full flex items-center justify-center px-4 py-16 sm:py-24">
+      <div class="w-full max-w-md mx-auto flex flex-col items-center text-center">
+        <!-- Icon Visual -->
+        <div
+          class="w-16 h-16 sm:w-20 sm:h-20 rounded-2xl bg-emerald-50/80  border border-emerald-100 flex items-center justify-center text-emerald-800 shadow-sm mb-6 sm:mb-8">
+          <i class="fa-solid fa-basket-shopping text-2xl sm:text-3xl" aria-hidden="true"></i>
+        </div>
 
-  <section class="confirmMessage mt-20 mx-5 hidden">
-    <div class="max-w-sm mx-auto bg-white rounded-[24px] shadow-[0_8px_30px_rgb(0,0,0,0.08)] p-8 text-center font-sans">
+        <!-- Heading -->
+        <h1 class="text-2xl sm:text-3xl font-semibold tracking-tight text-stone-900 mb-3">
+          Your cart is empty
+        </h1>
 
-      <!-- Success Icon with subtle pulse effect -->
-      <!-- Clean green circle with SVG checkmark -->
+        <!-- Description -->
+        <p class="max-w-sm text-sm sm:text-base text-stone-600 leading-relaxed mb-8 sm:mb-10">
+          Looks like you haven't added any products to your cart yet. Start shopping to find something you love.
+        </p>
+
+        <!-- Call to Action -->
+        <a href="index.html"
+          class="inline-flex items-center justify-center px-7 py-3.5 text-sm font-medium tracking-wide text-white bg-emerald-800 hover:bg-emerald-900 active:bg-emerald-950 rounded-xl shadow-sm transition-colors duration-150 focus:outline-none focus:ring-2 focus:ring-emerald-700 focus:ring-offset-2">
+          Continue Shopping
+        </a>
+      </div>
+    </section>
+    <section class="confirmMessage mt-20 mx-5 hidden">
       <div
-        class="relative inline-flex items-center justify-center w-20 h-20 bg-green-500 rounded-full mb-4 animate-fade-in">
-        <!-- SVG Checkmark -->
-        <svg class="w-10 h-10 text-white animate-draw-check" fill="none" stroke="currentColor" viewBox="0 0 24 24"
-          xmlns="http://www.w3.org/2000/svg">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path>
-        </svg>
-      </div>
+        class="max-w-sm mx-auto bg-white rounded-[24px] shadow-[0_8px_30px_rgb(0,0,0,0.08)] p-8 text-center font-sans">
 
-      <!-- Heading and Subtext -->
-      <h2 class="text-2xl font-bold text-green-700 mb-2">Order Placed Successfully!</h2>
-      <p class="text-gray-500 text-sm mb-6">Your order has been placed and is being prepared.</p>
+        <!-- Success Icon with subtle pulse effect -->
+        <!-- Clean green circle with SVG checkmark -->
+        <div
+          class="relative inline-flex items-center justify-center w-20 h-20 bg-green-500 rounded-full mb-4 animate-fade-in">
+          <!-- SVG Checkmark -->
+          <svg class="w-10 h-10 text-white animate-draw-check" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path>
+          </svg>
+        </div>
 
-      <!-- Order Details Box -->
-      <div class="bg-gray-50/80 rounded-2xl p-4 mb-8 text-left space-y-3 border border-gray-100">
+        <!-- Heading and Subtext -->
+        <h2 class="text-2xl font-bold text-green-700 mb-2">Order Placed Successfully!</h2>
+        <p class="text-gray-500 text-sm mb-6">Your order has been placed and is being prepared.</p>
 
-        <!-- Order ID -->
-        <div class="flex items-center gap-3">
-          <i class="fa-solid fa-receipt text-green-600 w-5 text-center"></i>
-          <div class="text-sm">
-            <span class="font-semibold text-gray-800">Order ID:</span>
-            <span class="text-gray-600">#OM987654</span>
+        <!-- Order Details Box -->
+        <div class="bg-gray-50/80 rounded-2xl p-4 mb-8 text-left space-y-3 border border-gray-100">
+
+          <!-- Order ID -->
+          <div class="flex items-center gap-3">
+            <i class="fa-solid fa-receipt text-green-600 w-5 text-center"></i>
+            <div class="text-sm">
+              <span class="font-semibold text-gray-800">Order ID:</span>
+              <span class="text-gray-600">#OM987654</span>
+            </div>
+          </div>
+
+          <div class="border-t border-gray-200"></div>
+
+          <!-- Estimated Delivery -->
+          <div class="flex flex-start gap-3">
+            <i class="fa-solid fa-calendar-day text-green-600 w-5 text-center mt-0.5"></i>
+            <div class="text-sm">
+              <span class="font-semibold text-gray-800">Estimated Delivery:</span><br />
+              <span class="text-gray-600 mt-1 inline-block">Friday, October 27, 2026<br />11:00 AM - 2:00 PM</span>
+            </div>
           </div>
         </div>
 
-        <div class="border-t border-gray-200"></div>
+        <!-- Action Buttons -->
+        <button
+          class="w-full bg-green-600 hover:bg-green-700 text-white font-medium py-3.5 rounded-xl transition-colors duration-200 shadow-md shadow-green-200/50 mb-5">
+          Continue Shopping
+        </button>
 
-        <!-- Estimated Delivery -->
-        <div class="flex flex-start gap-3">
-          <i class="fa-solid fa-calendar-day text-green-600 w-5 text-center mt-0.5"></i>
-          <div class="text-sm">
-            <span class="font-semibold text-gray-800">Estimated Delivery:</span><br />
-            <span class="text-gray-600 mt-1 inline-block">Friday, October 27, 2026<br />11:00 AM - 2:00 PM</span>
-          </div>
-        </div>
+        <a href="#"
+          class="inline-block text-green-600 hover:text-green-700 font-medium text-sm underline decoration-2 underline-offset-4 transition-colors duration-200">
+          View Order
+        </a>
+
       </div>
-
-      <!-- Action Buttons -->
-      <button
-        class="w-full bg-green-600 hover:bg-green-700 text-white font-medium py-3.5 rounded-xl transition-colors duration-200 shadow-md shadow-green-200/50 mb-5">
-        Continue Shopping
-      </button>
-
-      <a href="#"
-        class="inline-block text-green-600 hover:text-green-700 font-medium text-sm underline decoration-2 underline-offset-4 transition-colors duration-200">
-        View Order
-      </a>
-
-    </div>
-  </section>
+    </section>
+  </main>
 </body>
 
 </html>

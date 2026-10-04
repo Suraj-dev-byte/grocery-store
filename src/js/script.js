@@ -182,15 +182,23 @@ carousel()
 
 // save addToCart in LocalStorage..
 const addToCart = document.querySelector(".addToCart");
+
+
 let addToCartId = JSON.parse(localStorage.getItem("addCart")) || [];
-if (addToCartId.length > 0) {
+window.addEventListener('pageshow', () => {
+  addToCartId = JSON.parse(localStorage.getItem("addCart")) || [];
+  addToCart.classList.add('bgGreen')
   addToCart.textContent = addToCartId.length;
-  addToCart.classList.add("bgGreen");
-}
+  if (addToCartId.length === 0) {
+    addToCart.textContent = '';
+    addToCart.classList.remove("bgGreen");
+  }
+})
+
 
 function addTwoCart() {
-  const itemAddedToast = document.querySelector('.itemAddedToast')
   const addBtn = document.querySelectorAll(".addButton");
+  const itemAddedToast = document.querySelector('.itemAddedToast')
   let intervalID = null
   addBtn.forEach((el) => {
     el.addEventListener("click", (e) => {

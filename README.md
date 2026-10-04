@@ -4,7 +4,7 @@ A modern and responsive grocery shopping website built using **HTML, Tailwind CS
 
 ## 🌐 Live Link
 
-**https://grocery-store-ownmart.netlify.app/**
+**[https://grocery-store-ownmart.netlify.app/](https://grocery-store-ownmart.netlify.app/)**
 
 ## Features
 
@@ -29,6 +29,11 @@ A modern and responsive grocery shopping website built using **HTML, Tailwind CS
 - ✅ Order confirmation
 - 🚫 Duplicate cart-item prevention
 - 🔗 Product detail navigation
+- 🛒 Add to Cart from product details page
+- ➕➖ Product quantity controls on product details page
+- ⚠️ Maximum quantity limit handling
+- 🛒 Empty cart state
+- 🔄 Cart count synchronization across pages
 
 ## Tech Stack
 
@@ -56,12 +61,15 @@ A modern and responsive grocery shopping website built using **HTML, Tailwind CS
 - 🟢 Cart total and savings calculation completed
 - 🟢 Order placement flow completed
 - 🟢 Order confirmation completed
+- 🟢 Product details page cart functionality completed
+- 🟢 Maximum quantity limit handling completed
+- 🟢 Empty cart state completed
+- 🟢 Cart count synchronization completed
 - 🟢 Netlify deployment completed
 - 🟡 Additional e-commerce features in development
 
 ## Next Steps
 
-- ⬜ Empty cart state
 - ⬜ Category filtering
 - ⬜ Price filtering
 - ⬜ Rating filtering
@@ -99,4 +107,4 @@ A modern and responsive grocery shopping website built using **HTML, Tailwind CS
 
 🚧 **Currently in development**
 
-OwnMart is an ongoing e-commerce project. Core shopping functionality, product browsing, search, cart management, and the basic order flow are currently implemented. More e-commerce features will be added as development continues.
+OwnMart is an ongoing e-commerce project. Core shopping functionality, product browsing, search, cart management, product details, and the basic order flow are currently implemented. More e-commerce features will be added as development continues.

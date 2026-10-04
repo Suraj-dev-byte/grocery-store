@@ -1,9 +1,12 @@
+const totalPriceBox = document.querySelector('.headingAndPrice')
 let cartId = JSON.parse(localStorage.getItem("addCart"));
 const addToCart = document.querySelector(".addToCart");
 const cartContainer = document.getElementById("cart-items-container");
+
 if (cartId.length > 0) {
-  addToCart.classList.add("bgGreen");
-  addToCart.textContent = cartId.length
+  addToCart.classList.add('bgGreen')
+  addToCart.textContent = cartId.length;
+
 }
 let newData = [];
 
@@ -155,6 +158,7 @@ function cardTwo(valTwo) {
 
   removeBtn.dataset.id = valTwo.id;
   removeBtn.addEventListener("click", (e) => {
+
     const id = e.currentTarget.dataset.id;
 
     cartId = cartId.filter((item) => item != id);
@@ -164,12 +168,22 @@ function cardTwo(valTwo) {
     const afterRemoveData = newData.data.products.filter((el) => {
       return cartId.includes(el.id);
     });
-
+    if (cartId.length === 0) {
+      console.log('hello');
+      addToCart.textContent = '';
+      addToCart.classList.remove('bgGreen')
+    } else {
+      addToCart.classList.add('bgGreen')
+      addToCart.textContent = cartId.length
+    }
     cartContainer.innerHTML = "";
-    addToCart.textContent = cartId.length
+
     afterRemoveData.forEach((newVal) => {
       cardTwo(newVal);
     });
+    totalAddCart(afterRemoveData)
+    // console.log(newCarts);
+
   });
   controlsWrapper.appendChild(qtyWrapper);
   controlsWrapper.appendChild(removeBtn);
@@ -203,6 +217,7 @@ function cardTwo(valTwo) {
 }
 
 function totalAddCart(cartItem) {
+
   const saveMessage = document.querySelector(".saveMessage");
   const productAmount = document.querySelector(".amount");
   const totalDiscount = document.querySelector(".totalDiscount");
@@ -220,6 +235,11 @@ function totalAddCart(cartItem) {
     },
   );
 
+  if (priceTotal.mrpTotal === 0) {
+    totalPriceBox.innerHTML = ''
+    const emptyCardBoxMessage = document.querySelector('.emptyCardBox');
+    emptyCardBoxMessage.classList.remove('hidden')
+  }
   productAmount.textContent = `₹${priceTotal.mrpTotal}`;
   totalDiscount.textContent = `- ₹${priceTotal.offerTotal}`;
   totalPrice.textContent = `₹${priceTotal.mrpTotal}`;
