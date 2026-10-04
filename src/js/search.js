@@ -6,7 +6,9 @@ const inputValue = document.querySelector(".inputValue");
 const formEvent = document.querySelector(".formBtn");
 console.log(query);
 const searchQueryMessage = document.getElementById('search-query-display')
-searchQueryMessage.textContent = `${query}`
+searchQueryMessage.innerHTML = `Search results for  ${query} <i class="fa-regular fa-face-laugh text-black"></i>`
+
+
 
 async function api() {
 
@@ -29,16 +31,16 @@ async function api() {
 
 
 
-
       if (searchFilter.length === 0) {
-        cardContainer.classList.add('noResult')
-        cardContainer.innerHTML = `
+        searchQueryMessage.innerHTML = `
      No Result Found
           <i class="fa-regular fa-face-frown"></i>
         `
       }
       searchFilter.forEach((val) => {
-        cardContainer.classList.remove('noResult')
+        searchQueryMessage.innerHTML = `Search results for  ${query} <i class="fa-regular fa-face-laugh text-black"></i>`
+        console.log(searchQueryMessage);
+        // cardContainer.classList.remove('noResult')
         cardTwo(val)
         addTwoCart()
 
@@ -114,10 +116,9 @@ function cardTwo(valTwo) {
 }
 
 const addToCart = document.querySelector(".addToCart");
-let addTwoCount = localStorage.getItem("addTwoCart");
 let addToCartId = JSON.parse(localStorage.getItem("addCart")) || [];
-if (addTwoCount > 0) {
-  addToCart.textContent = addTwoCount;
+if (addToCartId.length > 0) {
+  addToCart.textContent = addToCartId.length;
   addToCart.classList.add("bgGreen");
 }
 
@@ -139,10 +140,8 @@ function addTwoCart() {
 
       addToCartId.push(e.currentTarget.dataset.id);
       localStorage.setItem("addCart", JSON.stringify(addToCartId));
-      addTwoCount++;
-      localStorage.setItem("addTwoCart", addTwoCount);
       addToCart.classList.add("bgGreen");
-      addToCart.textContent = addTwoCount;
+      addToCart.textContent = addToCartId.length;
     });
   });
 

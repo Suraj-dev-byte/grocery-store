@@ -182,10 +182,9 @@ carousel()
 
 // save addToCart in LocalStorage..
 const addToCart = document.querySelector(".addToCart");
-let addTwoCount = localStorage.getItem("addTwoCart");
 let addToCartId = JSON.parse(localStorage.getItem("addCart")) || [];
-if (addTwoCount > 0) {
-  addToCart.textContent = addTwoCount;
+if (addToCartId.length > 0) {
+  addToCart.textContent = addToCartId.length;
   addToCart.classList.add("bgGreen");
 }
 
@@ -207,10 +206,8 @@ function addTwoCart() {
 
       addToCartId.push(e.currentTarget.dataset.id);
       localStorage.setItem("addCart", JSON.stringify(addToCartId));
-      addTwoCount++;
-      localStorage.setItem("addTwoCart", addTwoCount);
       addToCart.classList.add("bgGreen");
-      addToCart.textContent = addTwoCount;
+      addToCart.textContent = addToCartId.length
     });
   });
 
