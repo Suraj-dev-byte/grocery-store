@@ -10,7 +10,6 @@ if (cartId.length > 0) {
 }
 let newData = [];
 
-
 // FIx Add To Count Bug .....
 
 
@@ -37,6 +36,7 @@ async function api() {
   } catch (error) {
     console.log(error);
   }
+  console.log(newData);
 }
 
 api();

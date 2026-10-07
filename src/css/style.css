@@ -29,7 +29,7 @@
 }
 
 .imgClassTwo {
-  @apply h-full object-contain mix-blend-multiply;
+  @apply h-full object-contain mix-blend-multiply bg-white;
 }
 
 .title {

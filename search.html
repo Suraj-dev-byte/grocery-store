@@ -11,7 +11,7 @@
   <script src="src/js/search.js" defer></script>
 </head>
 
-<body class="bg-[#eae9e4] text-black ">
+<body class="bg-[#eae9e4] text-black min-h-screen flex flex-col ">
   <nav>
     <div
       class="w-full bg-white border-b border-gray-200 px-2 md:px-5 md:py-4 py-2 flex flex-wrap  items-center justify-between gap-x-4 gap-y-3 text-gray-900 shadow-sm">
@@ -59,17 +59,17 @@
         </button>
 
         <!-- Search Input -->
-        <form class="formBtn flex w-full px-3 md:px-4 " action="">
+        <form class="formBtn flex w-full" action="">
           <input type="text" placeholder="Search for groceries, froits, snacks & more"
-            class="inputValue flex-1 w-full text-[13px] md:text-[14px] outline-none text-gray-800 placeholder-gray-500" />
+            class="inputValue px-3 flex-1 w-full text-[13px] md:text-[14px] outline-none text-gray-800 placeholder-gray-500" />
+
+          <button
+            class="searchBtn bg-[#096a56] hover:bg-[#065041] px-4 md:px-5 flex items-center justify-center transition-colors">
+            <i class="fa-solid fa-magnifying-glass text-white"></i>
+          </button>
         </form>
 
         <!-- Search Button -->
-
-        <button
-          class="searchBtn bg-[#096a56] hover:bg-[#065041] px-4 md:px-5 flex items-center justify-center transition-colors">
-          <i class="fa-solid fa-magnifying-glass text-white"></i>
-        </button>
       </div>
 
       <!-- Right Section: User Actions -->
@@ -105,13 +105,13 @@
       </div>
     </div>
   </nav>
-  <main>
+  <main class="flex-grow">
     <!-- Centered Search Heading Section -->
     <div class="mb-6 flex items-center pl-16 md:py-6 mt-8">
       <h1 class="text-xl md:text-2xl font-semibold text-gray-800 flex items-center justify-center gap-2.5 text-center">
         <!-- Icon Font (Jaise FontAwesome ya RemixIcon) -->
         <i class="fas fa-search text-green-600 text-lg md:text-xl"></i>
-        <span><span id="search-query-display" class="text-green-600 font-bold break-words">"..."</span></span>
+        <span><span id="search-query-display" class="text-green-600 font-bold break-words"></span></span>
       </h1>
     </div>
     <!-- Product Grid Starts Here -->
@@ -152,7 +152,7 @@
       <!-- Card 2 -->
     </div>
   </main>
-  <footer class="mt-44  ">
+  <footer class="mt-auto">
     <div class=" bg-gray-300 w-full px-6 py-10 md:px-12 md:py-14 text-gray-800">
       <div class="max-w-6xl mx-auto  flex flex-col md:flex-row flex-wrap gap-10 md:gap-16 justify-between">
         <!-- Left Section -->

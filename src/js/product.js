@@ -1,6 +1,7 @@
-
+console.log('hello');
 const params = new URLSearchParams(window.location.search);
-
+const inputValue = document.querySelector(".inputValue");
+const formEvent = document.querySelector(".formBtn");
 const mainContainerTwo = document.querySelector(".mainContainerTwo");
 const addToCart = document.querySelector(".addToCart");
 
@@ -24,6 +25,14 @@ window.addEventListener('pageshow', () => {
 const id = params.get("id");
 
 
+formEvent.addEventListener("submit", (e) => {
+  e.preventDefault();
+  const inputVal = inputValue.value.trim()
+  inputVal.toLowerCase()
+  if (inputVal.length < 3) return;
+
+  window.location.href = "search.html?query=" + inputVal;
+});
 async function api() {
 
   try {

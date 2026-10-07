@@ -1,5 +1,4 @@
 
-
 const query = new URLSearchParams(window.location.search).get('query')
 const cardContainer = document.querySelector('.mainContainerTwo')
 const inputValue = document.querySelector(".inputValue");
@@ -7,11 +6,18 @@ const formEvent = document.querySelector(".formBtn");
 const addToCart = document.querySelector(".addToCart");
 let addToCartId = JSON.parse(localStorage.getItem("addCart")) || [];
 const searchQueryMessage = document.getElementById('search-query-display')
-searchQueryMessage.innerHTML = `Search results for  ${query} <i class="fa-regular fa-face-laugh text-black"></i>`
 
-
+formEvent.addEventListener("submit", (e) => {
+  e.preventDefault();
+});
 
 async function api() {
+  if (!query) {
+    return searchQueryMessage.innerHTML = `
+    No Result Found
+    <i class="fa-regular fa-face-frown"></i>
+        `
+  }
 
   try {
     const response = await fetch("data.json");
@@ -23,6 +29,15 @@ async function api() {
       return el.name.toLowerCase().includes(query.toLowerCase())
     })
 
+    if (filterVal.length === 0) {
+      return searchQueryMessage.innerHTML = `
+      No Result Found
+      <i class="fa-regular fa-face-frown"></i>
+      `
+    } else {
+      searchQueryMessage.innerHTML = `Search results for  ${query} <i class="fa-regular fa-face-laugh text-black"></i>`
+
+    }
 
     inputValue.addEventListener('input', () => {
       cardContainer.innerHTML = ''
@@ -32,16 +47,16 @@ async function api() {
 
 
 
+
       if (searchFilter.length === 0) {
         searchQueryMessage.innerHTML = `
-     No Result Found
-          <i class="fa-regular fa-face-frown"></i>
+        No Result Found
+        <i class="fa-regular fa-face-frown"></i>
         `
+      } else {
+        searchQueryMessage.innerHTML = `Search results for  ${query} <i class="fa-regular fa-face-laugh text-black"></i>`
       }
       searchFilter.forEach((val) => {
-        searchQueryMessage.innerHTML = `Search results for  ${query} <i class="fa-regular fa-face-laugh text-black"></i>`
-        console.log(searchQueryMessage);
-        // cardContainer.classList.remove('noResult')
         cardTwo(val)
         addTwoCart()
 
@@ -52,10 +67,7 @@ async function api() {
 
 
     })
-    formEvent.addEventListener("submit", (e) => {
-      e.preventDefault();
 
-    });
 
     filterVal.forEach((el) => {
       cardTwo(el)

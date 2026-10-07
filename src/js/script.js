@@ -3,7 +3,6 @@ const loadingScreen = document.querySelector(".Loading");
 const secondBody = document.querySelector(".secondBody");
 const inputValue = document.querySelector(".inputValue");
 const formEvent = document.querySelector(".formBtn");
-const searchBtn = document.querySelector(".searchBtn");
 const mainContainerTwo = document.querySelector(".mainContainerTwo");
 
 
@@ -19,6 +18,7 @@ async function apiCall() {
       throw new Error("Faild to fetch data");
     }
     const data = await response.json();
+    console.log(data);
     fetchData = data.data.products;
     const elements = fetchData.slice(0, 12);
     // const inputVal = inputValue.value.toLowerCase()
@@ -29,7 +29,7 @@ async function apiCall() {
         return find.name.toLowerCase().includes(inputValue.value.toLowerCase())
 
       })
-      console.log(fetchData);
+
       console.log(searchFilter.length);
       if (searchFilter.length === 0) {
         cardContainer.classList.add('noResult')
@@ -47,7 +47,7 @@ async function apiCall() {
     formEvent.addEventListener("submit", (e) => {
       e.preventDefault();
       const inputVal = inputValue.value.trim()
-      if (!inputVal) return;
+      if (inputVal.length < 3) return;
 
       window.location.href = "search.html?query=" + inputVal;
     });
@@ -221,8 +221,4 @@ function addTwoCart() {
 
 }
 
-// search Condition..
-searchBtn.addEventListener("click", () => {
-  if (!inputValue.value) return;
-  window.location.href = "search.html?query=" + inputValue.value.trim();
-});
+
