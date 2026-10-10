@@ -1,10 +1,43 @@
+
 const cardContainer = document.querySelector(".cardContainer");
 const loadingScreen = document.querySelector(".Loading");
 const secondBody = document.querySelector(".secondBody");
 const inputValue = document.querySelector(".inputValue");
 const formEvent = document.querySelector(".formBtn");
 const mainContainerTwo = document.querySelector(".mainContainerTwo");
+const filterContainer = document.querySelectorAll('.filteringDiv input')
 
+
+function headingAnimation() {
+  const mainHeading = document.querySelector('.heading')
+  let wordList = ['Fresh Groceries,'];
+  let listWord = 0;
+  let wordLetter = 0;
+  let reverseType = false;
+
+  setInterval(() => {
+    const current = wordList[listWord];
+
+    if (!reverseType) {
+      wordLetter++;
+    } else {
+      wordLetter--;
+    }
+
+    mainHeading.innerText = current.slice(0, wordLetter);
+
+    if (wordLetter === current.length) {
+      reverseType = true;
+    }
+
+    if (wordLetter === 0 && reverseType) {
+      reverseType = false;
+      listWord = (listWord + 1) % wordList.length;
+    }
+
+  }, 200);
+}
+headingAnimation()
 
 let fetchData = [];
 let searchData = [];
@@ -18,35 +51,61 @@ async function apiCall() {
       throw new Error("Faild to fetch data");
     }
     const data = await response.json();
-    console.log(data);
+
     fetchData = data.data.products;
-    const elements = fetchData.slice(0, 12);
-    // const inputVal = inputValue.value.toLowerCase()
-    inputValue.addEventListener('input', () => {
-      cardContainer.innerHTML = ''
+    const elements = fetchData.slice(0, 12)
+    // filtering logic -
+    filterContainer.forEach((el) => {
+      el.addEventListener('change', () => {
+        cardContainer.innerHTML = '';
+
+        const values = Array.from(filterContainer)
+          .filter((input) => input.checked)
+          .map((input) => input.value.toLowerCase());
+
+        const filtering = fetchData.filter((fl) => {
+          return (
+            values.length === 0 ||
+            values.some((value) =>
+              fl.name.toLowerCase().includes(value)
+            )
+          );
+        });
+
+
+        filtering.forEach((product) => {
+
+          card(product);
+        });
+
+        console.log(values);
+      });
+    });
+
+    // Search Filter logic -
+    inputValue.addEventListener("input", () => {
+      cardContainer.innerHTML = "";
       const searchFilter = fetchData.filter((find) => {
         // console.log(find.name.toLowerCase().includes(inputValue.value.toLowerCase()));
-        return find.name.toLowerCase().includes(inputValue.value.toLowerCase())
-
-      })
+        return find.name.toLowerCase().includes(inputValue.value.toLowerCase());
+      });
 
       console.log(searchFilter.length);
       if (searchFilter.length === 0) {
-        cardContainer.classList.add('noResult')
+        cardContainer.classList.add("noResult");
         cardContainer.innerHTML = `
            No Result Found
                 <i class="fa-regular fa-face-frown"></i>
 
-                `
+                `;
       }
       searchFilter.forEach((el) => {
-        card(el)
-      })
-
-    })
+        card(el);
+      });
+    });
     formEvent.addEventListener("submit", (e) => {
       e.preventDefault();
-      const inputVal = inputValue.value.trim()
+      const inputVal = inputValue.value.trim();
       if (inputVal.length < 3) return;
 
       window.location.href = "search.html?query=" + inputVal;
@@ -65,12 +124,10 @@ async function apiCall() {
     }, 2000);
     console.log(error);
   }
+
 }
 
 apiCall();
-
-
-
 function hideLoading() {
   loadingScreen.classList.add("hidden");
   secondBody.classList.remove("hidden");
@@ -110,8 +167,6 @@ function card(val) {
     window.location.href = `product.html?id=${val.id}`;
   });
 }
-
-
 
 function cardTwo(valTwo) {
   const card = document.createElement("div");
@@ -178,47 +233,40 @@ function carousel() {
   });
 }
 
-carousel()
+carousel();
 
 // save addToCart in LocalStorage..
 const addToCart = document.querySelector(".addToCart");
-
-
 let addToCartId = JSON.parse(localStorage.getItem("addCart")) || [];
-window.addEventListener('pageshow', () => {
+window.addEventListener("pageshow", () => {
   addToCartId = JSON.parse(localStorage.getItem("addCart")) || [];
-  addToCart.classList.add('bgGreen')
+  addToCart.classList.add("bgGreen");
   addToCart.textContent = addToCartId.length;
   if (addToCartId.length === 0) {
-    addToCart.textContent = '';
+    addToCart.textContent = "";
     addToCart.classList.remove("bgGreen");
   }
-})
-
+});
 
 function addTwoCart() {
   const addBtn = document.querySelectorAll(".addButton");
-  const itemAddedToast = document.querySelector('.itemAddedToast')
-  let intervalID = null
+  const itemAddedToast = document.querySelector(".itemAddedToast");
+  let intervalID = null;
   addBtn.forEach((el) => {
     el.addEventListener("click", (e) => {
       if (addToCartId.includes(el.dataset.id)) {
         if (intervalID) return;
         intervalID = setTimeout(() => {
-          itemAddedToast.classList.add('hidden')
-          intervalID = null
-        }, 2000)
-        return itemAddedToast.classList.remove('hidden');
+          itemAddedToast.classList.add("hidden");
+          intervalID = null;
+        }, 2000);
+        return itemAddedToast.classList.remove("hidden");
       }
-
 
       addToCartId.push(e.currentTarget.dataset.id);
       localStorage.setItem("addCart", JSON.stringify(addToCartId));
       addToCart.classList.add("bgGreen");
-      addToCart.textContent = addToCartId.length
+      addToCart.textContent = addToCartId.length;
     });
   });
-
 }
-
-

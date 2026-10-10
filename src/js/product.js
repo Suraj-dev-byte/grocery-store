@@ -1,40 +1,35 @@
-console.log('hello');
+console.log("hello");
 const params = new URLSearchParams(window.location.search);
 const inputValue = document.querySelector(".inputValue");
 const formEvent = document.querySelector(".formBtn");
 const mainContainerTwo = document.querySelector(".mainContainerTwo");
 const addToCart = document.querySelector(".addToCart");
 
-
-
 let addToCartId = JSON.parse(localStorage.getItem("addCart")) || [];
-window.addEventListener('pageshow', () => {
+window.addEventListener("pageshow", () => {
   addToCartId = JSON.parse(localStorage.getItem("addCart")) || [];
-  addToCart.textContent = addToCartId.length
-  addToCart.classList.add('bgGreen')
+  addToCart.textContent = addToCartId.length;
+  addToCart.classList.add("bgGreen");
   if (addToCartId.length === 0) {
-    addToCart.textContent = ''
+    addToCart.textContent = "";
     addToCart.classList.remove("bgGreen");
   }
-
-})
+});
 // console.log(addToCartId.length);
 
 // if (addToCartId.length > 0) {
 // }
 const id = params.get("id");
 
-
 formEvent.addEventListener("submit", (e) => {
   e.preventDefault();
-  const inputVal = inputValue.value.trim()
-  inputVal.toLowerCase()
+  const inputVal = inputValue.value.trim();
+  inputVal.toLowerCase();
   if (inputVal.length < 3) return;
 
   window.location.href = "search.html?query=" + inputVal;
 });
 async function api() {
-
   try {
     const response = await fetch("data.json");
     if (!response.ok) {
@@ -44,12 +39,11 @@ async function api() {
     const product = data.data.products.find((item) => item.id == id);
     productCard(product);
 
-
     const someProduct = data.data.products.slice(0, 8);
     someProduct.forEach((el) => {
-      cardTwo(el)
-    })
-    addTwoCart()
+      cardTwo(el);
+    });
+    addTwoCart();
   } catch (error) {
     console.log(error);
   }
@@ -61,7 +55,7 @@ function productCard(val) {
   if (val.offer_price == val.mrp) {
     val.offer_price = 1;
   }
-  const addToCartBtn = document.querySelector('.addButton')
+  const addToCartBtn = document.querySelector(".addButton");
   const miniImg = document.querySelectorAll(".miniImg");
   const mainImg = document.querySelector(".mainImg img");
   const productName = document.querySelector(".productName");
@@ -83,37 +77,35 @@ function productCard(val) {
   productQuantity.textContent = val.quantity;
   productDiscount.textContent = `${Math.floor(((val.mrp - val.offer_price) / 100) * 100)}% Off`;
   deliveryTime.textContent = `Delivery by ${val.platform.sla}`;
-  addToCartBtn.dataset.id = val.id
-
+  addToCartBtn.dataset.id = val.id;
 }
-
 
 function MaxLimitAlert() {
   let timeoutId;
-  const plusBtn = document.querySelector('.plusBtn');
-  const minusBtn = document.querySelector('.minsBtn');
-  const inputQty = document.querySelector('.inputQty')
-  const maxLimitBox = document.querySelector('.maxLimitBox')
+  const plusBtn = document.querySelector(".plusBtn");
+  const minusBtn = document.querySelector(".minsBtn");
+  const inputQty = document.querySelector(".inputQty");
+  const maxLimitBox = document.querySelector(".maxLimitBox");
 
-  plusBtn.addEventListener('click', () => {
+  plusBtn.addEventListener("click", () => {
     if (inputQty.value == 5) {
       if (timeoutId) return;
-      maxLimitBox.classList.remove('hidden')
+      maxLimitBox.classList.remove("hidden");
       timeoutId = setTimeout(() => {
-        maxLimitBox.classList.add('hidden')
-        timeoutId = null
-      }, 2000)
+        maxLimitBox.classList.add("hidden");
+        timeoutId = null;
+      }, 2000);
       return;
     }
     inputQty.value++;
-  })
-  minusBtn.addEventListener('click', () => {
+  });
+  minusBtn.addEventListener("click", () => {
     if (inputQty.value == 1) return;
     inputQty.value--;
-  })
+  });
 }
 
-MaxLimitAlert()
+MaxLimitAlert();
 function cardTwo(valTwo) {
   const card = document.createElement("div");
   card.className = "card";
@@ -161,28 +153,25 @@ function cardTwo(valTwo) {
 }
 
 function addTwoCart() {
-  const itemAddedToast = document.querySelector('.itemAddedToast')
+  const itemAddedToast = document.querySelector(".itemAddedToast");
   const addBtn = document.querySelectorAll(".addButton");
-  let intervalID = null
+  let intervalID = null;
   addBtn.forEach((el) => {
     el.addEventListener("click", (e) => {
       if (addToCartId.includes(el.dataset.id)) {
         if (intervalID) return;
         intervalID = setTimeout(() => {
-          itemAddedToast.classList.add('hidden')
-          intervalID = null
-        }, 2000)
-        return itemAddedToast.classList.remove('hidden');
+          itemAddedToast.classList.add("hidden");
+          intervalID = null;
+        }, 2000);
+        return itemAddedToast.classList.remove("hidden");
       }
 
       addToCartId.push(e.currentTarget.dataset.id);
       localStorage.setItem("addCart", JSON.stringify(addToCartId));
 
-
       addToCart.classList.add("bgGreen");
       addToCart.textContent = addToCartId.length;
     });
-
   });
-
 }

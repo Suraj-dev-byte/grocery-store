@@ -1,17 +1,15 @@
-const totalPriceBox = document.querySelector('.headingAndPrice')
+const totalPriceBox = document.querySelector(".headingAndPrice");
 let cartId = JSON.parse(localStorage.getItem("addCart"));
 const addToCart = document.querySelector(".addToCart");
 const cartContainer = document.getElementById("cart-items-container");
 
 if (cartId.length > 0) {
-  addToCart.classList.add('bgGreen')
+  addToCart.classList.add("bgGreen");
   addToCart.textContent = cartId.length;
-
 }
 let newData = [];
 
 // FIx Add To Count Bug .....
-
 
 async function api() {
   try {
@@ -158,7 +156,6 @@ function cardTwo(valTwo) {
 
   removeBtn.dataset.id = valTwo.id;
   removeBtn.addEventListener("click", (e) => {
-
     const id = e.currentTarget.dataset.id;
 
     cartId = cartId.filter((item) => item != id);
@@ -169,21 +166,20 @@ function cardTwo(valTwo) {
       return cartId.includes(el.id);
     });
     if (cartId.length === 0) {
-      console.log('hello');
-      addToCart.textContent = '';
-      addToCart.classList.remove('bgGreen')
+      console.log("hello");
+      addToCart.textContent = "";
+      addToCart.classList.remove("bgGreen");
     } else {
-      addToCart.classList.add('bgGreen')
-      addToCart.textContent = cartId.length
+      addToCart.classList.add("bgGreen");
+      addToCart.textContent = cartId.length;
     }
     cartContainer.innerHTML = "";
 
     afterRemoveData.forEach((newVal) => {
       cardTwo(newVal);
     });
-    totalAddCart(afterRemoveData)
+    totalAddCart(afterRemoveData);
     // console.log(newCarts);
-
   });
   controlsWrapper.appendChild(qtyWrapper);
   controlsWrapper.appendChild(removeBtn);
@@ -217,7 +213,6 @@ function cardTwo(valTwo) {
 }
 
 function totalAddCart(cartItem) {
-
   const saveMessage = document.querySelector(".saveMessage");
   const productAmount = document.querySelector(".amount");
   const totalDiscount = document.querySelector(".totalDiscount");
@@ -236,12 +231,12 @@ function totalAddCart(cartItem) {
   );
 
   if (priceTotal.mrpTotal === 0) {
-    totalPriceBox.innerHTML = ''
-    const emptyCardBoxMessage = document.querySelector('.emptyCardBox');
-    emptyCardBoxMessage.classList.remove('hidden')
+    totalPriceBox.innerHTML = "";
+    const emptyCardBoxMessage = document.querySelector(".emptyCardBox");
+    emptyCardBoxMessage.classList.remove("hidden");
   }
   productAmount.textContent = `₹${priceTotal.mrpTotal}`;
-  totalDiscount.textContent = `- ₹${priceTotal.offerTotal}`;
+  totalDiscount.textContent = `- ₹${priceTotal.mrpTotal - priceTotal.offerTotal}`;
   totalPrice.textContent = `₹${priceTotal.mrpTotal}`;
   priceText.textContent = `Price (${cartId.length} items)`;
   saveMessage.textContent = `You will save ₹${priceTotal.mrpTotal - priceTotal.offerTotal} on this order`;
@@ -250,6 +245,7 @@ function totalAddCart(cartItem) {
 // placeOrder logic..
 
 function placeOrderLogic() {
+  let interValId = null;
   const placeOrder = document.querySelector(".placeOrder");
   const confirmMessage = document.querySelector(".confirmMessage");
   const mainPage = document.querySelector(".mainPage");
@@ -260,12 +256,14 @@ function placeOrderLogic() {
     confirmMessage.classList.remove("hidden");
   });
 
-  setInterval(() => {
+  if (interValId) return;
+
+  interValId = setInterval(() => {
     mainPage.classList.remove("hidden");
     confirmMessage.classList.add("hidden");
+    interValId = null;
   }, 5000);
+  // window.location.replace('index.html')
 }
 
 placeOrderLogic();
-
-

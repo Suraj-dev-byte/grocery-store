@@ -1,11 +1,10 @@
-
-const query = new URLSearchParams(window.location.search).get('query')
-const cardContainer = document.querySelector('.mainContainerTwo')
+const query = new URLSearchParams(window.location.search).get("query");
+const cardContainer = document.querySelector(".mainContainerTwo");
 const inputValue = document.querySelector(".inputValue");
 const formEvent = document.querySelector(".formBtn");
 const addToCart = document.querySelector(".addToCart");
 let addToCartId = JSON.parse(localStorage.getItem("addCart")) || [];
-const searchQueryMessage = document.getElementById('search-query-display')
+const searchQueryMessage = document.getElementById("search-query-display");
 
 formEvent.addEventListener("submit", (e) => {
   e.preventDefault();
@@ -13,10 +12,10 @@ formEvent.addEventListener("submit", (e) => {
 
 async function api() {
   if (!query) {
-    return searchQueryMessage.innerHTML = `
+    return (searchQueryMessage.innerHTML = `
     No Result Found
     <i class="fa-regular fa-face-frown"></i>
-        `
+        `);
   }
 
   try {
@@ -26,53 +25,42 @@ async function api() {
     }
     const data = await response.json();
     const filterVal = data.data.products.filter((el) => {
-      return el.name.toLowerCase().includes(query.toLowerCase())
-    })
+      return el.name.toLowerCase().includes(query.toLowerCase());
+    });
 
     if (filterVal.length === 0) {
-      return searchQueryMessage.innerHTML = `
+      return (searchQueryMessage.innerHTML = `
       No Result Found
       <i class="fa-regular fa-face-frown"></i>
-      `
+      `);
     } else {
-      searchQueryMessage.innerHTML = `Search results for  ${query} <i class="fa-regular fa-face-laugh text-black"></i>`
-
+      searchQueryMessage.innerHTML = `Search results for  ${query} <i class="fa-regular fa-face-laugh text-black"></i>`;
     }
 
-    inputValue.addEventListener('input', () => {
-      cardContainer.innerHTML = ''
+    inputValue.addEventListener("input", () => {
+      cardContainer.innerHTML = "";
       const searchFilter = filterVal.filter((el) => {
-        return el.name.toLowerCase().includes(inputValue.value.toLowerCase())
-      })
-
-
-
+        return el.name.toLowerCase().includes(inputValue.value.toLowerCase());
+      });
 
       if (searchFilter.length === 0) {
         searchQueryMessage.innerHTML = `
         No Result Found
         <i class="fa-regular fa-face-frown"></i>
-        `
+        `;
       } else {
-        searchQueryMessage.innerHTML = `Search results for  ${query} <i class="fa-regular fa-face-laugh text-black"></i>`
+        searchQueryMessage.innerHTML = `Search results for  ${query} <i class="fa-regular fa-face-laugh text-black"></i>`;
       }
       searchFilter.forEach((val) => {
-        cardTwo(val)
-        addTwoCart()
-
-      })
-
-
-
-
-
-    })
-
+        cardTwo(val);
+        addTwoCart();
+      });
+    });
 
     filterVal.forEach((el) => {
-      cardTwo(el)
-    })
-    addTwoCart()
+      cardTwo(el);
+    });
+    addTwoCart();
   } catch (error) {
     console.log(error);
   }
@@ -114,46 +102,42 @@ function cardTwo(valTwo) {
   const button = document.createElement("button");
   button.className = "addButton";
   button.textContent = "ADD";
-  button.dataset.id = valTwo.id
+  button.dataset.id = valTwo.id;
 
   imageContainer.append(image);
   bottom.append(price, button);
   card.append(discount, imageContainer, title, quantity, bottom);
-  cardContainer.append(card)
+  cardContainer.append(card);
 
-  imageContainer.addEventListener('click', () => {
-    window.location.href = `product.html?id=${valTwo.id}`
-  })
-
-
+  imageContainer.addEventListener("click", () => {
+    window.location.href = `product.html?id=${valTwo.id}`;
+  });
 }
 
-
-window.addEventListener('pageshow', () => {
+window.addEventListener("pageshow", () => {
   addToCartId = JSON.parse(localStorage.getItem("addCart")) || [];
   addToCart.textContent = addToCartId.length;
   addToCart.classList.add("bgGreen");
   if (addToCartId.length === 0) {
-    addToCart.textContent = '';
+    addToCart.textContent = "";
     addToCart.classList.remove("bgGreen");
   }
-})
+});
 
 function addTwoCart() {
-  const itemAddedToast = document.querySelector('.itemAddedToast')
+  const itemAddedToast = document.querySelector(".itemAddedToast");
   const addBtn = document.querySelectorAll(".addButton");
-  let intervalID = null
+  let intervalID = null;
   addBtn.forEach((el) => {
     el.addEventListener("click", (e) => {
       if (addToCartId.includes(el.dataset.id)) {
         if (intervalID) return;
         intervalID = setTimeout(() => {
-          itemAddedToast.classList.add('hidden')
-          intervalID = null
-        }, 2000)
-        return itemAddedToast.classList.remove('hidden');
+          itemAddedToast.classList.add("hidden");
+          intervalID = null;
+        }, 2000);
+        return itemAddedToast.classList.remove("hidden");
       }
-
 
       addToCartId.push(e.currentTarget.dataset.id);
       localStorage.setItem("addCart", JSON.stringify(addToCartId));
@@ -161,5 +145,4 @@ function addTwoCart() {
       addToCart.textContent = addToCartId.length;
     });
   });
-
 }

@@ -43,7 +43,7 @@
     </div>
   </div>
   <div class="secondBody">
-    <nav>
+    <nav class="sticky top-0 z-50">
       <div
         class="w-full bg-white border-b border-gray-200 px-2 md:px-5 md:py-4 py-2 flex flex-wrap  items-center justify-between gap-x-4 gap-y-3 text-gray-900 shadow-sm">
         <!-- Left Section: Logo & Delivery Info -->
@@ -168,18 +168,50 @@
         </div>
 
       </div>
-      <div class="bg-[#f9f9f8] w-full py-20 px-8">
+      <div class="bg-[#f9f9f8] w-full py-20 md:px-16 px-7">
+        <div class="md:w-64 w-34 absolute right-3 md:top-24 z-10 top-36">
+          <details class="group bg-[#F5F4EF]    shadow-amber-600 rounded-lg border border-gray-200 shadow-sm">
+
+            <summary
+              class="flex justify-between items-center p-3  font-semibold cursor-pointer list-none select-none [&::-webkit-details-marker]:hidden text-gray-500  text-xs">
+              Filters Products <i
+                class="fas fa-chevron-down text-gray-400 text-xs transition-transform group-open:rotate-180"></i>
+            </summary>
+
+            <div class="filteringDiv px-3 pb-3 border-t border-gray-100 flex flex-col gap-2.5 pt-3">
+              <label class="flex items-center gap-2.5 text-sm text-gray-600 hover:text-gray-900 cursor-pointer"><input
+                  type="checkbox" class="w-4 h-4 accent-green-600 cursor-pointer" value="cow" /> Cow Milk</label>
+              <label class="flex items-center gap-2.5 text-sm text-gray-600 hover:text-gray-900 cursor-pointer"><input
+                  type="checkbox" class="w-4 h-4 accent-green-600 cursor-pointer" value="Buffalo" /> Buffalo
+                Milk</label>
+              <label class="flex items-center gap-2.5 text-sm text-gray-600 hover:text-gray-900 cursor-pointer"><input
+                  type="checkbox" class="w-4 h-4 accent-green-600 cursor-pointer" value="Toned" /> Toned
+                Milk</label>
+              <label class="flex items-center gap-2.5 text-sm text-gray-600 hover:text-gray-900 cursor-pointer"><input
+                  type="checkbox" class="w-4 h-4 accent-green-600 cursor-pointer" value="Gold" /> Full Cream
+                Milk</label>
+              <label class="flex items-center gap-2.5 text-sm text-gray-600 hover:text-gray-900 cursor-pointer"><input
+                  type="checkbox" class="w-4 h-4 accent-green-600 cursor-pointer" value="Protein" /> Protein
+                Milk</label>
+
+              <button
+                class="text-xs text-green-600 font-semibold cursor-pointer text-left mt-1 pt-2 border-t border-gray-100">Clear
+                Filters</button>
+            </div>
+
+          </details>
+        </div>
         <div class="w-full flex flex-col md:flex-row items-center gap-10">
           <!-- Left Side: Text and Button -->
           <div class="md:w-[45%] text-left">
-            <h1 class="text-4xl md:text-[44px] font-bold leading-[1.15] text-black mb-4 tracking-tight">
-              Everything you need,<br />delivered in minutes.
+            <h1 class="text-4xl md:text-[44px] mt-8 md:mt-0 font-bold leading-[1.15] text-black mb-4 tracking-tight">
+              <span class="heading"></span><br />Delivered Right On Time.
             </h1>
-            <p class="text-gray-600 text-[15px] mb-8">
+            <p class="text-gray-600 text-[15px] mb-5">
               Fresh groceries and everyday essentials at your doorstop.
             </p>
             <button
-              class="bg-[#096a56] hover:bg-[#065041] transition-colors text-white font-semibold text-[15px] px-6 py-2.5 rounded-md">
+              class="startShopBtn bg-[#096a56] hover:bg-[#065041] transition-colors text-white font-semibold text-[15px] px-6 py-2.5 rounded-md">
               Start Shopping
             </button>
           </div>
@@ -459,14 +491,14 @@
 
           <div class="md:w-1/2 flex justify-center md:justify-end">
             <!-- Phone Mockup -->
-            <img src="images/Screenshot 2026-09-11 034256.png" alt="SwiftCart App Interface"
+            <img src="images/mobile-image.png" alt="SwiftCart App Interface"
               class="w-64 md:w-72 rounded-[2.5rem] shadow-2xl border-[10px] border-gray-900" />
           </div>
         </div>
 
         <!-- Features Section -->
         <div class="bg-white py-20 px-8 md:px-24 text-center">
-          <h2 class="text-[32px] font-bold mb-16 text-black">Why SwiftCart</h2>
+          <h2 class="text-[32px] font-bold mb-16 text-black">Why Own<span class="text-green-500">Mart</span></h2>
           <div class="flex justify-around flex-wrap gap-8">
             <!-- Feature 1 -->
             <div class="flex flex-col items-center">
@@ -643,7 +675,7 @@
         <!-- Bottom Border & Copyright -->
         <div class="max-w-6xl mx-auto mt-10 border-t border-gray-200/80 pt-5">
           <p class="text-[11px] font-bold text-gray-700">
-            Copyright © SwiftCart Tione Insutited.
+            Copyright © OwnMart Tione Insutited.
           </p>
         </div>
       </div>
