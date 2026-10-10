@@ -4,7 +4,7 @@ A modern and responsive grocery shopping website built using **HTML, Tailwind CS
 
 ## 🌐 Live Link
 
-**[https://grocery-store-ownmart.netlify.app/](https://grocery-store-ownmart.netlify.app/)**
+[**Visit OwnMart**](https://grocery-store-ownmart.netlify.app/)
 
 ## Features
 
@@ -20,6 +20,7 @@ A modern and responsive grocery shopping website built using **HTML, Tailwind CS
 - 💾 LocalStorage cart persistence
 - 🔍 Product search
 - 🎯 Product filtering based on search query
+- 🏷️ Category-based product filtering
 - 🧾 Dedicated search results page
 - 🛍️ Cart management
 - ➕➖ Cart quantity controls
@@ -55,6 +56,7 @@ A modern and responsive grocery shopping website built using **HTML, Tailwind CS
 - 🟢 LocalStorage cart persistence completed
 - 🟢 Search functionality completed
 - 🟢 Dedicated search results page completed
+- 🟢 Category filtering completed
 - 🟢 Cart management completed
 - 🟢 Cart quantity controls completed
 - 🟢 Remove cart items completed
@@ -70,12 +72,11 @@ A modern and responsive grocery shopping website built using **HTML, Tailwind CS
 
 ## Next Steps
 
-- ⬜ Category filtering
 - ⬜ Price filtering
 - ⬜ Rating filtering
 - ⬜ Discount filtering
 - ⬜ Product sorting
-- ⬜ Clear filters
+- ⬜ Clear filters functionality
 - ⬜ Wishlist functionality
 - ⬜ Recently viewed products
 - ⬜ Related products
@@ -105,6 +106,6 @@ A modern and responsive grocery shopping website built using **HTML, Tailwind CS
 
 ## Project Status
 
-🚧 **Currently in development**
+🚧 **Currently in Development**
 
-OwnMart is an ongoing e-commerce project. Core shopping functionality, product browsing, search, cart management, product details, and the basic order flow are currently implemented. More e-commerce features will be added as development continues.
+OwnMart is an ongoing e-commerce project. Core shopping functionality, product browsing, search, category filtering, cart management, product details, and the basic order flow are implemented. Additional e-commerce features and improvements will be added as development continues.
