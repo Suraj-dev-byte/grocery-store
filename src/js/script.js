@@ -251,22 +251,32 @@ window.addEventListener("pageshow", () => {
 function addTwoCart() {
   const addBtn = document.querySelectorAll(".addButton");
   const itemAddedToast = document.querySelector(".itemAddedToast");
-  const addedMessage = document.querySelector(".addedMessage");
+  const toastMessage = document.querySelector(".toastMessage");
+
 
   let intervalID = null;
-
   addBtn.forEach((el) => {
     el.addEventListener("click", (e) => {
-
       if (addToCartId.includes(el.dataset.id)) {
         if (intervalID) return;
         intervalID = setTimeout(() => {
           itemAddedToast.classList.add("hidden");
           intervalID = null;
         }, 2000);
-        return itemAddedToast.classList.remove("hidden");
+        itemAddedToast.classList.remove("hidden");
+        toastMessage.classList.add('text-orange-500');
+
+        return toastMessage.textContent = 'item already added'
       } else {
-        itemAddedToast.textContent = 'hello'
+        clearTimeout(intervalID)
+        intervalID = setTimeout(() => {
+          itemAddedToast.classList.add('hidden')
+          intervalID = null
+        }, 2000);
+        itemAddedToast.classList.remove('hidden')
+        toastMessage.classList.remove('text-orange-500');
+        toastMessage.textContent = 'item added'
+
       }
 
 
