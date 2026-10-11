@@ -251,9 +251,13 @@ window.addEventListener("pageshow", () => {
 function addTwoCart() {
   const addBtn = document.querySelectorAll(".addButton");
   const itemAddedToast = document.querySelector(".itemAddedToast");
+  const addedMessage = document.querySelector(".addedMessage");
+
   let intervalID = null;
+
   addBtn.forEach((el) => {
     el.addEventListener("click", (e) => {
+
       if (addToCartId.includes(el.dataset.id)) {
         if (intervalID) return;
         intervalID = setTimeout(() => {
@@ -261,7 +265,10 @@ function addTwoCart() {
           intervalID = null;
         }, 2000);
         return itemAddedToast.classList.remove("hidden");
+      } else {
+        itemAddedToast.textContent = 'hello'
       }
+
 
       addToCartId.push(e.currentTarget.dataset.id);
       localStorage.setItem("addCart", JSON.stringify(addToCartId));
