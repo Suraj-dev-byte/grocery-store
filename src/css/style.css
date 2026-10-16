@@ -154,6 +154,38 @@
   }
 }
 
+.mainDiv {
+  @apply p-4 sm:p-6 flex flex-col sm:flex-row items-start sm:items-center gap-4 hover:bg-gray-50 transition
+}
+
+.mainDivImg {
+  @apply w-20 h-20 rounded-lg object-cover border border-gray-200
+}
+
+.innerDivOne {
+  @apply flex-1
+}
+
+.innerDivOne-h3 {
+  @apply font-semibold text-gray-800 text-lg
+}
+
+.innerDivOne-p {
+  @apply text-gray-500 text-sm mt-1
+}
+
+.innerDivTwo {
+  @apply flex sm:flex-col justify-between w-full sm:w-auto items-center sm:items-end mt-2 sm:mt-0
+}
+
+.quantitySpan {
+  @apply bg-gray-100 text-gray-700 px-3 py-1 rounded-md text-sm font-medium
+}
+
+.priceSpan {
+  @apply font-bold text-gray-800 text-lg sm:mt-2
+}
+
 @keyframes slideUp {
   from {
     transform: translateY(30px);

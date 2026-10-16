@@ -2,6 +2,8 @@ const totalPriceBox = document.querySelector(".headingAndPrice");
 let cartId = JSON.parse(localStorage.getItem("addCart"));
 const addToCart = document.querySelector(".addToCart");
 const cartContainer = document.getElementById("cart-items-container");
+const quantity = JSON.parse(localStorage.getItem('quantity')) || []
+console.log(quantity);
 
 if (cartId.length > 0) {
   addToCart.classList.add("bgGreen");
@@ -34,7 +36,7 @@ async function api() {
   } catch (error) {
     console.log(error);
   }
-  console.log(newData);
+
 }
 
 api();
@@ -137,7 +139,7 @@ function cardTwo(valTwo) {
 
   const inputQty = document.createElement("input");
   inputQty.type = "text";
-  inputQty.value = "1";
+  inputQty.value = quantity;
   inputQty.readOnly = true;
   inputQty.classList.add("cart-qty-input");
 
@@ -192,20 +194,17 @@ function cardTwo(valTwo) {
   cartContainer.appendChild(article);
 
   plusBtn.addEventListener("click", () => {
-    if (inputQty.value == 5) {
-      if (timeoutId) return;
-      maxLimitBox.classList.remove("hidden");
-      timeoutId = setTimeout(() => {
-        maxLimitBox.classList.add("hidden");
-        timeoutId = null;
-      }, 2000);
-      return;
-    }
-    inputQty.value++;
+    const obj = {
+      ...valTwo,
+      quantity: 0 + 1
+    };
+    console.log(obj);
+
   });
   minusBtn.addEventListener("click", () => {
     if (inputQty.value == 0) return;
     inputQty.value--;
+    localStorage.setItem('quantity', inputQty.value)
   });
   layoutDiv.addEventListener("click", () => {
     window.location.href = `product.html?id=${valTwo.id}`;
@@ -251,19 +250,19 @@ function placeOrderLogic() {
   const mainPage = document.querySelector(".mainPage");
 
   placeOrder.addEventListener("click", () => {
+    // if (interValId) return;
+    // interValId = setInterval(() => {
+    // window.location.replace('index.html')
+    // mainPage.classList.remove("hidden");
+    // confirmMessage.classList.add("hidden");
+    // interValId = null;
+    // }, 5000);
     placeOrder.disabled = true;
     mainPage.classList.add("hidden");
     confirmMessage.classList.remove("hidden");
   });
 
-  if (interValId) return;
 
-  interValId = setInterval(() => {
-    mainPage.classList.remove("hidden");
-    confirmMessage.classList.add("hidden");
-    interValId = null;
-  }, 5000);
-  // window.location.replace('index.html')
+
 }
 
-placeOrderLogic();

@@ -280,7 +280,7 @@ function addTwoCart() {
       }
 
 
-      addToCartId.push(e.currentTarget.dataset.id);
+      addToCartId.push({ id: e.currentTarget.dataset.id, Quantity: 0 });
       localStorage.setItem("addCart", JSON.stringify(addToCartId));
       addToCart.classList.add("bgGreen");
       addToCart.textContent = addToCartId.length;
