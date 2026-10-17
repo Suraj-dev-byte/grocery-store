@@ -2,13 +2,14 @@ const totalPriceBox = document.querySelector(".headingAndPrice");
 let cartId = JSON.parse(localStorage.getItem("addCart"));
 const addToCart = document.querySelector(".addToCart");
 const cartContainer = document.getElementById("cart-items-container");
-const quantity = JSON.parse(localStorage.getItem('quantity')) || []
-console.log(quantity);
-
+const getQuantity = JSON.parse(localStorage.getItem('quantity')) || {}
 if (cartId.length > 0) {
   addToCart.classList.add("bgGreen");
   addToCart.textContent = cartId.length;
 }
+
+
+console.log(getQuantity);
 let newData = [];
 
 // FIx Add To Count Bug .....
@@ -42,8 +43,10 @@ async function api() {
 api();
 
 function cardTwo(valTwo) {
+  let productId = valTwo.id
   let timeoutId;
   const maxLimitBox = document.querySelector(".maxLimitBox");
+  console.log(maxLimitBox);
 
   const discountPercentage = Math.round(
     ((valTwo.mrp - valTwo.offer_price) / valTwo.mrp) * 100,
@@ -136,10 +139,9 @@ function cardTwo(valTwo) {
   const minusBtn = document.createElement("button");
   minusBtn.classList.add("cart-qty-btn", "rounded-l");
   minusBtn.textContent = "-";
-
   const inputQty = document.createElement("input");
   inputQty.type = "text";
-  inputQty.value = quantity;
+  inputQty.value = getQuantity[productId] ?? 1;
   inputQty.readOnly = true;
   inputQty.classList.add("cart-qty-input");
 
@@ -159,7 +161,8 @@ function cardTwo(valTwo) {
   removeBtn.dataset.id = valTwo.id;
   removeBtn.addEventListener("click", (e) => {
     const id = e.currentTarget.dataset.id;
-
+    delete getQuantity[productId]
+    localStorage.setItem("quantity", JSON.stringify(getQuantity));
     cartId = cartId.filter((item) => item != id);
 
     localStorage.setItem("addCart", JSON.stringify(cartId));
@@ -168,7 +171,7 @@ function cardTwo(valTwo) {
       return cartId.includes(el.id);
     });
     if (cartId.length === 0) {
-      console.log("hello");
+
       addToCart.textContent = "";
       addToCart.classList.remove("bgGreen");
     } else {
@@ -193,18 +196,28 @@ function cardTwo(valTwo) {
   // Append Article to HTML Container
   cartContainer.appendChild(article);
 
-  plusBtn.addEventListener("click", () => {
-    const obj = {
-      ...valTwo,
-      quantity: 0 + 1
-    };
-    console.log(obj);
 
+
+  plusBtn.addEventListener("click", () => {
+    if (inputQty.value == 5) {
+      if (timeoutId) return;
+      maxLimitBox.classList.remove("hidden");
+      timeoutId = setTimeout(() => {
+        maxLimitBox.classList.add("hidden");
+        timeoutId = null;
+      }, 2000);
+      return;
+    }
+
+    inputQty.value++;
+    getQuantity[valTwo.id] = Number(inputQty.value) || 1
+    localStorage.setItem('quantity', JSON.stringify(getQuantity))
   });
   minusBtn.addEventListener("click", () => {
-    if (inputQty.value == 0) return;
+    if (inputQty.value == 1) return;
     inputQty.value--;
-    localStorage.setItem('quantity', inputQty.value)
+    getQuantity[valTwo.id] = Number(inputQty.value) || 1
+    localStorage.setItem('quantity', JSON.stringify(getQuantity))
   });
   layoutDiv.addEventListener("click", () => {
     window.location.href = `product.html?id=${valTwo.id}`;
@@ -250,13 +263,13 @@ function placeOrderLogic() {
   const mainPage = document.querySelector(".mainPage");
 
   placeOrder.addEventListener("click", () => {
-    // if (interValId) return;
-    // interValId = setInterval(() => {
-    // window.location.replace('index.html')
-    // mainPage.classList.remove("hidden");
-    // confirmMessage.classList.add("hidden");
-    // interValId = null;
-    // }, 5000);
+    if (interValId) return;
+    interValId = setInterval(() => {
+      window.location.replace('index.html')
+      mainPage.classList.remove("hidden");
+      confirmMessage.classList.add("hidden");
+      interValId = null;
+    }, 5000);
     placeOrder.disabled = true;
     mainPage.classList.add("hidden");
     confirmMessage.classList.remove("hidden");
@@ -266,3 +279,4 @@ function placeOrderLogic() {
 
 }
 
+placeOrderLogic()

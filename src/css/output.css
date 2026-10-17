@@ -70,6 +70,7 @@
     --text-5xl--line-height: 1;
     --text-7xl: 4.5rem;
     --text-7xl--line-height: 1;
+    --font-weight-extralight: 200;
     --font-weight-normal: 400;
     --font-weight-medium: 500;
     --font-weight-semibold: 600;
@@ -1198,6 +1199,10 @@
     --tw-font-weight: var(--font-weight-extrabold);
     font-weight: var(--font-weight-extrabold);
   }
+  .font-extralight {
+    --tw-font-weight: var(--font-weight-extralight);
+    font-weight: var(--font-weight-extralight);
+  }
   .font-medium {
     --tw-font-weight: var(--font-weight-medium);
     font-weight: var(--font-weight-medium);
@@ -1252,6 +1257,9 @@
   }
   .text-emerald-800 {
     color: var(--color-emerald-800);
+  }
+  .text-gray-200 {
+    color: var(--color-gray-200);
   }
   .text-gray-300 {
     color: var(--color-gray-300);
@@ -1516,12 +1524,6 @@
     .sm\:top-6 {
       top: calc(var(--spacing) * 6);
     }
-    .sm\:mt-0 {
-      margin-top: 0px;
-    }
-    .sm\:mt-2 {
-      margin-top: calc(var(--spacing) * 2);
-    }
     .sm\:mt-4 {
       margin-top: calc(var(--spacing) * 4);
     }
@@ -1552,17 +1554,8 @@
     .sm\:w-auto {
       width: auto;
     }
-    .sm\:flex-col {
-      flex-direction: column;
-    }
     .sm\:flex-row {
       flex-direction: row;
-    }
-    .sm\:items-center {
-      align-items: center;
-    }
-    .sm\:items-end {
-      align-items: flex-end;
     }
     .sm\:items-start {
       align-items: flex-start;
@@ -1836,6 +1829,9 @@
   .\[\&\:\:-webkit-details-marker\]\:hidden::-webkit-details-marker {
     display: none;
   }
+}
+body {
+  background-color: black;
 }
 .class {
   margin-top: var(--spacing);

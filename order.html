@@ -30,7 +30,8 @@
     <div class="flex flex-col md:flex-row md:justify-between md:items-end border-b border-gray-200 pb-6 mb-8 gap-4">
       <div>
         <h1 class="text-3xl font-bold text-gray-800 mb-2">Order Details</h1>
-        <p class="text-gray-500 text-sm">Order <span class="font-semibold text-gray-800">#OM-883921</span> • Placed on
+        <p class="text-gray-500 text-sm">Order <span class="orderId font-semibold text-gray-800">#OM-883921</span> •
+          Placed on
           Oct 15, 2026</p>
       </div>
       <div class="flex flex-col md:items-end gap-2">
@@ -113,21 +114,22 @@
             class="fa-solid fa-receipt text-green-500 mr-2"></i> Order Summary</h2>
         <div class="space-y-3 text-gray-600 mb-4">
           <div class="flex justify-between">
-            <span>Subtotal (3 items)</span>
-            <span class="font-medium text-gray-800">₹546.00</span>
+            <span class="itemCount">Subtotal (3 items)</span>
+            <span class="amount font-medium text-gray-800">₹546.00</span>
           </div>
           <div class="flex justify-between">
             <span>Delivery Fee</span>
-            <span class="font-medium text-gray-800">₹40.00</span>
+            <span class="font-medium text-green-600">Free <span
+                class="line-through text-gray-700 font-extralight">₹40</span></span>
           </div>
           <div class="flex justify-between text-green-600">
             <span>Discount (FESTIVE10)</span>
-            <span class="font-medium">-₹41.00</span>
+            <span class="totalDiscount font-medium">-₹41.00</span>
           </div>
         </div>
         <div class="flex justify-between items-center border-t border-dashed border-gray-200 pt-4">
           <span class="text-lg font-bold text-gray-800">Total</span>
-          <span class="text-2xl font-bold text-green-600">₹545.00</span>
+          <span class="totalPrice text-2xl font-bold text-green-600">₹545.00</span>
         </div>
         <p class="text-xs text-gray-400 mt-2 text-right">Paid via UPI</p>
       </div>
