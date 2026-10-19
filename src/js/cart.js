@@ -1,3 +1,5 @@
+
+
 const totalPriceBox = document.querySelector(".headingAndPrice");
 let cartId = JSON.parse(localStorage.getItem("addCart"));
 const addToCart = document.querySelector(".addToCart");
@@ -257,12 +259,22 @@ function totalAddCart(cartItem) {
 // placeOrder logic..
 
 function placeOrderLogic() {
+
   let interValId = null;
   const placeOrder = document.querySelector(".placeOrder");
   const confirmMessage = document.querySelector(".confirmMessage");
   const mainPage = document.querySelector(".mainPage");
 
   placeOrder.addEventListener("click", () => {
+
+    const orders = JSON.parse(localStorage.getItem('orders')) || [];
+    let order = {
+      orderId: Date.now(),
+      cardIds: [...cartId],
+      cardQuantity: { ...getQuantity }
+    }
+    orders.push(order)
+    localStorage.setItem('orders', JSON.stringify(orders))
     if (interValId) return;
     interValId = setInterval(() => {
       window.location.replace('index.html')

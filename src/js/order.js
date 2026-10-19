@@ -2,15 +2,9 @@ const quantity = JSON.parse(localStorage.getItem("quantity")) || {};
 let cartId = JSON.parse(localStorage.getItem("addCart"));
 const itemContainer = document.querySelector(".itemContainer");
 const orderId = document.querySelector('.orderId')
-let storeCard = JSON.parse(localStorage.getItem("storeCard")) || []
-const uniqueId = Date.now();
+let getOrders = JSON.parse(localStorage.getItem('orders')) || {}
 
-let obj = {
-  orderId: uniqueId,
-  cardId: cartId,
-  cardQuantity: quantity
-}
-console.log(obj);
+
 async function api() {
   try {
     const response = await fetch("data.json");
@@ -19,8 +13,12 @@ async function api() {
     }
     const data = await response.json();
 
+    const filterdOrder = getOrders.map((el) => {
+      return el.cardIds
+    })
+
     const filteredInfo = data.data.products.filter((el) => {
-      return obj.cardId.includes(el.id);
+      return filterdOrder[0].includes(el.id);
     });
     totalAddCart(filteredInfo)
     filteredInfo.forEach((el) => {
@@ -32,11 +30,12 @@ async function api() {
 }
 
 api();
-localStorage.setItem('storeCard', JSON.stringify(obj))
+
+
 
 function placedItem(productInfo) {
-  orderId.textContent = obj.orderId
-
+  orderId.textContent = getOrders[0].orderId
+  // console.log(productInfo.id);
   const mainDiv = document.createElement("div");
   mainDiv.classList.add("mainDiv");
   const img = document.createElement("img");

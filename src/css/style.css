@@ -1,8 +1,6 @@
 @import "tailwindcss";
 
-body {
-  background-color: black;
-}
+
 
 .class {
   @apply h-16 md:h-20 w-full flex items-center justify-center mt-1 mb-2 md:mb-3;

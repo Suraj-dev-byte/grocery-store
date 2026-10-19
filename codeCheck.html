@@ -10,138 +10,306 @@
 </head>
 
 <body>
-  <!-- Left Starting Corner Buttons (Ekdam Left Edge Par) -->
-  <div class="p-4 xxl:fixed xl:top-6 xl:left-6 z-20 flex items-center gap-3">
-    <a href="#"
-      class="bg-green-600 hover:bg-green-700 text-white font-medium py-2.5 px-5 rounded-lg shadow-sm transition text-sm flex items-center gap-2">
-      <i class="fa-solid fa-bag-shopping"></i> Continue Shopping
-    </a>
-    <a href="#"
-      class="bg-white border border-gray-200 hover:bg-gray-50 text-gray-700 font-medium py-2.5 px-5 rounded-lg shadow-sm transition text-sm flex items-center gap-2">
-      <i class="fa-solid fa-arrow-left"></i> Back to Home
-    </a>
-  </div>
-
-  <!-- Main Container (Pura Center Capture Karega) -->
-  <main class="max-w-5xl mx-auto px-4 md:px-6 py-4 xl:py-8">
-
-    <!-- Page Header & Order Info (Centered Top Section) -->
-    <div class="flex flex-col md:flex-row md:justify-between md:items-end border-b border-gray-200 pb-6 mb-8 gap-4">
+  <main class="max-w-6xl mx-auto px-4 py-8">
+    <!-- Introduction & Headers -->
+    <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-8">
       <div>
-        <h1 class="text-3xl font-bold text-gray-800 mb-2">Order Details</h1>
-        <p class="text-gray-500 text-sm">Order <span class="font-semibold text-gray-800">#OM-883921</span> • Placed on
-          Oct 15, 2026</p>
-      </div>
-      <div class="flex flex-col md:items-end gap-2">
-        <span
-          class="bg-blue-50 text-blue-600 border border-blue-200 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wide inline-flex items-center gap-1 w-max">
-          <i class="fa-solid fa-arrows-rotate"></i> Processing
-        </span>
-        <p class="text-gray-500 text-sm">Estimated Delivery: <span class="font-medium text-gray-800">Oct 17, 2026</span>
+        <div class="flex items-center gap-2">
+          <h1 class="text-3xl font-bold tracking-tight text-gray-900">
+            My Orders
+          </h1>
+          <span class="bg-green-100 text-green-800 text-xs font-semibold px-2.5 py-0.5 rounded-full">3 Active</span>
+        </div>
+        <p class="text-sm text-gray-500 mt-1">
+          Track & manage your orders, deliveries, and past shopping insights.
         </p>
       </div>
-    </div>
 
-    <!-- Order Status Tracker (With Visible Green Line) -->
-    <div class="bg-white border border-gray-100 rounded-xl shadow-sm p-6 mb-8 overflow-x-auto">
-      <div class="min-w-[500px] flex items-center justify-between relative z-0">
-        <div class="absolute left-0 top-5 w-full h-1.5 bg-gray-200 z-0 rounded-full"></div>
-        <div class="absolute left-0 top-5 w-1/3 h-1.5 bg-green-500 z-0 rounded-full"></div>
-
-        <div class="relative z-10 flex flex-col items-center gap-2 bg-white px-2">
-          <div
-            class="w-10 h-10 rounded-full bg-green-500 text-white flex items-center justify-center text-lg shadow-md">
-            <i class="fa-solid fa-check"></i>
-          </div>
-          <span class="text-sm font-semibold text-gray-800">Placed</span>
-        </div>
-
-        <div class="relative z-10 flex flex-col items-center gap-2 bg-white px-2">
-          <div
-            class="w-10 h-10 rounded-full bg-blue-500 text-white flex items-center justify-center text-lg shadow-md ring-4 ring-blue-50">
-            <i class="fa-solid fa-box-open"></i>
-          </div>
-          <span class="text-sm font-semibold text-blue-600">Processing</span>
-        </div>
-
-        <div class="relative z-10 flex flex-col items-center gap-2 bg-white px-2">
-          <div class="w-10 h-10 rounded-full bg-gray-200 text-gray-400 flex items-center justify-center text-lg">
-            <i class="fa-solid fa-truck-fast"></i>
-          </div>
-          <span class="text-sm font-medium text-gray-400">Shipped</span>
-        </div>
-
-        <div class="relative z-10 flex flex-col items-center gap-2 bg-white px-2">
-          <div class="w-10 h-10 rounded-full bg-gray-200 text-gray-400 flex items-center justify-center text-lg">
-            <i class="fa-solid fa-house"></i>
-          </div>
-          <span class="text-sm font-medium text-gray-400">Delivered</span>
-        </div>
+      <!-- Modern Tab Pills -->
+      <div class="flex flex-wrap gap-2 p-1 bg-gray-100/80 rounded-xl max-w-max">
+        <button class="px-4 py-2 text-xs font-semibold rounded-lg bg-white text-gray-900 shadow-sm transition-all">
+          <i class="fa-solid fa-list-ul mr-1.5 text-green-600"></i> All Orders
+          (3)
+        </button>
+        <button
+          class="px-4 py-2 text-xs font-medium rounded-lg text-gray-600 hover:text-gray-900 hover:bg-white/50 transition-all">
+          <span class="inline-block w-2 h-2 rounded-full bg-amber-500 mr-1.5"></span>
+          Processing
+        </button>
+        <button
+          class="px-4 py-2 text-xs font-medium rounded-lg text-gray-600 hover:text-gray-900 hover:bg-white/50 transition-all">
+          <span class="inline-block w-2 h-2 rounded-full bg-blue-500 mr-1.5"></span>
+          Shipped
+        </button>
+        <button
+          class="px-4 py-2 text-xs font-medium rounded-lg text-gray-600 hover:text-gray-900 hover:bg-white/50 transition-all">
+          <span class="inline-block w-2 h-2 rounded-full bg-emerald-500 mr-1.5"></span>
+          Delivered
+        </button>
       </div>
     </div>
 
-    <!-- Order Items List (Scrolls Inside Its Own Box) -->
-    <h2 class="text-xl font-bold text-gray-800 mb-4">Items in your order</h2>
-    <div class="bg-white border border-gray-100 rounded-xl shadow-sm mb-8 overflow-hidden">
-      <div class="divide-y divide-gray-100 max-h-72 overflow-y-auto">
-        <!-- Item 1 -->
-        <div class="p-4 sm:p-6 flex flex-col sm:flex-row items-start sm:items-center gap-4 hover:bg-gray-50 transition">
-          <img src="https://placehold.co/100x100/ecfdf5/059669?text=Apples" alt="Fresh Apples"
-            class="w-20 h-20 rounded-lg object-cover border border-gray-200">
-          <div class="flex-1">
-            <h3 class="font-semibold text-gray-800 text-lg">Fresh Kashmiri Apples</h3>
-            <p class="text-gray-500 text-sm">1 kg</p>
-            <p class="text-gray-500 text-sm mt-1">₹180 / unit</p>
+    <!-- Split Screen Grid Layout -->
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+      <!-- Left Column: Highlight Tracker & Insights -->
+      <div class="lg:col-span-4 space-y-6">
+        <div
+          class="bg-gradient-to-br from-green-950 to-green-900 text-white rounded-2xl p-6 shadow-md relative overflow-hidden border border-green-800">
+          <div class="absolute -right-10 -top-10 w-40 h-40 bg-green-500/10 blur-3xl rounded-full pointer-events-none">
           </div>
-          <div class="flex sm:flex-col justify-between w-full sm:w-auto items-center sm:items-end mt-2 sm:mt-0">
-            <span class="bg-gray-100 text-gray-700 px-3 py-1 rounded-md text-sm font-medium">Qty: 2</span>
-            <span class="font-bold text-gray-800 text-lg sm:mt-2">₹360.00</span>
+
+          <div class="flex justify-between items-start mb-6">
+            <div>
+              <span class="text-xs text-green-300 font-medium tracking-wider uppercase">Active Delivery</span>
+              <h2 class="text-xl font-bold mt-1">#OM-89241</h2>
+            </div>
+            <span
+              class="bg-green-500/20 text-green-300 border border-green-500/30 text-xs font-bold px-2 py-1 rounded-lg">
+              <i class="fa-solid fa-truck-fast mr-1"></i> On the way
+            </span>
+          </div>
+
+          <!-- Mini Progress Tracker -->
+          <div class="relative py-4">
+            <div class="absolute left-1 top-[1.35rem] w-[95%] h-1 bg-green-800 rounded-full">
+              <div class="h-full w-[65%] bg-green-400 rounded-full"></div>
+            </div>
+            <div class="relative z-10 flex justify-between text-center text-[10px]">
+              <div class="flex flex-col items-center">
+                <span class="w-4 h-4 rounded-full bg-green-400 border-4 border-green-950 shadow"></span>
+                <span class="text-green-300 font-medium mt-1">Ordered</span>
+              </div>
+              <div class="flex flex-col items-center">
+                <span class="w-4 h-4 rounded-full bg-green-400 border-4 border-green-950 shadow animate-pulse"></span>
+                <span class="text-white font-bold mt-1">Transit</span>
+              </div>
+              <div class="flex flex-col items-center">
+                <span class="w-4 h-4 rounded-full bg-green-800 border-4 border-green-950"></span>
+                <span class="text-green-300 font-medium mt-1">Arrived</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="mt-6 pt-4 border-t border-white/10 flex justify-between items-center text-sm">
+            <div>
+              <p class="text-xs text-green-300">Live Estimation</p>
+              <p class="font-bold text-white text-base">
+                Arriving in
+                <span class="underline decoration-green-400">45 mins</span>
+              </p>
+            </div>
+            <div class="flex gap-2">
+              <a href="#" class="p-2.5 bg-white/10 rounded-xl hover:bg-white/20 transition-all"
+                title="Call Delivery Partner">
+                <i class="fa-solid fa-phone-volume text-sm"></i>
+              </a>
+              <a href="#"
+                class="p-2.5 bg-green-500 hover:bg-green-600 rounded-xl transition-all font-semibold flex items-center gap-1.5 text-xs text-green-950 shadow-md">
+                <i class="fa-solid fa-map-location-dot"></i> Live Map
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Quick Insights -->
+        <div class="bg-gray-50 border border-gray-200 rounded-2xl p-5">
+          <h3 class="text-sm font-semibold text-gray-900 mb-3">
+            Your OwnMart Insights
+          </h3>
+          <div class="grid grid-cols-2 gap-3">
+            <div class="bg-white p-3.5 rounded-xl border border-gray-100">
+              <span class="text-xs text-gray-500">Spend this month</span>
+              <p class="text-lg font-bold text-gray-900 mt-0.5">$91.60</p>
+            </div>
+            <div class="bg-white p-3.5 rounded-xl border border-gray-100">
+              <span class="text-xs text-gray-500">Orders completed</span>
+              <p class="text-lg font-bold text-gray-900 mt-0.5">3 items</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right Column: Orders List -->
+      <div class="lg:col-span-8 space-y-4">
+        <!-- Order Card #1: Processing -->
+        <div
+          class="bg-white border border-gray-100 hover:border-gray-200 rounded-2xl p-5 hover:shadow-lg hover:shadow-gray-500/5 transition-all">
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between border-b border-gray-50 pb-4 gap-3">
+            <div class="flex items-center gap-3">
+              <div class="w-10 h-10 rounded-xl bg-amber-50 flex items-center justify-center text-amber-600">
+                <i class="fa-solid fa-hourglass-half text-lg"></i>
+              </div>
+              <div>
+                <div class="flex items-center gap-2">
+                  <span class="font-bold text-gray-900 text-sm">#OM-89241</span>
+                  <span
+                    class="bg-amber-50 text-amber-700 text-[10px] font-bold px-2 py-0.5 rounded border border-amber-100 inline-flex items-center gap-1">
+                    <span class="w-1.5 h-1.5 rounded-full bg-amber-500 animate-pulse"></span>
+                    Processing
+                  </span>
+                </div>
+                <p class="text-xs text-gray-400 mt-0.5">
+                  Ordered today at 2:14 PM
+                </p>
+              </div>
+            </div>
+            <div class="sm:text-right">
+              <span class="text-xs text-gray-400 block">Total amount</span>
+              <span class="text-base font-extrabold text-gray-900">$24.50</span>
+            </div>
+          </div>
+
+          <div class="py-4 flex flex-col md:flex-row md:items-center justify-between gap-4">
+            <div class="flex items-center gap-3">
+              <div class="relative group">
+                <img src="https://images.unsplash.com/photo-1550583724-b2692b85b150?w=100&q=80" alt="Milk"
+                  class="w-14 h-14 object-cover rounded-xl border border-gray-100 bg-gray-50" />
+                <div
+                  class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 rounded-xl flex items-center justify-center text-[10px] text-white font-medium transition-all">
+                  Milk
+                </div>
+              </div>
+              <div class="relative group">
+                <img src="https://images.unsplash.com/photo-1509440159596-0249088772ff?w=100&q=80" alt="Bread"
+                  class="w-14 h-14 object-cover rounded-xl border border-gray-100 bg-gray-50" />
+                <div
+                  class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 rounded-xl flex items-center justify-center text-[10px] text-white font-medium transition-all">
+                  Bread
+                </div>
+              </div>
+              <div class="relative group">
+                <img src="https://images.unsplash.com/photo-1610832958506-aa56368176cf?w=100&q=80" alt="Fruits"
+                  class="w-14 h-14 object-cover rounded-xl border border-gray-100 bg-gray-50" />
+                <div
+                  class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 rounded-xl flex items-center justify-center text-[10px] text-white font-medium transition-all">
+                  Fruits
+                </div>
+              </div>
+            </div>
+            <div class="md:text-right text-xs">
+              <p class="font-medium text-gray-900">3 Grocery Items</p>
+              <p class="text-gray-400 mt-0.5">Delivery agent: Rahul K.</p>
+            </div>
+          </div>
+
+          <div class="pt-3 border-t border-gray-50 flex items-center justify-between text-xs">
+            <p class="text-gray-500 font-medium">
+              <i class="fa-solid fa-bell text-amber-500 mr-1.5"></i>Delivery
+              requested for today (05:00 PM - 07:00 PM)
+            </p>
+            <a href="#" class="font-bold text-green-600 hover:text-green-700 hover:underline">View details
+              <i class="fa-solid fa-arrow-right text-[10px] ml-1"></i></a>
+          </div>
+        </div>
+
+        <!-- Order Card #2: Shipped -->
+        <div
+          class="bg-white border border-gray-100 hover:border-gray-200 rounded-2xl p-5 hover:shadow-lg hover:shadow-gray-500/5 transition-all">
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between border-b border-gray-50 pb-4 gap-3">
+            <div class="flex items-center gap-3">
+              <div class="w-10 h-10 rounded-xl bg-blue-50 flex items-center justify-center text-blue-600">
+                <i class="fa-solid fa-truck text-lg"></i>
+              </div>
+              <div>
+                <div class="flex items-center gap-2">
+                  <span class="font-bold text-gray-900 text-sm">#OM-89102</span>
+                  <span
+                    class="bg-blue-50 text-blue-700 text-[10px] font-bold px-2 py-0.5 rounded border border-blue-100 inline-flex items-center gap-1">
+                    <span class="w-1.5 h-1.5 rounded-full bg-blue-500"></span>
+                    Shipped
+                  </span>
+                </div>
+                <p class="text-xs text-gray-400 mt-0.5">
+                  Ordered Oct 17, 2026
+                </p>
+              </div>
+            </div>
+            <div class="sm:text-right">
+              <span class="text-xs text-gray-400 block">Total amount</span>
+              <span class="text-base font-extrabold text-gray-900">$48.20</span>
+            </div>
+          </div>
+
+          <div class="py-4 flex flex-col md:flex-row md:items-center justify-between gap-4">
+            <div class="flex items-center gap-3">
+              <img src="https://images.unsplash.com/photo-1586201375761-83865001e31c?w=100&q=80" alt="Rice"
+                class="w-14 h-14 object-cover rounded-xl border border-gray-100 bg-gray-50" />
+              <img src="https://images.unsplash.com/photo-1471193945509-9ad0617afabf?w=100&q=80" alt="Apples"
+                class="w-14 h-14 object-cover rounded-xl border border-gray-100 bg-gray-50" />
+              <div
+                class="w-14 h-14 rounded-xl border border-dashed border-gray-200 bg-gray-50 flex items-center justify-center text-xs text-gray-400 font-bold">
+                +2 items
+              </div>
+            </div>
+            <div class="md:text-right text-xs">
+              <p class="font-medium text-gray-900">4 Grocery Items</p>
+              <p class="text-gray-400 mt-0.5">Tracking ID: TRK-982144</p>
+            </div>
+          </div>
+
+          <div class="pt-3 border-t border-gray-50 flex items-center justify-between text-xs">
+            <p class="text-gray-500 font-medium">
+              <i class="fa-solid fa-circle-info text-blue-500 mr-1.5"></i>Dispatch confirmed; on dispatch hub way.
+            </p>
+            <a href="#" class="font-bold text-green-600 hover:text-green-700 hover:underline">View details
+              <i class="fa-solid fa-arrow-right text-[10px] ml-1"></i></a>
+          </div>
+        </div>
+
+        <!-- Order Card #3: Delivered -->
+        <div
+          class="bg-white border border-gray-100 hover:border-gray-200 rounded-2xl p-5 hover:shadow-lg hover:shadow-gray-500/5 transition-all">
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between border-b border-gray-50 pb-4 gap-3">
+            <div class="flex items-center gap-3">
+              <div class="w-10 h-10 rounded-xl bg-emerald-50 flex items-center justify-center text-emerald-600">
+                <i class="fa-solid fa-circle-check text-lg"></i>
+              </div>
+              <div>
+                <div class="flex items-center gap-2">
+                  <span class="font-bold text-gray-900 text-sm">#OM-88740</span>
+                  <span
+                    class="bg-emerald-50 text-emerald-700 text-[10px] font-bold px-2 py-0.5 rounded border border-emerald-100">Delivered</span>
+                </div>
+                <p class="text-xs text-gray-400 mt-0.5">
+                  Delivered Oct 11, 2026
+                </p>
+              </div>
+            </div>
+            <div class="sm:text-right">
+              <span class="text-xs text-gray-400 block">Total amount</span>
+              <span class="text-base font-extrabold text-gray-900">$18.90</span>
+            </div>
+          </div>
+
+          <div class="py-4 flex flex-col md:flex-row md:items-center justify-between gap-4">
+            <div class="flex items-center gap-3">
+              <img src="https://images.unsplash.com/photo-1550583724-b2692b85b150?w=100&q=80" alt="Milk"
+                class="w-14 h-14 object-cover rounded-xl border border-gray-100 bg-gray-50" />
+              <img src="https://images.unsplash.com/photo-1586201375761-83865001e31c?w=100&q=80" alt="Rice"
+                class="w-14 h-14 object-cover rounded-xl border border-gray-100 bg-gray-50" />
+            </div>
+            <div class="md:text-right text-xs">
+              <p class="font-medium text-gray-900">2 Grocery Items</p>
+              <p class="text-gray-400 mt-0.5">
+                Delivered to: Home Address (Delhi)
+              </p>
+            </div>
+          </div>
+
+          <div class="pt-3 border-t border-gray-50 flex items-center justify-between text-xs">
+            <div class="flex gap-4">
+              <p class="text-gray-500 font-medium">
+                <i class="fa-solid fa-circle-check text-emerald-500 mr-1.5"></i>Successfully delivered
+              </p>
+              <a href="#" class="text-green-600 hover:text-green-700 font-semibold hover:underline"><i
+                  class="fa-solid fa-arrow-rotate-left text-[9px] mr-1"></i>Order again</a>
+            </div>
+            <a href="#" class="font-bold text-green-600 hover:text-green-700 hover:underline">View details
+              <i class="fa-solid fa-arrow-right text-[10px] ml-1"></i></a>
           </div>
         </div>
       </div>
     </div>
-
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-
-      <!-- Delivery Information -->
-      <div class="bg-white border border-gray-100 rounded-xl shadow-sm p-6 h-fit">
-        <h2 class="text-lg font-bold text-gray-800 mb-4 border-b border-gray-100 pb-2"><i
-            class="fa-solid fa-location-dot text-green-500 mr-2"></i> Delivery Details</h2>
-        <div class="text-gray-700 space-y-1">
-          <p class="font-semibold text-gray-900">Rajeev</p>
-          <p>12/4 Main Market Road</p>
-          <p>Near Metro Station, Sector 5</p>
-          <p>Delhi, 110001</p>
-          <p class="mt-3 text-sm text-gray-500"><i class="fa-solid fa-phone mr-1"></i> +91 98765 43210</p>
-        </div>
-      </div>
-
-      <!-- Price Summary -->
-      <div class="bg-white border border-gray-100 rounded-xl shadow-sm p-6">
-        <h2 class="text-lg font-bold text-gray-800 mb-4 border-b border-gray-100 pb-2"><i
-            class="fa-solid fa-receipt text-green-500 mr-2"></i> Order Summary</h2>
-        <div class="space-y-3 text-gray-600 mb-4">
-          <div class="flex justify-between">
-            <span>Subtotal (3 items)</span>
-            <span class="font-medium text-gray-800">₹546.00</span>
-          </div>
-          <div class="flex justify-between">
-            <span>Delivery Fee</span>
-            <span class="font-medium text-gray-800">₹40.00</span>
-          </div>
-          <div class="flex justify-between text-green-600">
-            <span>Discount (FESTIVE10)</span>
-            <span class="font-medium">-₹41.00</span>
-          </div>
-        </div>
-        <div class="flex justify-between items-center border-t border-dashed border-gray-200 pt-4">
-          <span class="text-lg font-bold text-gray-800">Total</span>
-          <span class="text-2xl font-bold text-green-600">₹545.00</span>
-        </div>
-        <p class="text-xs text-gray-400 mt-2 text-right">Paid via UPI</p>
-      </div>
-    </div>
-
   </main>
 </body>
 
