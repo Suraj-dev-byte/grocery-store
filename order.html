@@ -11,8 +11,8 @@
 </head>
 
 <body>
-  <!-- Left Starting Corner Buttons (Ekdam Left Edge Par) -->
-  <div class="p-4 xxl:fixed xl:top-6 xl:left-6 z-20 flex items-center gap-3">
+  <!-- Left Starting -->
+  <div class="hidden p-4 xxl:fixed xl:top-6 xl:left-6 z-20 flex items-center gap-3">
     <a href="#"
       class="bg-green-600 hover:bg-green-700 text-white font-medium py-2.5 px-5 rounded-lg shadow-sm transition text-sm flex items-center gap-2">
       <i class="fa-solid fa-bag-shopping"></i> Continue Shopping
@@ -23,8 +23,137 @@
     </a>
   </div>
 
-  <!-- Main Container (Pura Center Capture Karega) -->
-  <main class="max-w-5xl mx-auto px-4 md:px-6 py-4 xl:py-8">
+  <main class="max-w-6xl mx-auto px-4 py-8">
+    <!-- Introduction & Headers -->
+    <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-8">
+      <div>
+        <div class="flex items-center gap-2">
+          <h1 class="text-3xl font-bold tracking-tight text-gray-900">
+            My Orders
+          </h1>
+          <span class="bg-green-100 text-green-800 text-xs font-semibold px-2.5 py-0.5 rounded-full">3 Active</span>
+        </div>
+        <p class="text-sm text-gray-500 mt-1">
+          Track & manage your orders, deliveries, and past shopping insights.
+        </p>
+      </div>
+
+      <!-- Modern Tab Pills -->
+      <div class="flex flex-wrap gap-2 p-1 bg-gray-100/80 rounded-xl max-w-max">
+        <button class="px-4 py-2 text-xs font-semibold rounded-lg bg-white text-gray-900 shadow-sm transition-all">
+          <i class="fa-solid fa-list-ul mr-1.5 text-green-600"></i> All Orders
+          (3)
+        </button>
+        <button
+          class="px-4 py-2 text-xs font-medium rounded-lg text-gray-600 hover:text-gray-900 hover:bg-white/50 transition-all">
+          <span class="inline-block w-2 h-2 rounded-full bg-amber-500 mr-1.5"></span>
+          Processing
+        </button>
+        <button
+          class="px-4 py-2 text-xs font-medium rounded-lg text-gray-600 hover:text-gray-900 hover:bg-white/50 transition-all">
+          <span class="inline-block w-2 h-2 rounded-full bg-blue-500 mr-1.5"></span>
+          Shipped
+        </button>
+        <button
+          class="px-4 py-2 text-xs font-medium rounded-lg text-gray-600 hover:text-gray-900 hover:bg-white/50 transition-all">
+          <span class="inline-block w-2 h-2 rounded-full bg-emerald-500 mr-1.5"></span>
+          Delivered
+        </button>
+      </div>
+    </div>
+
+    <!-- Split Screen Grid Layout -->
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+      <!-- Left Column: Highlight Tracker & Insights -->
+      <div class="lg:col-span-4 space-y-6">
+        <div
+          class="bg-gradient-to-br from-green-950 to-green-900 text-white rounded-2xl p-6 shadow-md relative overflow-hidden border border-green-800">
+          <div class="absolute -right-10 -top-10 w-40 h-40 bg-green-500/10 blur-3xl rounded-full pointer-events-none">
+          </div>
+
+          <div class="flex justify-between items-start mb-6">
+            <div>
+              <span class="text-xs text-green-300 font-medium tracking-wider uppercase">Active Delivery</span>
+              <h2 class="text-xl font-bold mt-1">#OM-89241</h2>
+            </div>
+            <span
+              class="bg-green-500/20 text-green-300 border border-green-500/30 text-xs font-bold px-2 py-1 rounded-lg">
+              <i class="fa-solid fa-truck-fast mr-1"></i> On the way
+            </span>
+          </div>
+
+          <!-- Mini Progress Tracker -->
+          <div class="relative py-4">
+            <div class="absolute left-1 top-[1.35rem] w-[95%] h-1 bg-green-800 rounded-full">
+              <div class="h-full w-[65%] bg-green-400 rounded-full"></div>
+            </div>
+            <div class="relative z-10 flex justify-between text-center text-[10px]">
+              <div class="flex flex-col items-center">
+                <span class="w-4 h-4 rounded-full bg-green-400 border-4 border-green-950 shadow"></span>
+                <span class="text-green-300 font-medium mt-1">Ordered</span>
+              </div>
+              <div class="flex flex-col items-center">
+                <span class="w-4 h-4 rounded-full bg-green-400 border-4 border-green-950 shadow animate-pulse"></span>
+                <span class="text-white font-bold mt-1">Transit</span>
+              </div>
+              <div class="flex flex-col items-center">
+                <span class="w-4 h-4 rounded-full bg-green-800 border-4 border-green-950"></span>
+                <span class="text-green-300 font-medium mt-1">Arrived</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="mt-6 pt-4 border-t border-white/10 flex justify-between items-center text-sm">
+            <div>
+              <p class="text-xs text-green-300">Live Estimation</p>
+              <p class="font-bold text-white text-base">
+                Arriving in
+                <span class="underline decoration-green-400">45 mins</span>
+              </p>
+            </div>
+            <div class="flex gap-2">
+              <a href="#" class="p-2.5 bg-white/10 rounded-xl hover:bg-white/20 transition-all"
+                title="Call Delivery Partner">
+                <i class="fa-solid fa-phone-volume text-sm"></i>
+              </a>
+              <a href="#"
+                class="p-2.5 bg-green-500 hover:bg-green-600 rounded-xl transition-all font-semibold flex items-center gap-1.5 text-xs text-green-950 shadow-md">
+                <i class="fa-solid fa-map-location-dot"></i> Live Map
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Quick Insights -->
+        <div class="bg-gray-50 border border-gray-200 rounded-2xl p-5">
+          <h3 class="text-sm font-semibold text-gray-900 mb-3">
+            Your OwnMart Insights
+          </h3>
+          <div class="grid grid-cols-2 gap-3">
+            <div class="bg-white p-3.5 rounded-xl border border-gray-100">
+              <span class="text-xs text-gray-500">Spend this month</span>
+              <p class="text-lg font-bold text-gray-900 mt-0.5">$91.60</p>
+            </div>
+            <div class="bg-white p-3.5 rounded-xl border border-gray-100">
+              <span class="text-xs text-gray-500">Orders completed</span>
+              <p class="text-lg font-bold text-gray-900 mt-0.5">3 items</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right Column: Orders List -->
+      <div class="lg:col-span-8 space-y-4">
+        <!-- Order Card #1: Processing -->
+        <div id="ordersContainer" class="max-w-xl mx-auto"></div>
+
+      </div>
+    </div>
+  </main>
+
+
+  <!-- Main Container -->
+  <main class="hidden max-w-5xl mx-auto px-4 md:px-6 py-4 xl:py-8">
 
     <!-- Page Header & Order Info (Centered Top Section) -->
     <div class="flex flex-col md:flex-row md:justify-between md:items-end border-b border-gray-200 pb-6 mb-8 gap-4">
