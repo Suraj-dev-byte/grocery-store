@@ -1,11 +1,18 @@
-const quantity = JSON.parse(localStorage.getItem("quantity")) || {};
+
 let cartId = JSON.parse(localStorage.getItem("addCart"));
-const itemContainer = document.querySelector(".itemContainer");
-const orderId = document.querySelector('.orderId')
 let getOrders = JSON.parse(localStorage.getItem('orders')) || {}
 const container = document.querySelector('.container')
+const multipleProductPage = document.querySelector('.multipleProduct-Page')
+const orderSpecificPage = document.querySelector('.order-SpecificPage')
+console.log(multipleProductPage);
+console.log(orderSpecificPage);
 // console.log(getOrders);
 // console.log('hello');
+
+const orderIds = getOrders.map((el) => {
+  return el.orderId
+})
+
 async function api() {
   try {
     const response = await fetch("data.json");
@@ -25,8 +32,9 @@ async function api() {
         return ids.includes(product.id)
       })
     })
-    allOrdersData.forEach((el) => {
-      buildOrderCard(el, getOrders)
+    allOrdersData.forEach((el, index) => {
+      buildOrderCard(el, getOrders[index])
+
     })
 
   } catch (error) {
@@ -42,6 +50,7 @@ api();
 
 
 function buildOrderCard(val, order) {
+
   const thumbBox = document.createElement('div');
   val.forEach((el) => {
     const img = document.createElement('img');
@@ -51,6 +60,9 @@ function buildOrderCard(val, order) {
     thumbBox.appendChild(img);
   })
 
+  const totalPrice = val.reduce((acc, curr) => {
+    return acc + curr.mrp
+  }, 0)
 
   // Main Card Wrapper
   const ordersContainer = document.getElementById('ordersContainer');
@@ -74,13 +86,12 @@ function buildOrderCard(val, order) {
 
   const titleWrap = document.createElement('div');
 
-
+  const orderId = document.createElement('span');
   const metaInfo = document.createElement('div');
-  order.forEach((el) => {
-    const orderId = document.createElement('span');
-    orderId.textContent = el.orderId
-    metaInfo.appendChild(orderId);
-  })
+  orderId.textContent = order.orderId
+
+
+  metaInfo.appendChild(orderId);
   titleWrap.appendChild(metaInfo);
   orderId.classList.add('order-id');
 
@@ -118,7 +129,7 @@ function buildOrderCard(val, order) {
 
   const amountValue = document.createElement('span');
   amountValue.classList.add('amount-val');
-  amountValue.textContent = '$24.50';
+  amountValue.textContent = `₹${totalPrice}`
 
   topRight.appendChild(amountLabel);
   topRight.appendChild(amountValue);
@@ -153,7 +164,7 @@ function buildOrderCard(val, order) {
 
   const countP = document.createElement('p');
   countP.classList.add('items-count');
-  countP.textContent = '3 Grocery Items';
+  countP.textContent = `${val.length} Grocery Items`;
 
   const agentP = document.createElement('p');
   agentP.classList.add('agent-name');
@@ -181,7 +192,7 @@ function buildOrderCard(val, order) {
 
   const link = document.createElement('a');
   link.classList.add('details-link');
-  link.href = '#';
+
 
   const linkTxt = document.createTextNode('View details ');
   const arrow = document.createElement('i');
@@ -189,6 +200,11 @@ function buildOrderCard(val, order) {
 
   link.appendChild(linkTxt);
   link.appendChild(arrow);
+
+  link.addEventListener('click', () => {
+    window.location.href = `order.details.html?id=${order.orderId}`
+
+  })
 
   bottomRow.appendChild(slotP);
   bottomRow.appendChild(link);
@@ -201,71 +217,3 @@ function buildOrderCard(val, order) {
   ordersContainer.appendChild(card);
 }
 
-// function placedItem(productInfo) {
-//   orderId.textContent = getOrders[0].orderId
-//   // console.log(productInfo.id);
-//   const mainDiv = document.createElement("div");
-//   mainDiv.classList.add("mainDiv");
-//   const img = document.createElement("img");
-//   img.classList.add("mainDivImg");
-//   img.src = productInfo.images[0];
-//   img.alt = productInfo.images[0];
-
-//   const innerDivOne = document.createElement("div");
-//   innerDivOne.classList.add("innerDivOne");
-//   const h3 = document.createElement("h3");
-//   h3.classList.add("innerDivOne-h3");
-//   h3.textContent = productInfo.name;
-
-//   const paragraphOne = document.createElement("p");
-//   paragraphOne.classList.add("innerDivOne-p");
-//   paragraphOne.textContent = quantity[productInfo.id];
-//   const paragraphTwo = document.createElement("p");
-//   paragraphTwo.classList.add("innerDivOne-p");
-//   paragraphTwo.textContent = `₹${productInfo.mrp} / unit`;
-
-
-//   const innerDivTwo = document.createElement("div");
-//   innerDivTwo.classList.add("innerDivTwo");
-//   const quantitySpan = document.createElement("span");
-//   quantitySpan.classList.add("quantitySpan");
-//   quantitySpan.textContent = `Qty: ${quantity[productInfo.id] ?? 1}`;
-
-
-
-//   const priceSpan = document.createElement("span");
-//   priceSpan.classList.add("priceSpan");
-//   priceSpan.textContent = `₹${productInfo.mrp}`;
-//   innerDivOne.append(h3, paragraphOne, paragraphTwo);
-//   innerDivTwo.append(quantitySpan, priceSpan);
-//   mainDiv.append(img, innerDivOne, innerDivTwo);
-//   itemContainer.append(mainDiv);
-
-// }
-
-
-// function totalAddCart(cartItem) {
-
-//   const productAmount = document.querySelector(".amount");
-//   const totalDiscount = document.querySelector(".totalDiscount");
-//   const totalPrice = document.querySelector(".totalPrice");
-//   const priceText = document.querySelector(".itemCount");
-//   const priceTotal = cartItem.reduce(
-//     (acc, curr) => {
-//       acc.mrpTotal += curr.mrp;
-//       acc.offerTotal += curr.offer_price;
-//       return acc;
-//     },
-//     {
-//       mrpTotal: 0,
-//       offerTotal: 0,
-//     },
-//   );
-
-
-//   productAmount.textContent = `₹${priceTotal.mrpTotal}`;
-//   totalDiscount.textContent = `- ₹${priceTotal.mrpTotal - priceTotal.offerTotal}`;
-//   totalPrice.textContent = `₹${priceTotal.mrpTotal - (priceTotal.mrpTotal - priceTotal.offerTotal)}`;
-//   priceText.textContent = `Price (${cartId.length} items)`;
-
-// }

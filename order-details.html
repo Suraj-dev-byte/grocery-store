@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="src/css/output.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.3.1/css/all.min.css" />
+  <link
+    href="https://fonts.googleapis.com/css?family=Poppins:100,100italic,200,200italic,300,300italic,regular,italic,500,500italic,600,600italic,700,700italic,800,800italic,900,900italic"
+    rel="stylesheet" />
+</head>
+
+<body class="font-['Poppins']">
+  <!-- Main Container -->
+  <main class=" max-w-5xl mx-auto px-4 md:px-6 py-4 xl:py-8">
+
+    <!-- Page Header & Order Info (Centered Top Section) -->
+    <div class="flex flex-col md:flex-row md:justify-between md:items-end border-b border-gray-200 pb-6 mb-8 gap-4">
+      <div>
+        <h1 class="text-3xl font-bold text-gray-800 mb-2">Order Details</h1>
+        <p class="text-gray-500 text-sm">Order <span class="orderId font-semibold text-gray-800">#OM-883921</span> •
+          Placed on
+          Oct 15, 2026</p>
+      </div>
+      <div class="flex flex-col md:items-end gap-2">
+        <span
+          class="bg-blue-50 text-blue-600 border border-blue-200 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wide inline-flex items-center gap-1 w-max">
+          <i class="fa-solid fa-arrows-rotate"></i> Processing
+        </span>
+        <p class="text-gray-500 text-sm">Estimated Delivery: <span class="font-medium text-gray-800">Oct 17, 2026</span>
+        </p>
+      </div>
+    </div>
+
+    <!-- Order Status Tracker (With Visible Green Line) -->
+    <div class="bg-white border border-gray-100 rounded-xl shadow-sm p-6 mb-8 overflow-x-auto">
+      <div class="min-w-[500px] flex items-center justify-between relative z-0">
+        <div class="absolute left-0 top-5 w-full h-1.5 bg-gray-200 z-0 rounded-full"></div>
+        <div class="absolute left-0 top-5 w-1/3 h-1.5 bg-green-500 z-0 rounded-full"></div>
+
+        <div class="relative z-10 flex flex-col items-center gap-2 bg-white px-2">
+          <div
+            class="w-10 h-10 rounded-full bg-green-500 text-white flex items-center justify-center text-lg shadow-md">
+            <i class="fa-solid fa-check"></i>
+          </div>
+          <span class="text-sm font-semibold text-gray-800">Placed</span>
+        </div>
+
+        <div class="relative z-10 flex flex-col items-center gap-2 bg-white px-2">
+          <div
+            class="w-10 h-10 rounded-full bg-blue-500 text-white flex items-center justify-center text-lg shadow-md ring-4 ring-blue-50">
+            <i class="fa-solid fa-box-open"></i>
+          </div>
+          <span class="text-sm font-semibold text-blue-600">Processing</span>
+        </div>
+
+        <div class="relative z-10 flex flex-col items-center gap-2 bg-white px-2">
+          <div class="w-10 h-10 rounded-full bg-gray-200 text-gray-400 flex items-center justify-center text-lg">
+            <i class="fa-solid fa-truck-fast"></i>
+          </div>
+          <span class="text-sm font-medium text-gray-400">Shipped</span>
+        </div>
+
+        <div class="relative z-10 flex flex-col items-center gap-2 bg-white px-2">
+          <div class="w-10 h-10 rounded-full bg-gray-200 text-gray-400 flex items-center justify-center text-lg">
+            <i class="fa-solid fa-house"></i>
+          </div>
+          <span class="text-sm font-medium text-gray-400">Delivered</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Order Items List (Scrolls Inside Its Own Box) -->
+    <h2 class="text-xl font-bold text-gray-800 mb-4">Items in your order</h2>
+    <div class="bg-white border border-gray-100 rounded-xl shadow-sm mb-8 overflow-hidden">
+      <div class="itemContainer divide-y divide-gray-100 max-h-72 overflow-y-auto">
+
+
+        <!-- Item 1 -->
+
+      </div>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+
+      <!-- Delivery Information -->
+      <div class="bg-white border border-gray-100 rounded-xl shadow-sm p-6 h-fit">
+        <h2 class="text-lg font-bold text-gray-800 mb-4 border-b border-gray-100 pb-2"><i
+            class="fa-solid fa-location-dot text-green-500 mr-2"></i> Delivery Details</h2>
+        <div class="text-gray-700 space-y-1">
+          <p class="font-semibold text-gray-900">Rajeev</p>
+          <p>12/4 Main Market Road</p>
+          <p>Near Metro Station, Sector 5</p>
+          <p>Delhi, 110001</p>
+          <p class="mt-3 text-sm text-gray-500"><i class="fa-solid fa-phone mr-1"></i> +91 98765 43210</p>
+        </div>
+      </div>
+
+      <!-- Price Summary -->
+      <div class="bg-white border border-gray-100 rounded-xl shadow-sm p-6">
+        <h2 class="text-lg font-bold text-gray-800 mb-4 border-b border-gray-100 pb-2"><i
+            class="fa-solid fa-receipt text-green-500 mr-2"></i> Order Summary</h2>
+        <div class="space-y-3 text-gray-600 mb-4">
+          <div class="flex justify-between">
+            <span class="itemCount">Subtotal (3 items)</span>
+            <span class="amount font-medium text-gray-800">₹546.00</span>
+          </div>
+          <div class="flex justify-between">
+            <span>Delivery Fee</span>
+            <span class="font-medium text-green-600">Free <span
+                class="line-through text-gray-700 font-extralight">₹40</span></span>
+          </div>
+          <div class="flex justify-between text-green-600">
+            <span>Discount (FESTIVE10)</span>
+            <span class="totalDiscount font-medium">-₹41.00</span>
+          </div>
+        </div>
+        <div class="flex justify-between items-center border-t border-dashed border-gray-200 pt-4">
+          <span class="text-lg font-bold text-gray-800">Total</span>
+          <span class="totalPrice text-2xl font-bold text-green-600">₹545.00</span>
+        </div>
+        <p class="text-xs text-gray-400 mt-2 text-right">Paid via UPI</p>
+      </div>
+    </div>
+
+  </main>
+  <script src="src/js/order-detail.js"></script>
+</body>
+
+</html>

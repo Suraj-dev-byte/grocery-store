@@ -1,19 +1,19 @@
-# Grocery Store 🛒
+# 🛒 Grocery Store — OwnMart
 
 A modern and responsive grocery shopping website built using **HTML, Tailwind CSS, and JavaScript**.
 
 ## 🌐 Live Link
 
-[**Visit OwnMart**](https://grocery-store-ownmart.netlify.app/)
+[Visit OwnMart](https://grocery-store-ownmart.netlify.app/)
 
-## Features
+## ✨ Features
 
 - 📱 Fully responsive design
 - 🎨 Modern grocery store UI
 - 🛍️ Dynamic product sections
 - 📦 Product data integration
 - 🎠 Product carousel
-- 📄 Dynamic product details
+- 📄 Dynamic product details page
 - ⚡ Loading and error states
 - 🔄 Retry handling for failed data loading
 - 🛒 Add to Cart
@@ -28,15 +28,22 @@ A modern and responsive grocery shopping website built using **HTML, Tailwind CS
 - 💰 Cart total and savings calculation
 - 📦 Order placement
 - ✅ Order confirmation
+- 🆔 Unique order ID generation
+- 💾 Multiple orders saved in LocalStorage
+- 📋 Order history / multiple orders listing
+- 🔗 Order-specific details page using URL query parameters
+- 🛍️ Display products belonging to the selected order
+- 🔢 Order-specific product quantities
+- 💵 Order total price calculation
 - 🚫 Duplicate cart-item prevention
 - 🔗 Product detail navigation
-- 🛒 Add to Cart from product details page
-- ➕➖ Product quantity controls on product details page
+- 🛒 Add to Cart from the product details page
+- ➕➖ Product quantity controls on the product details page
 - ⚠️ Maximum quantity limit handling
 - 🛒 Empty cart state
 - 🔄 Cart count synchronization across pages
 
-## Tech Stack
+## 🧰 Tech Stack
 
 - HTML5
 - Tailwind CSS
@@ -45,7 +52,7 @@ A modern and responsive grocery shopping website built using **HTML, Tailwind CS
 - LocalStorage
 - Font Awesome
 
-## Current Progress
+## 📊 Current Progress
 
 - 🟢 Responsive UI completed
 - 🟢 Product data integration completed
@@ -63,6 +70,13 @@ A modern and responsive grocery shopping website built using **HTML, Tailwind CS
 - 🟢 Cart total and savings calculation completed
 - 🟢 Order placement flow completed
 - 🟢 Order confirmation completed
+- 🟢 Unique order ID generation completed
+- 🟢 Orders saved to LocalStorage
+- 🟢 Multiple orders management completed
+- 🟢 Order-specific details page completed
+- 🟢 URL query parameter handling for order selection completed
+- 🟢 Selected order products and quantities displayed correctly
+- 🟢 Order total price calculation completed
 - 🟢 Product details page cart functionality completed
 - 🟢 Maximum quantity limit handling completed
 - 🟢 Empty cart state completed
@@ -70,42 +84,52 @@ A modern and responsive grocery shopping website built using **HTML, Tailwind CS
 - 🟢 Netlify deployment completed
 - 🟡 Additional e-commerce features in development
 
-## Next Steps
+## 🚀 Next Steps
 
-- ⬜ Price filtering
-- ⬜ Rating filtering
-- ⬜ Discount filtering
-- ⬜ Product sorting
-- ⬜ Clear filters functionality
-- ⬜ Wishlist functionality
-- ⬜ Recently viewed products
-- ⬜ Related products
-- ⬜ Stock management
-- ⬜ Coupon and discount system
-- ⬜ Delivery charge logic
-- ⬜ Free delivery logic
-- ⬜ Estimated delivery calculation
-- ⬜ Unique Order ID
-- ⬜ Order snapshot
-- ⬜ Save orders to LocalStorage
-- ⬜ Clear cart after successful order
-- ⬜ Duplicate order prevention
-- ⬜ Page reload handling after order
-- ⬜ Order details page
-- ⬜ Order history
-- ⬜ Multiple orders management
-- ⬜ Delivery address
-- ⬜ Order status
-- ⬜ Empty order history state
-- ⬜ Toast / notification system
-- ⬜ Invalid LocalStorage data handling
-- ⬜ Prevent order placement with an empty cart
-- ⬜ Double-click order prevention
-- ⬜ Final responsive testing
-- ⬜ Code cleanup and refactoring
+### 🛍️ Product Features
 
-## Project Status
+- [ ] Price filtering
+- [ ] Rating filtering
+- [ ] Discount filtering
+- [ ] Product sorting
+- [ ] Clear filters functionality
+- [ ] Wishlist functionality
+- [ ] Recently viewed products
+- [ ] Related products
+- [ ] Stock management
+
+### 💰 Pricing and Delivery
+
+- [ ] Coupon and discount system
+- [ ] Delivery charge logic
+- [ ] Free delivery logic
+- [ ] Estimated delivery calculation
+- [ ] Delivery address
+- [ ] Order placement date and time (`placedAt`)
+- [ ] Dynamic delivery progress bar
+- [ ] Time-based order status: Ordered → In Transit → Arrived
+
+### 📦 Order Management Improvements
+
+- [ ] Order snapshot for preserving product details at purchase time
+- [ ] Clear cart after successful order
+- [ ] Duplicate order prevention
+- [ ] Page reload handling after order placement
+- [ ] Empty order history state
+- [ ] Invalid LocalStorage data handling
+- [ ] Prevent order placement with an empty cart
+- [ ] Double-click order prevention
+
+### 🎨 UI and Code Quality
+
+- [ ] Toast / notification system
+- [ ] Final responsive testing
+- [ ] Code cleanup and refactoring
+
+## 📌 Project Status
 
 🚧 **Currently in Development**
 
-OwnMart is an ongoing e-commerce project. Core shopping functionality, product browsing, search, category filtering, cart management, product details, and the basic order flow are implemented. Additional e-commerce features and improvements will be added as development continues.
+OwnMart is an ongoing frontend e-commerce project. Core shopping functionality, product browsing, search, category filtering, cart management, product details, order placement, persistent order storage, multiple orders management, and order-specific details are implemented.
+
+Further improvements will focus on product discovery, order tracking, delivery calculations, data handling, responsive testing, and code quality.
