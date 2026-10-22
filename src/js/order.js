@@ -4,10 +4,8 @@ let getOrders = JSON.parse(localStorage.getItem('orders')) || {}
 const container = document.querySelector('.container')
 const multipleProductPage = document.querySelector('.multipleProduct-Page')
 const orderSpecificPage = document.querySelector('.order-SpecificPage')
-console.log(multipleProductPage);
-console.log(orderSpecificPage);
-// console.log(getOrders);
-// console.log('hello');
+
+
 
 const orderIds = getOrders.map((el) => {
   return el.orderId
@@ -45,11 +43,13 @@ async function api() {
 api();
 
 
-
-
-
-
 function buildOrderCard(val, order) {
+  const [date, time] = order.PlacedAt.split(", ")
+  const [hours, minutes, seconds] = time.split(':');
+  const hoursFormat = hours < 10 ? '0' + hours : hours
+  const hideSeconds = seconds.slice(-2).toUpperCase()
+
+
 
   const thumbBox = document.createElement('div');
   val.forEach((el) => {
@@ -111,7 +111,7 @@ function buildOrderCard(val, order) {
 
   const timeText = document.createElement('p');
   timeText.classList.add('order-time');
-  timeText.textContent = 'Ordered today at 2:14 PM';
+  timeText.textContent = `Ordered today at ${hoursFormat}:${minutes}:${hideSeconds}`;
 
 
   titleWrap.appendChild(timeText);
@@ -202,7 +202,7 @@ function buildOrderCard(val, order) {
   link.appendChild(arrow);
 
   link.addEventListener('click', () => {
-    window.location.href = `order.details.html?id=${order.orderId}`
+    window.location.href = `order-details.html?id=${order.orderId}`
 
   })
 

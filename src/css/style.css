@@ -198,6 +198,7 @@
   border: 1px solid #f3f4f6;
   border-radius: 1rem;
   padding: 1.25rem;
+  margin-top: 15px;
   transition: all 0.2s ease;
 }
 

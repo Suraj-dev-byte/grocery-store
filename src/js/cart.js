@@ -271,7 +271,11 @@ function placeOrderLogic() {
     let order = {
       orderId: Date.now(),
       cardIds: [...cartId],
-      cardQuantity: { ...getQuantity }
+      cardQuantity: { ...getQuantity },
+      PlacedAt: new Date().toLocaleString("en-IN", {
+        hour12: true
+      }),
+
     }
     orders.push(order)
     localStorage.setItem('orders', JSON.stringify(orders))

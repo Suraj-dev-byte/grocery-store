@@ -1,18 +1,30 @@
 
 
 const params = new URLSearchParams(window.location.search);
-const orderId = Number(params.get("id"));
 let getOrders = JSON.parse(localStorage.getItem('orders')) || {}
-const orderIdDiv = document.querySelector('.orderId')
+const orderId = Number(params.get("id"));
 const itemContainer = document.querySelector(".itemContainer");
 let cartId = JSON.parse(localStorage.getItem("addCart"));
-// console.log(cartId);
+const orderIdDiv = document.querySelector('.orderId')
+const orderDate = document.querySelector('.orderDate')
+orderIdDiv.textContent = orderId
 
 
 const selectOrder = getOrders.find((el) => {
   return el.orderId === orderId
 })
 
+getOrders.forEach((el) => {
+  const [date] = el.PlacedAt.split(', ')
+  const [day, month, year] = date.split('/');
+  const formatterdData = new Date(year, month - 1, day).toLocaleDateString("en-US", {
+    month: 'short',
+    day: 'numeric',
+    year: 'numeric'
+  })
+  orderDate.textContent = `Placed On ${formatterdData}`
+})
+// console.log(getOrders);
 async function api() {
   try {
     const response = await fetch("data.json");
@@ -42,12 +54,12 @@ async function api() {
   }
 }
 
+
 api();
 
 function placedItem(productInfo) {
 
-  orderIdDiv.textContent = orderId
-  // console.log(productInfo.id);
+
   const mainDiv = document.createElement("div");
   mainDiv.classList.add("mainDiv");
   const img = document.createElement("img");
