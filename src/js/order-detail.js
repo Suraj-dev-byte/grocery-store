@@ -15,7 +15,9 @@ const selectOrder = getOrders.find((el) => {
 })
 
 getOrders.forEach((el) => {
-  const [date] = el.PlacedAt.split(', ')
+  const [date, time] = el.PlacedAt.split(', ')
+  const timeFormat = new Date(time).getTime()
+
   const [day, month, year] = date.split('/');
   const formatterdData = new Date(year, month - 1, day).toLocaleDateString("en-US", {
     month: 'short',
@@ -41,12 +43,13 @@ async function api() {
     const getProductPrice = data.data.products.filter((products) => {
       return cartId.includes(products.id)
     })
-    totalAddCart(getProductPrice)
+
 
     filterProduct.forEach((el) => {
       placedItem(el)
 
     })
+    totalAddCart(filterProduct)
 
 
   } catch (error) {

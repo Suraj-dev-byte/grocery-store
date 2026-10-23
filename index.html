@@ -92,7 +92,7 @@
           <!-- Search Input -->
           <form class="formBtn flex  w-full">
             <input type="text" placeholder="Search for groceries, froits, snacks & more"
-              class="inputValue flex-1 px-3 w-full text-[13px] md:text-[14px] outline-none text-gray-800 placeholder-gray-500" />
+              class="inputValue flex-1 px-3 w-full text-[13px] md:text-[14px] outline-none text-gray-800 placeholder-gray-500 overflow-hidden text-ellipsis whitespace-nowrap" />
 
             <button
               class="searchBtn bg-[#096a56] hover:bg-[#065041] px-4 md:px-5 flex items-center justify-center transition-colors">
@@ -106,12 +106,24 @@
 
         <!-- Right Section: User Actions -->
 
-        <div class="flex items-center gap-5 md:gap-6">
+        <div class="flex items-center gap-4 md:gap-5">
+
+          <!-- My Orders Button -->
+          <a href="order.html"
+            class="flex items-center gap-2 md:px-6 px-0 py-1.5 rounded-lg  text-black hover:text-green-500 cursor-pointer transition-all group">
+            <!-- Receipt / Order Checklist Icon -->
+            <svg class="w-4 h-4 text-emerald-400 group-hover:scale-110 transition-transform" fill="none"
+              stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" />
+            </svg>
+            <span class="text-[14px] font-semibold whitespace-nowrap">My Orders</span>
+          </a>
           <!-- Login / Account -->
 
           <a href="#" class="flex items-center gap-2">
             <span
-              class="hidden xl:flex text-[14px] font-semibold text-gray-800 group-hover:text-[#096a56] transition-colors">Login
+              class="hidden xl:flex text-[12px] font-semibold text-gray-800 group-hover:text-[#096a56] transition-colors">Login
               /
               Account</span>
             <span>
@@ -122,9 +134,9 @@
           <!-- Cart -->
 
           <a href="cart.html"
-            class="flex items-center gap-2 hover:text-[#096a56] transition-colors cursor-pointer group">
+            class="flex items-center px-1 gap-2 hover:text-[#096a56] transition-colors cursor-pointer group">
             <div class="relative">
-              <i class="fa-solid fa-cart-shopping"></i>
+              <i class="fa-solid fa-cart-shopping "></i>
 
               <!-- Item Count Badge -->
 
@@ -190,10 +202,10 @@
 
           </details>
         </div>
-        <div class="w-full flex flex-col md:flex-row items-center gap-10">
+        <div class="w-full flex flex-col md:flex-row gap-10 md:items-center items-start">
           <!-- Left Side: Text and Button -->
           <div class="md:w-[45%] text-left">
-            <h1 class="text-4xl md:text-[44px] mt-8 md:mt-0 font-bold leading-[1.15] text-black mb-4 tracking-tight">
+            <h1 class="text-4xl md:text-[44px] mt-8 md:mt-0 font-bold leading-[1.20] text-black mb-4 tracking-tight">
               <span class="heading"></span><br />Delivered Right On Time.
             </h1>
             <p class="text-gray-600 text-[15px] mb-5">

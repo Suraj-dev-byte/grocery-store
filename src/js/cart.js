@@ -5,13 +5,14 @@ let cartId = JSON.parse(localStorage.getItem("addCart"));
 const addToCart = document.querySelector(".addToCart");
 const cartContainer = document.getElementById("cart-items-container");
 const getQuantity = JSON.parse(localStorage.getItem('quantity')) || {}
+
 if (cartId.length > 0) {
   addToCart.classList.add("bgGreen");
   addToCart.textContent = cartId.length;
 }
 
 
-console.log(getQuantity);
+
 let newData = [];
 
 // FIx Add To Count Bug .....
@@ -48,7 +49,7 @@ function cardTwo(valTwo) {
   let productId = valTwo.id
   let timeoutId;
   const maxLimitBox = document.querySelector(".maxLimitBox");
-  console.log(maxLimitBox);
+
 
   const discountPercentage = Math.round(
     ((valTwo.mrp - valTwo.offer_price) / valTwo.mrp) * 100,
@@ -289,6 +290,10 @@ function placeOrderLogic() {
     placeOrder.disabled = true;
     mainPage.classList.add("hidden");
     confirmMessage.classList.remove("hidden");
+    cartId.length = 0;
+    localStorage.setItem("addCart", JSON.stringify(cartId));
+
+
   });
 
 

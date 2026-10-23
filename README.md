@@ -30,17 +30,20 @@ A modern and responsive grocery shopping website built using **HTML, Tailwind CS
 - ✅ Order confirmation
 - 🆔 Unique order ID generation
 - 💾 Multiple orders saved in LocalStorage
-- 📋 Order history / multiple orders listing
+- 📋 Order history and multiple orders listing
 - 🔗 Order-specific details page using URL query parameters
 - 🛍️ Display products belonging to the selected order
 - 🔢 Order-specific product quantities
 - 💵 Order total price calculation
+- 📅 Order placement date and time
+- 🕒 Date formatting for order history and details
 - 🚫 Duplicate cart-item prevention
 - 🔗 Product detail navigation
 - 🛒 Add to Cart from the product details page
 - ➕➖ Product quantity controls on the product details page
 - ⚠️ Maximum quantity limit handling
 - 🛒 Empty cart state
+- 🧹 Cart clearing after successful order placement
 - 🔄 Cart count synchronization across pages
 
 ## 🧰 Tech Stack
@@ -77,12 +80,15 @@ A modern and responsive grocery shopping website built using **HTML, Tailwind CS
 - 🟢 URL query parameter handling for order selection completed
 - 🟢 Selected order products and quantities displayed correctly
 - 🟢 Order total price calculation completed
+- 🟢 Order placement date and time implemented
+- 🟢 Order date formatting completed
 - 🟢 Product details page cart functionality completed
 - 🟢 Maximum quantity limit handling completed
 - 🟢 Empty cart state completed
+- 🟢 Cart clearing after successful order placement completed
 - 🟢 Cart count synchronization completed
 - 🟢 Netlify deployment completed
-- 🟡 Additional e-commerce features in development
+- 🟡 Delivery progress and additional e-commerce features in development
 
 ## 🚀 Next Steps
 
@@ -105,14 +111,12 @@ A modern and responsive grocery shopping website built using **HTML, Tailwind CS
 - [ ] Free delivery logic
 - [ ] Estimated delivery calculation
 - [ ] Delivery address
-- [ ] Order placement date and time (`placedAt`)
 - [ ] Dynamic delivery progress bar
-- [ ] Time-based order status: Ordered → In Transit → Arrived
+- [ ] Time-based order status: Ordered → Packing → Out for Delivery → Delivered
 
 ### 📦 Order Management Improvements
 
 - [ ] Order snapshot for preserving product details at purchase time
-- [ ] Clear cart after successful order
 - [ ] Duplicate order prevention
 - [ ] Page reload handling after order placement
 - [ ] Empty order history state
@@ -130,6 +134,6 @@ A modern and responsive grocery shopping website built using **HTML, Tailwind CS
 
 🚧 **Currently in Development**
 
-OwnMart is an ongoing frontend e-commerce project. Core shopping functionality, product browsing, search, category filtering, cart management, product details, order placement, persistent order storage, multiple orders management, and order-specific details are implemented.
+OwnMart is an ongoing frontend e-commerce project. Core shopping functionality, product browsing, search, category filtering, cart management, product details, order placement, persistent order storage, order history, order-specific details, order date formatting, and cart clearing after successful order placement are implemented.
 
-Further improvements will focus on product discovery, order tracking, delivery calculations, data handling, responsive testing, and code quality.
+Further improvements will focus on product discovery, delivery tracking, pricing logic, order management, responsive testing, and code quality.
