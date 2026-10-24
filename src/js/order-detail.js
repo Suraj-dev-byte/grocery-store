@@ -1,13 +1,13 @@
 
-
 const params = new URLSearchParams(window.location.search);
 let getOrders = JSON.parse(localStorage.getItem('orders')) || {}
 const orderId = Number(params.get("id"));
 const itemContainer = document.querySelector(".itemContainer");
 let cartId = JSON.parse(localStorage.getItem("addCart"));
 const orderIdDiv = document.querySelector('.orderId')
-const orderDate = document.querySelector('.orderDate')
-orderIdDiv.textContent = orderId
+const orderDateElement = document.querySelector('.orderDate')
+const orderProgress = document.querySelector('.orderProgress')
+
 
 
 const selectOrder = getOrders.find((el) => {
@@ -15,18 +15,32 @@ const selectOrder = getOrders.find((el) => {
 })
 
 getOrders.forEach((el) => {
-  const [date, time] = el.PlacedAt.split(', ')
-  const timeFormat = new Date(time).getTime()
-
-  const [day, month, year] = date.split('/');
-  const formatterdData = new Date(year, month - 1, day).toLocaleDateString("en-US", {
+  dateAndProgressBar(el)
+})
+function dateAndProgressBar(orderDate) {
+  orderIdDiv.textContent = orderId
+  const OMID = document.querySelector('.oM-Id')
+  OMID.textContent = `#OM-${orderId}`
+  const placedDate = orderDate.PlacedAt
+  const placedTime = new Date(orderDate.PlacedAt).getTime();
+  const date = new Date(placedDate);
+  const formattedDate = date.toLocaleDateString("en-US", {
     month: 'short',
     day: 'numeric',
     year: 'numeric'
   })
-  orderDate.textContent = `Placed On ${formatterdData}`
-})
-// console.log(getOrders);
+  orderDateElement.textContent = `Placed On ${formattedDate}`
+
+
+  const elapsedTime = Date.now() - placedTime;
+  const elapseMinutes = elapsedTime / (1000 * 60);
+  const percentage = Math.min((elapseMinutes / 40) * 100, 100)
+  orderProgress.style.width = `${percentage}%`
+}
+
+
+
+
 async function api() {
   try {
     const response = await fetch("data.json");

@@ -44,10 +44,28 @@ api();
 
 
 function buildOrderCard(val, order) {
-  const [date, time] = order.PlacedAt.split(", ")
-  const [hours, minutes, seconds] = time.split(':');
-  const hoursFormat = hours < 10 ? '0' + hours : hours
-  const hideSeconds = seconds.slice(-2).toUpperCase()
+  const placedDate = order.PlacedAt
+  const date = new Date(placedDate);
+  const formattedDate = date.toLocaleDateString("en-US", {
+    month: 'short',
+    day: 'numeric',
+    year: 'numeric'
+  })
+  console.log(formattedDate);
+
+
+  const formattedTime = date.toLocaleTimeString("en-US", {
+    hour: '2-digit',
+    minute: '2-digit',
+    hour12: true
+  })
+
+  const placedTime = new Date(order.PlacedAt).getTime();
+  const elapseMinutes = (Date.now() - placedTime) / (1000 * 60);
+  const status = elapseMinutes >= 40 ? "Delivered" : "Processing";
+  console.log(status);
+
+
 
 
 
@@ -81,7 +99,11 @@ function buildOrderCard(val, order) {
   const iconBox = document.createElement('div');
   iconBox.classList.add('order-icon-box');
   const icon = document.createElement('i');
-  icon.classList.add('fa-solid', 'fa-hourglass-half');
+  if (status == "Delivered") {
+    icon.classList.add("fa-solid", "fa-circle-check");
+  } else {
+    icon.classList.add('fa-solid', 'fa-hourglass-half');
+  }
   iconBox.appendChild(icon);
 
   const titleWrap = document.createElement('div');
@@ -99,19 +121,20 @@ function buildOrderCard(val, order) {
 
   const badge = document.createElement('span');
   badge.classList.add('order-badge');
+  badge.textContent = status
 
   const pulseDot = document.createElement('span');
   pulseDot.classList.add('pulse-dot');
-  const statusText = document.createTextNode('Processing');
+  // const statusText = document.createTextNode('Processing');
 
   badge.appendChild(pulseDot);
-  badge.appendChild(statusText);
+  // badge.appendChild(statusText);
 
   metaInfo.appendChild(badge);
 
   const timeText = document.createElement('p');
   timeText.classList.add('order-time');
-  timeText.textContent = `Ordered today at ${hoursFormat}:${minutes}:${hideSeconds}`;
+  timeText.textContent = `Ordered today at ${formattedTime}`;
 
 
   titleWrap.appendChild(timeText);

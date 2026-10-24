@@ -273,7 +273,7 @@ function placeOrderLogic() {
       orderId: Date.now(),
       cardIds: [...cartId],
       cardQuantity: { ...getQuantity },
-      PlacedAt: new Date().toLocaleString("en-IN", {
+      PlacedAt: new Date().toISOString("en-IN", {
         hour12: true
       }),
 
