@@ -265,6 +265,7 @@ function placeOrderLogic() {
   const placeOrder = document.querySelector(".placeOrder");
   const confirmMessage = document.querySelector(".confirmMessage");
   const mainPage = document.querySelector(".mainPage");
+  const generateOrderId = document.querySelector(".genrateOrderId");
 
   placeOrder.addEventListener("click", () => {
 
@@ -280,6 +281,7 @@ function placeOrderLogic() {
     }
     orders.push(order)
     localStorage.setItem('orders', JSON.stringify(orders))
+    generateOrderId.textContent = `#OM${order.orderId}`
     if (interValId) return;
     interValId = setInterval(() => {
       window.location.replace('index.html')

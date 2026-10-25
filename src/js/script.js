@@ -78,7 +78,7 @@ async function apiCall() {
           card(product);
         });
 
-        console.log(values);
+
       });
     });
 
@@ -90,7 +90,7 @@ async function apiCall() {
         return find.name.toLowerCase().includes(inputValue.value.toLowerCase());
       });
 
-      console.log(searchFilter.length);
+
       if (searchFilter.length === 0) {
         cardContainer.classList.add("noResult");
         cardContainer.innerHTML = `

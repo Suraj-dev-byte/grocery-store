@@ -14,6 +14,41 @@
 </head>
 
 <body class="font-['Poppins']">
+
+  <!-- NavBar -->
+  <header>
+    <nav
+      class="w-full bg-white border-b border-gray-100 px-4 md:px-6 py-5 flex flex-wrap items-center justify-between gap-x-4 gap-y-3 text-gray-900 shadow-sm">
+      <div class="flex items-center gap-3 md:gap-4">
+        <div class="flex-shrink-0">
+          <a href="#" class="text-2xl font-extrabold text-gray-900 tracking-tight flex items-center gap-2"><i
+              class="fa-solid fa-leaf text-green-500"></i>
+            <span>Own<span class="text-green-600">Mart</span></span></a>
+        </div>
+        <div class="hidden md:block w-px h-7 bg-gray-200"></div>
+        <div class="hidden md:flex flex-col justify-center bg-[#f5f4ef] px-2.5 py-1 rounded-md">
+          <span class="text-[12px] font-bold leading-none mb-0.5">10-20 min</span>
+          <span class="text-[11px] text-gray-700 leading-none">delivery</span>
+        </div>
+      </div>
+      <div class="flex items-center gap-5 md:gap-6">
+        <a href="#"
+          class="hidden sm:flex items-center gap-2 hover:text-[#096a56] transition-colors cursor-pointer group"><span
+            class="text-[14px] font-semibold text-gray-800 group-hover:text-[#096a56] transition-colors">Login /
+            Account</span>
+          <i class="fa-regular fa-user"></i></a>
+        <a class="flex items-center gap-2 hover:text-[#096a56] transition-colors cursor-pointer group">
+          <div class="relative">
+            <i class="fa-solid fa-cart-shopping"></i><span
+              class="addToCart absolute -top-1.5 -left-1.5 text-[10px] font-bold w-[18px] h-[18px] rounded-full flex items-center justify-center"></span>
+          </div>
+          <span
+            class="text-[14px] font-semibold text-gray-800 hidden sm:block group-hover:text-[#096a56] transition-colors">Cart</span>
+        </a>
+      </div>
+    </nav>
+  </header>
+
   <!-- Left Starting -->
   <div class="hidden p-4 xxl:fixed xl:top-6 xl:left-6 z-20 flex items-center gap-3">
     <a href="#"
@@ -25,6 +60,29 @@
       <i class="fa-solid fa-arrow-left"></i> Back to Home
     </a>
   </div>
+
+  <!-- Empty orders handle page -->
+  <section class="emptyPage flex flex-col hidden items-center justify-center px-4 py-16 text-center sm:py-24">
+    <div
+      class="mb-6 flex h-20 w-20 items-center justify-center rounded-full bg-emerald-50 text-emerald-600 sm:h-24 sm:w-24">
+      <i class="fa-solid fa-basket-shopping text-3xl sm:text-4xl" aria-hidden="true"></i>
+    </div>
+
+    <h2 class="text-xl font-bold tracking-tight text-gray-900 sm:text-2xl">
+      No Orders Yet
+    </h2>
+
+    <p class="mt-2 max-w-md text-sm text-gray-500 sm:text-base">
+      Looks like you haven't placed an order yet. Explore our fresh groceries
+      and fill your cart!
+    </p>
+
+    <a href="index.html"
+      class="mt-8 inline-flex items-center justify-center gap-2 rounded-xl bg-emerald-600 px-6 py-3 text-sm font-semibold text-white shadow-sm transition-colors hover:bg-emerald-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-emerald-600">
+      Start Shopping
+      <i class="fa-solid fa-arrow-right text-xs" aria-hidden="true"></i>
+    </a>
+  </section>
 
   <main class="multipleProduct-Page max-w-6xl mx-auto px-4 py-8">
     <!-- Introduction & Headers -->
@@ -69,7 +127,6 @@
     <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
       <!-- Left Column: Highlight Tracker & Insights -->
       <div class="lg:col-span-4 space-y-6">
-
         <!-- Quick Insights -->
         <div class="bg-gray-50 border border-gray-200 rounded-2xl p-5">
           <h3 class="text-sm font-semibold text-gray-900 mb-3">
@@ -78,11 +135,11 @@
           <div class="grid grid-cols-2 gap-3">
             <div class="bg-white p-3.5 rounded-xl border border-gray-100">
               <span class="text-xs text-gray-500">Spend this month</span>
-              <p class="text-lg font-bold text-gray-900 mt-0.5">$91.60</p>
+              <p class="spentThisMonth text-lg font-bold text-gray-900 mt-0.5">$91.60</p>
             </div>
             <div class="bg-white p-3.5 rounded-xl border border-gray-100">
               <span class="text-xs text-gray-500">Orders completed</span>
-              <p class="text-lg font-bold text-gray-900 mt-0.5">3 items</p>
+              <p class="completedOrders text-lg font-bold text-gray-900 mt-0.5">3 items</p>
             </div>
           </div>
         </div>
@@ -92,13 +149,9 @@
       <div class="lg:col-span-8 space-y-4">
         <!-- Order Card #1: Processing -->
         <div id="ordersContainer" class="max-w-xl mx-auto"></div>
-
       </div>
     </div>
   </main>
-
-
-
 </body>
 
 </html>

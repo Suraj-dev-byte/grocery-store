@@ -1,15 +1,19 @@
 
 let cartId = JSON.parse(localStorage.getItem("addCart"));
-let getOrders = JSON.parse(localStorage.getItem('orders')) || {}
+let getOrders = JSON.parse(localStorage.getItem('orders')) || [];
 const container = document.querySelector('.container')
 const multipleProductPage = document.querySelector('.multipleProduct-Page')
 const orderSpecificPage = document.querySelector('.order-SpecificPage')
+const emptyPage = document.querySelector('.emptyPage')
+const completedOrders = document.querySelector('.completedOrders')
+const spentThisMonths = document.querySelector('.spentThisMonth')
+
+if (!getOrders.length) {
+  emptyPage.classList.remove('hidden')
+  multipleProductPage.classList.add('hidden')
+}
 
 
-
-const orderIds = getOrders.map((el) => {
-  return el.orderId
-})
 
 async function api() {
   try {
@@ -44,6 +48,7 @@ api();
 
 
 function buildOrderCard(val, order) {
+
   const placedDate = order.PlacedAt
   const date = new Date(placedDate);
   const formattedDate = date.toLocaleDateString("en-US", {
@@ -82,6 +87,9 @@ function buildOrderCard(val, order) {
     return acc + curr.mrp
   }, 0)
 
+  // console.log( );
+  spentThisMonths.textContent = `₹${totalPrice}`
+
   // Main Card Wrapper
   const ordersContainer = document.getElementById('ordersContainer');
 
@@ -101,6 +109,7 @@ function buildOrderCard(val, order) {
   const icon = document.createElement('i');
   if (status == "Delivered") {
     icon.classList.add("fa-solid", "fa-circle-check");
+    completedOrders.textContent = `${getOrders.length} items`
   } else {
     icon.classList.add('fa-solid', 'fa-hourglass-half');
   }
