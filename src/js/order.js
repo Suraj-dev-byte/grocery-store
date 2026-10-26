@@ -16,6 +16,10 @@ if (!getOrders.length) {
 
 
 async function api() {
+  if (getOrders.length === null) {
+    emptyPage.classList.remove('hidden')
+    multipleProductPage.classList.add('hidden')
+  }
   try {
     const response = await fetch("data.json");
     if (!response.ok) {
@@ -109,7 +113,7 @@ function buildOrderCard(val, order) {
   const icon = document.createElement('i');
   if (status == "Delivered") {
     icon.classList.add("fa-solid", "fa-circle-check");
-    completedOrders.textContent = `${getOrders.length} items`
+    completedOrders.textContent = `${getOrders.cardIds.length} items`
   } else {
     icon.classList.add('fa-solid', 'fa-hourglass-half');
   }

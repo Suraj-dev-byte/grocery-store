@@ -5,11 +5,12 @@ let cartId = JSON.parse(localStorage.getItem("addCart"));
 const addToCart = document.querySelector(".addToCart");
 const cartContainer = document.getElementById("cart-items-container");
 const getQuantity = JSON.parse(localStorage.getItem('quantity')) || {}
+const emptyCardBoxMessage = document.querySelector(".emptyCardBox");
+const priceCountBox = document.querySelector(".mainCart");
 
-if (cartId.length > 0) {
-  addToCart.classList.add("bgGreen");
-  addToCart.textContent = cartId.length;
-}
+
+
+
 
 
 
@@ -18,6 +19,12 @@ let newData = [];
 // FIx Add To Count Bug .....
 
 async function api() {
+  if (cartId === null || cartId.length === 0) {
+    return emptyCardBoxMessage.classList.remove("hidden"), priceCountBox.classList.add('hidden')
+  } else if (cartId.length > 0) {
+    addToCart.classList.add("bgGreen");
+    addToCart.textContent = cartId.length;
+  }
   try {
     const response = await fetch("data.json");
     if (!response.ok) {
@@ -31,10 +38,6 @@ async function api() {
     newData = data;
     totalAddCart(filterData);
     filterData.forEach((el) => {
-      // cartRemoveBtn.addEventListener('click', () => {
-      //   console.log('hello');
-      // })
-
       cardTwo(el);
     });
   } catch (error) {
@@ -46,6 +49,7 @@ async function api() {
 api();
 
 function cardTwo(valTwo) {
+
   let productId = valTwo.id
   let timeoutId;
   const maxLimitBox = document.querySelector(".maxLimitBox");
@@ -174,7 +178,7 @@ function cardTwo(valTwo) {
       return cartId.includes(el.id);
     });
     if (cartId.length === 0) {
-
+      emptyCardBoxMessage.classList.remove("hidden"), priceCountBox.classList.add('hidden')
       addToCart.textContent = "";
       addToCart.classList.remove("bgGreen");
     } else {
@@ -245,11 +249,7 @@ function totalAddCart(cartItem) {
     },
   );
 
-  if (priceTotal.mrpTotal === 0) {
-    totalPriceBox.innerHTML = "";
-    const emptyCardBoxMessage = document.querySelector(".emptyCardBox");
-    emptyCardBoxMessage.classList.remove("hidden");
-  }
+
   productAmount.textContent = `₹${priceTotal.mrpTotal}`;
   totalDiscount.textContent = `- ₹${priceTotal.mrpTotal - priceTotal.offerTotal}`;
   totalPrice.textContent = `₹${priceTotal.mrpTotal}`;
@@ -259,13 +259,15 @@ function totalAddCart(cartItem) {
 
 // placeOrder logic..
 
+// console.log();
 function placeOrderLogic() {
+
 
   let interValId = null;
   const placeOrder = document.querySelector(".placeOrder");
   const confirmMessage = document.querySelector(".confirmMessage");
-  const mainPage = document.querySelector(".mainPage");
   const generateOrderId = document.querySelector(".genrateOrderId");
+  const mainPage = document.querySelector(".mainPage");
 
   placeOrder.addEventListener("click", () => {
 
@@ -284,9 +286,9 @@ function placeOrderLogic() {
     generateOrderId.textContent = `#OM${order.orderId}`
     if (interValId) return;
     interValId = setInterval(() => {
-      window.location.replace('index.html')
       mainPage.classList.remove("hidden");
       confirmMessage.classList.add("hidden");
+      window.location.replace('index.html')
       interValId = null;
     }, 5000);
     placeOrder.disabled = true;
