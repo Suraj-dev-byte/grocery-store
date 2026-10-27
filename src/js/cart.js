@@ -1,26 +1,21 @@
-
-
 const totalPriceBox = document.querySelector(".headingAndPrice");
 let cartId = JSON.parse(localStorage.getItem("addCart"));
 const addToCart = document.querySelector(".addToCart");
 const cartContainer = document.getElementById("cart-items-container");
-const getQuantity = JSON.parse(localStorage.getItem('quantity')) || {}
+const getQuantity = JSON.parse(localStorage.getItem("quantity")) || {};
 const emptyCardBoxMessage = document.querySelector(".emptyCardBox");
 const priceCountBox = document.querySelector(".mainCart");
 
-
-
-
-
-
-
 let newData = [];
 
-// FIx Add To Count Bug .....
+
 
 async function api() {
   if (cartId === null || cartId.length === 0) {
-    return emptyCardBoxMessage.classList.remove("hidden"), priceCountBox.classList.add('hidden')
+    return (
+      emptyCardBoxMessage.classList.remove("hidden"),
+      priceCountBox.classList.add("hidden")
+    );
   } else if (cartId.length > 0) {
     addToCart.classList.add("bgGreen");
     addToCart.textContent = cartId.length;
@@ -43,17 +38,14 @@ async function api() {
   } catch (error) {
     console.log(error);
   }
-
 }
 
 api();
 
 function cardTwo(valTwo) {
-
-  let productId = valTwo.id
+  let productId = valTwo.id;
   let timeoutId;
   const maxLimitBox = document.querySelector(".maxLimitBox");
-
 
   const discountPercentage = Math.round(
     ((valTwo.mrp - valTwo.offer_price) / valTwo.mrp) * 100,
@@ -168,7 +160,7 @@ function cardTwo(valTwo) {
   removeBtn.dataset.id = valTwo.id;
   removeBtn.addEventListener("click", (e) => {
     const id = e.currentTarget.dataset.id;
-    delete getQuantity[productId]
+    delete getQuantity[productId];
     localStorage.setItem("quantity", JSON.stringify(getQuantity));
     cartId = cartId.filter((item) => item != id);
 
@@ -178,7 +170,8 @@ function cardTwo(valTwo) {
       return cartId.includes(el.id);
     });
     if (cartId.length === 0) {
-      emptyCardBoxMessage.classList.remove("hidden"), priceCountBox.classList.add('hidden')
+      (emptyCardBoxMessage.classList.remove("hidden"),
+        priceCountBox.classList.add("hidden"));
       addToCart.textContent = "";
       addToCart.classList.remove("bgGreen");
     } else {
@@ -203,8 +196,6 @@ function cardTwo(valTwo) {
   // Append Article to HTML Container
   cartContainer.appendChild(article);
 
-
-
   plusBtn.addEventListener("click", () => {
     if (inputQty.value == 5) {
       if (timeoutId) return;
@@ -217,14 +208,14 @@ function cardTwo(valTwo) {
     }
 
     inputQty.value++;
-    getQuantity[valTwo.id] = Number(inputQty.value) || 1
-    localStorage.setItem('quantity', JSON.stringify(getQuantity))
+    getQuantity[valTwo.id] = Number(inputQty.value) || 1;
+    localStorage.setItem("quantity", JSON.stringify(getQuantity));
   });
   minusBtn.addEventListener("click", () => {
     if (inputQty.value == 1) return;
     inputQty.value--;
-    getQuantity[valTwo.id] = Number(inputQty.value) || 1
-    localStorage.setItem('quantity', JSON.stringify(getQuantity))
+    getQuantity[valTwo.id] = Number(inputQty.value) || 1;
+    localStorage.setItem("quantity", JSON.stringify(getQuantity));
   });
   layoutDiv.addEventListener("click", () => {
     window.location.href = `product.html?id=${valTwo.id}`;
@@ -249,7 +240,6 @@ function totalAddCart(cartItem) {
     },
   );
 
-
   productAmount.textContent = `₹${priceTotal.mrpTotal}`;
   totalDiscount.textContent = `- ₹${priceTotal.mrpTotal - priceTotal.offerTotal}`;
   totalPrice.textContent = `₹${priceTotal.mrpTotal}`;
@@ -259,10 +249,7 @@ function totalAddCart(cartItem) {
 
 // placeOrder logic..
 
-// console.log();
 function placeOrderLogic() {
-
-
   let interValId = null;
   const placeOrder = document.querySelector(".placeOrder");
   const confirmMessage = document.querySelector(".confirmMessage");
@@ -270,25 +257,23 @@ function placeOrderLogic() {
   const mainPage = document.querySelector(".mainPage");
 
   placeOrder.addEventListener("click", () => {
-
-    const orders = JSON.parse(localStorage.getItem('orders')) || [];
+    const orders = JSON.parse(localStorage.getItem("orders")) || [];
     let order = {
       orderId: Date.now(),
       cardIds: [...cartId],
       cardQuantity: { ...getQuantity },
       PlacedAt: new Date().toISOString("en-IN", {
-        hour12: true
+        hour12: true,
       }),
-
-    }
-    orders.push(order)
-    localStorage.setItem('orders', JSON.stringify(orders))
-    generateOrderId.textContent = `#OM${order.orderId}`
+    };
+    orders.push(order);
+    localStorage.setItem("orders", JSON.stringify(orders));
+    generateOrderId.textContent = `#OM${order.orderId}`;
     if (interValId) return;
     interValId = setInterval(() => {
       mainPage.classList.remove("hidden");
       confirmMessage.classList.add("hidden");
-      window.location.replace('index.html')
+      window.location.replace("index.html");
       interValId = null;
     }, 5000);
     placeOrder.disabled = true;
@@ -296,12 +281,7 @@ function placeOrderLogic() {
     confirmMessage.classList.remove("hidden");
     cartId.length = 0;
     localStorage.setItem("addCart", JSON.stringify(cartId));
-
-
   });
-
-
-
 }
 
-placeOrderLogic()
+placeOrderLogic();

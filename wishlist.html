@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Whislist</title>
+  <link rel="stylesheet" href="src/css/output.css">
+  <link rel="stylesheet" href="src/css/style.css">
+  <link
+    href="https://fonts.googleapis.com/css?family=Poppins:100,100italic,200,200italic,300,300italic,regular,italic,500,500italic,600,600italic,700,700italic,800,800italic,900,900italic"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.3.1/css/all.min.css">
+</head>
+
+<body class=" font-['Poppins']">
+  <header class="sticky top-0 z-50">
+    <nav
+      class="w-full bg-white border-b border-gray-100 px-4 md:px-6 py-5 flex flex-wrap items-center justify-between gap-x-4 gap-y-3 text-gray-900 shadow-sm">
+      <div class="flex items-center gap-3 md:gap-4">
+        <div class="flex-shrink-0">
+          <a href="#" class="text-2xl font-extrabold text-gray-900 tracking-tight flex items-center gap-2"><i
+              class="fa-solid fa-leaf text-green-500"></i>
+            <span>Own<span class="text-green-600">Mart</span></span></a>
+        </div>
+        <div class="hidden md:block w-px h-7 bg-gray-200"></div>
+        <div class="hidden md:flex flex-col justify-center bg-[#f5f4ef] px-2.5 py-1 rounded-md">
+          <span class="text-[12px] font-bold leading-none mb-0.5">10-20 min</span>
+          <span class="text-[11px] text-gray-700 leading-none">delivery</span>
+        </div>
+      </div>
+      <div class="flex items-center gap-5 md:gap-6">
+        <a href="#"
+          class="hidden sm:flex items-center gap-2 hover:text-[#096a56] transition-colors cursor-pointer group"><span
+            class="text-[14px] font-semibold text-gray-800 group-hover:text-[#096a56] transition-colors">Login /
+            Account</span>
+          <i class="fa-regular fa-user"></i></a>
+        <a class="flex items-center gap-2 hover:text-[#096a56] transition-colors cursor-pointer group">
+          <div class="relative">
+            <i class="fa-solid fa-cart-shopping"></i><span
+              class="addToCart absolute -top-1.5 -left-1.5 text-[10px] font-bold w-[18px] h-[18px] rounded-full flex items-center justify-center"></span>
+          </div>
+          <span
+            class="text-[14px] font-semibold text-gray-800 hidden sm:block group-hover:text-[#096a56] transition-colors">Cart</span>
+        </a>
+      </div>
+    </nav>
+  </header>
+
+  <div class="m-8">
+    <a href="#" class="text-2xl font-extrabold text-gray-900 tracking-tight flex items-center gap-2">
+
+      <span>Whis <span class="text-orange-600">List</span></span>
+      <i class="fa-solid fa-heart text-red-500"></i>
+    </a>
+  </div>
+
+
+  <!-- Row-wise Responsive Flex Container -->
+
+  <div
+    class="mainContainer grid grid-cols-2 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-4 justify-items-center px-1.5">
+
+    <!-- Compact Wishlist Card -->
+
+
+  </div>
+
+  <script src="src/js/whislist.js" defer></script>
+</body>
+
+</html>
