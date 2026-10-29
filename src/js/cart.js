@@ -165,7 +165,7 @@ function cardTwo(valTwo) {
     cartId = cartId.filter((item) => item != id);
 
     localStorage.setItem("addCart", JSON.stringify(cartId));
-    // 4. Cart UI dobara render karo
+    // 4. Cart UI again render //
     const afterRemoveData = newData.data.products.filter((el) => {
       return cartId.includes(el.id);
     });

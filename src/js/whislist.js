@@ -1,5 +1,6 @@
-
 const mainContainer = document.querySelector('.mainContainer')
+const addCartWishlist = JSON.parse((localStorage.getItem('addCartWishlist')));
+console.log(addCartWishlist);
 
 
 async function api() {
@@ -13,8 +14,12 @@ async function api() {
 
 
     const products = data.data.products
-    products.forEach((product) => {
-      console.log(product);
+    const filterWishlist = products.filter((el) => {
+      return addCartWishlist.includes(el.id)
+    })
+    console.log(filterWishlist);
+    filterWishlist.forEach((product) => {
+
       wishlistProducts(product)
     })
 
@@ -80,6 +85,6 @@ function wishlistProducts(product) {
 
   innerDiv.append(discountDiv, imgDiv, productDiv, priceDiv)
   mainContainer.append(innerDiv)
-  console.log(mainContainer);
+
 }
 

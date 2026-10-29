@@ -117,6 +117,7 @@ async function apiCall() {
     });
     hideLoading();
     addTwoCart();
+    wishlistCart()
   } catch (error) {
     setTimeout(() => {
       hideLoading();
@@ -127,7 +128,9 @@ async function apiCall() {
 
 }
 
+
 apiCall();
+
 function hideLoading() {
   loadingScreen.classList.add("hidden");
   secondBody.classList.remove("hidden");
@@ -198,14 +201,19 @@ function cardTwo(valTwo) {
   const price = document.createElement("span");
   price.className = "price";
   price.textContent = `₹${valTwo.mrp}`;
-
+  const buttonDiv = document.createElement('div')
+  buttonDiv.classList.add('buttonDiv')
+  const li = document.createElement('li')
+  li.classList.add("fa-solid", "fa-heart");
+  li.classList.add('wishlist')
+  li.dataset.id = valTwo.id
   const button = document.createElement("button");
   button.className = "addButton";
   button.textContent = "ADD";
   button.dataset.id = valTwo.id;
-
+  buttonDiv.append(li, button)
   imageContainer.append(image);
-  bottom.append(price, button);
+  bottom.append(price, buttonDiv);
   card.append(discount, imageContainer, title, quantity, bottom);
   mainContainerTwo.append(card);
 
@@ -238,6 +246,7 @@ carousel();
 // save addToCart in LocalStorage..
 const addToCart = document.querySelector(".addToCart");
 let addToCartId = JSON.parse(localStorage.getItem("addCart")) || [];
+let addWishlistId = JSON.parse(localStorage.getItem("addCartWishlist")) || [];
 window.addEventListener("pageshow", () => {
   addToCartId = JSON.parse(localStorage.getItem("addCart")) || [];
   addToCart.classList.add("bgGreen");
@@ -248,7 +257,61 @@ window.addEventListener("pageshow", () => {
   }
 });
 
+
+
+
+
+function wishlistCart() {
+
+  const wishlist = document.querySelectorAll(".wishlist");
+  const itemAddedToast = document.querySelector(".itemAddedToast");
+  const toastMessage = document.querySelector(".toastMessage");
+
+  wishlist.forEach((el) => {
+    if (addWishlistId.includes(el.dataset.id)) {
+      el.style.color = 'red'
+    }
+  })
+
+  let intervalID = null;
+  wishlist.forEach((el) => {
+    el.addEventListener("click", (e) => {
+      if (addWishlistId.includes(el.dataset.id)) {
+        if (intervalID) return;
+        intervalID = setTimeout(() => {
+          itemAddedToast.classList.add("hidden");
+          intervalID = null;
+        }, 2000);
+        itemAddedToast.classList.remove("hidden");
+        toastMessage.classList.add('text-orange-500');
+
+        return toastMessage.textContent = 'item already in Wishlist'
+      } else {
+        clearTimeout(intervalID)
+        intervalID = setTimeout(() => {
+          itemAddedToast.classList.add('hidden')
+          intervalID = null
+        }, 2000);
+        itemAddedToast.classList.remove('hidden')
+        toastMessage.classList.remove('text-orange-500');
+        toastMessage.textContent = 'Added in Wishlist ❤️'
+        el.style.color = 'red'
+
+      }
+
+
+      addWishlistId.push(e.currentTarget.dataset.id);
+      localStorage.setItem("addCartWishlist", JSON.stringify(addWishlistId));
+      addToCart.classList.add("bgGreen");
+      addToCart.textContent = addWishlistId.length;
+
+    });
+  });
+}
+
+
 function addTwoCart() {
+
   const addBtn = document.querySelectorAll(".addButton");
   const itemAddedToast = document.querySelector(".itemAddedToast");
   const toastMessage = document.querySelector(".toastMessage");
