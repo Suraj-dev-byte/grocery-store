@@ -36,6 +36,7 @@ function dateAndProgressBar(orderDate) {
   const elapseMinutes = elapsedTime / (1000 * 60);
   const percentage = Math.min((elapseMinutes / 40) * 100, 100)
   orderProgress.style.width = `${percentage}%`
+  console.log(percentage);
 }
 
 
@@ -118,7 +119,7 @@ function placedItem(productInfo) {
 
 
 function totalAddCart(cartItem) {
-  // console.log(cartItem);
+
   const productAmount = document.querySelector(".amount");
   const totalDiscount = document.querySelector(".totalDiscount");
   const totalPrice = document.querySelector(".totalPrice");

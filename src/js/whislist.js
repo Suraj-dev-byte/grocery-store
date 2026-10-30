@@ -1,9 +1,21 @@
 const mainContainer = document.querySelector('.mainContainer')
-const addCartWishlist = JSON.parse((localStorage.getItem('addCartWishlist')));
+const mainPage = document.querySelector('.mainPage')
+const emptyHandleUi = document.querySelector('.emptyUI')
+let addCartWishlist = JSON.parse(localStorage.getItem('addCartWishlist')) || {}
+const wishlistObj = JSON.parse(localStorage.getItem('wishlistQuantity')) || {}
 console.log(addCartWishlist);
-
-
+let newData = []
 async function api() {
+  if (addCartWishlist === null) {
+    emptyHandleUi.classList.remove('hidden');
+    mainPage.classList.add('hidden')
+    return;
+  }
+  if (!addCartWishlist.length) {
+    emptyHandleUi.classList.remove('hidden');
+    mainPage.classList.add('hidden')
+    return;
+  }
 
   try {
     const response = await fetch("data.json");
@@ -12,17 +24,17 @@ async function api() {
     }
     const data = await response.json();
 
-
     const products = data.data.products
     const filterWishlist = products.filter((el) => {
       return addCartWishlist.includes(el.id)
     })
-    console.log(filterWishlist);
+
     filterWishlist.forEach((product) => {
 
       wishlistProducts(product)
     })
 
+    newData = data
   } catch (error) {
     console.log(error);
   }
@@ -31,6 +43,7 @@ async function api() {
 api();
 
 function wishlistProducts(product) {
+  let productID = product.id
   const innerDiv = document.createElement('div');
   innerDiv.classList.add('wishlist-card')
   // Top Discount -
@@ -78,6 +91,7 @@ function wishlistProducts(product) {
   adddBtn.classList.add('wishlist-btn-add')
   removeBtn.classList.add('wishlist-btn-remove')
 
+  removeBtn.dataset.id = product.id
   adddBtn.textContent = 'ADD'
   removeBtn.textContent = 'Remove'
   btnDiv.append(adddBtn, removeBtn)
@@ -86,5 +100,28 @@ function wishlistProducts(product) {
   innerDiv.append(discountDiv, imgDiv, productDiv, priceDiv)
   mainContainer.append(innerDiv)
 
+  removeBtn.addEventListener('click', (e) => {
+    const removeButtonId = e.currentTarget.dataset.id
+    delete wishlistObj[productID];
+    localStorage.setItem('wishlistQuantity', JSON.stringify(wishlistObj))
+    addCartWishlist = addCartWishlist.filter((item) => item != removeButtonId);
+
+    localStorage.setItem("addCartWishlist", JSON.stringify(addCartWishlist));
+
+    const afterRemoveData = newData.data.products.filter((el) => {
+      return addCartWishlist.includes(el.id);
+    });
+
+    mainContainer.innerHTML = ''
+    if (addCartWishlist.length === 0) {
+      emptyHandleUi.classList.remove('hidden');
+      mainPage.classList.add('hidden')
+      return;
+    }
+    afterRemoveData.forEach((el) => {
+      wishlistProducts(el)
+    })
+
+  })
 }
 

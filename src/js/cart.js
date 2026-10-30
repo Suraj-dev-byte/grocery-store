@@ -6,6 +6,7 @@ const getQuantity = JSON.parse(localStorage.getItem("quantity")) || {};
 const emptyCardBoxMessage = document.querySelector(".emptyCardBox");
 const priceCountBox = document.querySelector(".mainCart");
 
+console.log(getQuantity);
 let newData = [];
 
 

@@ -8,15 +8,15 @@ const emptyPage = document.querySelector('.emptyPage')
 const completedOrders = document.querySelector('.completedOrders')
 const spentThisMonths = document.querySelector('.spentThisMonth')
 
-if (!getOrders.length) {
-  emptyPage.classList.remove('hidden')
-  multipleProductPage.classList.add('hidden')
-}
 
 
 
 async function api() {
   if (getOrders.length === null) {
+    emptyPage.classList.remove('hidden')
+    multipleProductPage.classList.add('hidden')
+    return;
+  } else if (!getOrders.length) {
     emptyPage.classList.remove('hidden')
     multipleProductPage.classList.add('hidden')
   }
@@ -52,7 +52,7 @@ api();
 
 
 function buildOrderCard(val, order) {
-
+  console.log(val);
   const placedDate = order.PlacedAt
   const date = new Date(placedDate);
   const formattedDate = date.toLocaleDateString("en-US", {
@@ -60,7 +60,7 @@ function buildOrderCard(val, order) {
     day: 'numeric',
     year: 'numeric'
   })
-  console.log(formattedDate);
+
 
 
   const formattedTime = date.toLocaleTimeString("en-US", {
@@ -72,7 +72,7 @@ function buildOrderCard(val, order) {
   const placedTime = new Date(order.PlacedAt).getTime();
   const elapseMinutes = (Date.now() - placedTime) / (1000 * 60);
   const status = elapseMinutes >= 40 ? "Delivered" : "Processing";
-  console.log(status);
+
 
 
 
@@ -113,7 +113,7 @@ function buildOrderCard(val, order) {
   const icon = document.createElement('i');
   if (status == "Delivered") {
     icon.classList.add("fa-solid", "fa-circle-check");
-    completedOrders.textContent = `${getOrders.cardIds.length} items`
+    completedOrders.textContent = `${val.length} items`
   } else {
     icon.classList.add('fa-solid', 'fa-hourglass-half');
   }
