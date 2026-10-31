@@ -248,7 +248,18 @@ const addToCart = document.querySelector(".addToCart");
 let addToCartId = JSON.parse(localStorage.getItem("addCart")) || [];
 let addWishlistId = JSON.parse(localStorage.getItem("addCartWishlist")) || [];
 window.addEventListener("pageshow", () => {
+  addWishlistId = JSON.parse(localStorage.getItem("addCartWishlist")) || []
+  const wishlist = document.querySelectorAll(".wishlist");
+
+  wishlist.forEach((el) => {
+    if (addWishlistId.includes(el.dataset.id)) {
+      el.style.color = 'red'
+    } else {
+      el.style.color = 'grey'
+    }
+  })
   addToCartId = JSON.parse(localStorage.getItem("addCart")) || [];
+
   addToCart.classList.add("bgGreen");
   addToCart.textContent = addToCartId.length;
   if (addToCartId.length === 0) {
@@ -260,9 +271,7 @@ window.addEventListener("pageshow", () => {
 
 
 
-
 function wishlistCart() {
-
   const wishlist = document.querySelectorAll(".wishlist");
   const itemAddedToast = document.querySelector(".itemAddedToast");
   const toastMessage = document.querySelector(".toastMessage");
@@ -270,6 +279,8 @@ function wishlistCart() {
   wishlist.forEach((el) => {
     if (addWishlistId.includes(el.dataset.id)) {
       el.style.color = 'red'
+    } else {
+      el.style.color = 'grey'
     }
   })
 

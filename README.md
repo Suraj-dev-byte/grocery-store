@@ -45,6 +45,14 @@ A modern and responsive grocery shopping website built using **HTML, Tailwind CS
 - 🛒 Empty cart state
 - 🧹 Cart clearing after successful order placement
 - 🔄 Cart count synchronization across pages
+- ❤️ Wishlist functionality
+- 💾 Wishlist persistence using LocalStorage
+- ❤️ Persistent wishlist heart state across page reloads
+- 🔄 Wishlist heart synchronization on browser back navigation
+- 🗑️ Remove products from wishlist
+- 🚫 Empty wishlist state
+- 🕒 Delivery progress simulation with a time-based progress indicator
+- ✅ Automatic delivery status update when the timer completes
 
 ## 🧰 Tech Stack
 
@@ -68,27 +76,34 @@ A modern and responsive grocery shopping website built using **HTML, Tailwind CS
 - 🟢 Dedicated search results page completed
 - 🟢 Category filtering completed
 - 🟢 Cart management completed
-- 🟢 Cart quantity controls completed
-- 🟢 Remove cart items completed
-- 🟢 Cart total and savings calculation completed
-- 🟢 Order placement flow completed
-- 🟢 Order confirmation completed
-- 🟢 Unique order ID generation completed
+- 🟢 Cart quantity controls implemented
+- 🟢 Remove cart items implemented
+- 🟢 Cart total and savings calculation implemented
+- 🟢 Order placement flow implemented
+- 🟢 Order confirmation implemented
+- 🟢 Unique order ID generation implemented
 - 🟢 Orders saved to LocalStorage
-- 🟢 Multiple orders management completed
+- 🟢 Multiple orders management implemented
 - 🟢 Order-specific details page completed
 - 🟢 URL query parameter handling for order selection completed
-- 🟢 Selected order products and quantities displayed correctly
-- 🟢 Order total price calculation completed
+- 🟢 Selected order products and quantities displayed
+- 🟢 Order-specific product quantities displayed
+- 🟢 Order total price calculation implemented
 - 🟢 Order placement date and time implemented
 - 🟢 Order date formatting completed
 - 🟢 Product details page cart functionality completed
-- 🟢 Maximum quantity limit handling completed
+- 🟢 Maximum quantity limit handling implemented
 - 🟢 Empty cart state completed
-- 🟢 Cart clearing after successful order placement completed
+- 🟢 Cart clearing after successful order placement implemented
 - 🟢 Cart count synchronization completed
+- 🟢 Wishlist functionality completed
+- 🟢 Wishlist LocalStorage persistence completed
+- 🟢 Wishlist remove functionality completed
+- 🟢 Empty wishlist state completed
+- 🟢 Wishlist heart synchronization across browser navigation completed
+- 🟢 Delivery progress simulation implemented
 - 🟢 Netlify deployment completed
-- 🟡 Delivery progress and additional e-commerce features in development
+- 🟡 Additional e-commerce improvements and bug fixes in progress
 
 ## 🚀 Next Steps
 
@@ -99,7 +114,6 @@ A modern and responsive grocery shopping website built using **HTML, Tailwind CS
 - [ ] Discount filtering
 - [ ] Product sorting
 - [ ] Clear filters functionality
-- [ ] Wishlist functionality
 - [ ] Recently viewed products
 - [ ] Related products
 - [ ] Stock management
@@ -111,8 +125,7 @@ A modern and responsive grocery shopping website built using **HTML, Tailwind CS
 - [ ] Free delivery logic
 - [ ] Estimated delivery calculation
 - [ ] Delivery address
-- [ ] Dynamic delivery progress bar
-- [ ] Time-based order status: Ordered → Packing → Out for Delivery → Delivered
+- [ ] Improved delivery tracking and status flow
 
 ### 📦 Order Management Improvements
 
@@ -123,10 +136,18 @@ A modern and responsive grocery shopping website built using **HTML, Tailwind CS
 - [ ] Invalid LocalStorage data handling
 - [ ] Prevent order placement with an empty cart
 - [ ] Double-click order prevention
+- [ ] Total items calculation across all orders
+- [ ] Total spending calculation across all orders
+
+### 🐛 Bug Fixes
+
+- [ ] Fix cart total calculation when increasing product quantity
+- [ ] Verify cart subtotal and grand total calculations
+- [ ] Verify order totals and quantity calculations
 
 ### 🎨 UI and Code Quality
 
-- [ ] Toast / notification system
+- [ ] Toast / notification system improvements
 - [ ] Final responsive testing
 - [ ] Code cleanup and refactoring
 
@@ -134,6 +155,6 @@ A modern and responsive grocery shopping website built using **HTML, Tailwind CS
 
 🚧 **Currently in Development**
 
-OwnMart is an ongoing frontend e-commerce project. Core shopping functionality, product browsing, search, category filtering, cart management, product details, order placement, persistent order storage, order history, order-specific details, order date formatting, and cart clearing after successful order placement are implemented.
+OwnMart is an ongoing frontend e-commerce project. Core shopping functionality, product browsing, search, category filtering, cart management, product details, wishlist, order placement, persistent order storage, order history, order-specific details, order date formatting, and delivery progress simulation have been implemented.
 
-Further improvements will focus on product discovery, delivery tracking, pricing logic, order management, responsive testing, and code quality.
+Further improvements will focus on product discovery, pricing logic, delivery tracking, order management, bug fixes, responsive testing, and code quality.

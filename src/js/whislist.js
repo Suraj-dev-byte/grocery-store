@@ -3,7 +3,7 @@ const mainPage = document.querySelector('.mainPage')
 const emptyHandleUi = document.querySelector('.emptyUI')
 let addCartWishlist = JSON.parse(localStorage.getItem('addCartWishlist')) || {}
 const wishlistObj = JSON.parse(localStorage.getItem('wishlistQuantity')) || {}
-console.log(addCartWishlist);
+
 let newData = []
 async function api() {
   if (addCartWishlist === null) {
@@ -123,5 +123,8 @@ function wishlistProducts(product) {
     })
 
   })
+  imgDiv.addEventListener("click", () => {
+    window.location.href = `product.html?id=${product.id}`;
+  });
 }
 
