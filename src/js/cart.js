@@ -5,12 +5,19 @@ const cartContainer = document.getElementById("cart-items-container");
 const getQuantity = JSON.parse(localStorage.getItem("quantity")) || {};
 const emptyCardBoxMessage = document.querySelector(".emptyCardBox");
 const priceCountBox = document.querySelector(".mainCart");
+const priceDetailsBox = document.querySelector(".priceDetails");
+const saveMessage = document.querySelector(".saveMessage");
+const productAmount = document.querySelector(".amount");
+const totalDiscount = document.querySelector(".totalDiscount");
+const totalPrice = document.querySelector(".totalPrice");
+const priceText = document.querySelector(".priceText");
 
-console.log(getQuantity);
+
+
+
+
 let newData = [];
-
-
-
+let filterProduct = []
 async function api() {
   if (cartId === null || cartId.length === 0) {
     return (
@@ -30,7 +37,7 @@ async function api() {
     const filterData = data.data.products.filter((el) => {
       return cartId.includes(el.id);
     });
-    // console.log(filterData);
+    filterProduct = filterData
     newData = data;
     totalAddCart(filterData);
     filterData.forEach((el) => {
@@ -39,11 +46,12 @@ async function api() {
   } catch (error) {
     console.log(error);
   }
+
 }
 
 api();
-
 function cardTwo(valTwo) {
+
   let productId = valTwo.id;
   let timeoutId;
   const maxLimitBox = document.querySelector(".maxLimitBox");
@@ -211,35 +219,50 @@ function cardTwo(valTwo) {
     inputQty.value++;
     getQuantity[valTwo.id] = Number(inputQty.value) || 1;
     localStorage.setItem("quantity", JSON.stringify(getQuantity));
+    productAmount.textContent = '';
+    totalDiscount.textContent = '';
+    totalPrice.textContent = '';
+    priceText.textContent = '';
+    saveMessage.textContent = '';
+    totalAddCart(filterProduct)
   });
   minusBtn.addEventListener("click", () => {
     if (inputQty.value == 1) return;
+
     inputQty.value--;
     getQuantity[valTwo.id] = Number(inputQty.value) || 1;
     localStorage.setItem("quantity", JSON.stringify(getQuantity));
+    productAmount.textContent = '';
+    totalDiscount.textContent = '';
+    totalPrice.textContent = '';
+    priceText.textContent = '';
+    saveMessage.textContent = '';
+    totalAddCart(filterProduct)
   });
   layoutDiv.addEventListener("click", () => {
     window.location.href = `product.html?id=${valTwo.id}`;
   });
 }
 
+//
+
+
 function totalAddCart(cartItem) {
-  const saveMessage = document.querySelector(".saveMessage");
-  const productAmount = document.querySelector(".amount");
-  const totalDiscount = document.querySelector(".totalDiscount");
-  const totalPrice = document.querySelector(".totalPrice");
-  const priceText = document.querySelector(".priceText");
+  console.log(cartItem);
+
   const priceTotal = cartItem.reduce(
     (acc, curr) => {
-      acc.mrpTotal += curr.mrp;
+      getQuantity[curr.id] === undefined ? acc.mrpTotal += curr.mrp : acc.mrpTotal += (curr.mrp * getQuantity[curr.id])
       acc.offerTotal += curr.offer_price;
       return acc;
     },
+
     {
       mrpTotal: 0,
       offerTotal: 0,
     },
   );
+  console.log(priceTotal);
 
   productAmount.textContent = `₹${priceTotal.mrpTotal}`;
   totalDiscount.textContent = `- ₹${priceTotal.mrpTotal - priceTotal.offerTotal}`;

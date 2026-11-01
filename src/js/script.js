@@ -41,6 +41,7 @@ headingAnimation()
 
 let fetchData = [];
 let searchData = [];
+
 async function apiCall() {
   loadingScreen.classList.remove("hidden");
   secondBody.classList.add("hidden");
@@ -86,7 +87,6 @@ async function apiCall() {
     inputValue.addEventListener("input", () => {
       cardContainer.innerHTML = "";
       const searchFilter = fetchData.filter((find) => {
-        // console.log(find.name.toLowerCase().includes(inputValue.value.toLowerCase()));
         return find.name.toLowerCase().includes(inputValue.value.toLowerCase());
       });
 
@@ -248,9 +248,8 @@ const addToCart = document.querySelector(".addToCart");
 let addToCartId = JSON.parse(localStorage.getItem("addCart")) || [];
 let addWishlistId = JSON.parse(localStorage.getItem("addCartWishlist")) || [];
 window.addEventListener("pageshow", () => {
-  addWishlistId = JSON.parse(localStorage.getItem("addCartWishlist")) || []
   const wishlist = document.querySelectorAll(".wishlist");
-
+  addWishlistId = JSON.parse(localStorage.getItem("addCartWishlist")) || []
   wishlist.forEach((el) => {
     if (addWishlistId.includes(el.dataset.id)) {
       el.style.color = 'red'
@@ -259,7 +258,6 @@ window.addEventListener("pageshow", () => {
     }
   })
   addToCartId = JSON.parse(localStorage.getItem("addCart")) || [];
-
   addToCart.classList.add("bgGreen");
   addToCart.textContent = addToCartId.length;
   if (addToCartId.length === 0) {
@@ -313,8 +311,7 @@ function wishlistCart() {
 
       addWishlistId.push(e.currentTarget.dataset.id);
       localStorage.setItem("addCartWishlist", JSON.stringify(addWishlistId));
-      addToCart.classList.add("bgGreen");
-      addToCart.textContent = addWishlistId.length;
+
 
     });
   });
