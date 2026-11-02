@@ -56,9 +56,7 @@ function cardTwo(valTwo) {
   let timeoutId;
   const maxLimitBox = document.querySelector(".maxLimitBox");
 
-  const discountPercentage = Math.round(
-    ((valTwo.mrp - valTwo.offer_price) / valTwo.mrp) * 100,
-  );
+  const discountPercentage = Math.round(valTwo.mrp - valTwo.offer_price);
   // Container card
 
   // Function to generate Product Card dynamically
@@ -248,12 +246,13 @@ function cardTwo(valTwo) {
 
 
 function totalAddCart(cartItem) {
-  console.log(cartItem);
 
+  let discountGet = 0;
   const priceTotal = cartItem.reduce(
     (acc, curr) => {
       getQuantity[curr.id] === undefined ? acc.mrpTotal += curr.mrp : acc.mrpTotal += (curr.mrp * getQuantity[curr.id])
       acc.offerTotal += curr.offer_price;
+      discountGet += curr.mrp - curr.offer_price;
       return acc;
     },
 
@@ -262,13 +261,16 @@ function totalAddCart(cartItem) {
       offerTotal: 0,
     },
   );
-  console.log(priceTotal);
 
+  // console.log(priceTotal);
+  totalDiscount.textContent = `-₹${(Math.floor((priceTotal.mrpTotal * discountGet) / 100))}`
   productAmount.textContent = `₹${priceTotal.mrpTotal}`;
-  totalDiscount.textContent = `- ₹${priceTotal.mrpTotal - priceTotal.offerTotal}`;
   totalPrice.textContent = `₹${priceTotal.mrpTotal}`;
   priceText.textContent = `Price (${cartId.length} items)`;
   saveMessage.textContent = `You will save ₹${priceTotal.mrpTotal - priceTotal.offerTotal} on this order`;
+
+
+
 }
 
 // placeOrder logic..
@@ -288,6 +290,7 @@ function placeOrderLogic() {
       cardQuantity: { ...getQuantity },
       PlacedAt: new Date().toISOString("en-IN", {
         hour12: true,
+
       }),
     };
     orders.push(order);

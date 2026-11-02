@@ -7,7 +7,10 @@ let cartId = JSON.parse(localStorage.getItem("addCart"));
 const orderIdDiv = document.querySelector('.orderId')
 const orderDateElement = document.querySelector('.orderDate')
 const orderProgress = document.querySelector('.orderProgress')
-
+const productAmount = document.querySelector(".amount");
+const totalDiscount = document.querySelector(".totalDiscount");
+const totalPrice = document.querySelector(".totalPrice");
+const priceText = document.querySelector(".itemCount");
 
 
 const selectOrder = getOrders.find((el) => {
@@ -36,7 +39,7 @@ function dateAndProgressBar(orderDate) {
   const elapseMinutes = elapsedTime / (1000 * 60);
   const percentage = Math.min((elapseMinutes / 40) * 100, 100)
   orderProgress.style.width = `${percentage}%`
-  console.log(percentage);
+
 }
 
 
@@ -64,7 +67,9 @@ async function api() {
       placedItem(el)
 
     })
-    totalAddCart(filterProduct)
+    getOrders.forEach((el) => {
+      totalAddCart(filterProduct, el)
+    })
 
 
   } catch (error) {
@@ -118,28 +123,30 @@ function placedItem(productInfo) {
 }
 
 
-function totalAddCart(cartItem) {
+function totalAddCart(cartItem, order) {
 
-  const productAmount = document.querySelector(".amount");
-  const totalDiscount = document.querySelector(".totalDiscount");
-  const totalPrice = document.querySelector(".totalPrice");
-  const priceText = document.querySelector(".itemCount");
+  let discountGet = 0;
   const priceTotal = cartItem.reduce(
     (acc, curr) => {
-      acc.mrpTotal += curr.mrp;
+      order.cardQuantity[curr.id] === undefined ? acc.mrpTotal += curr.mrp : acc.mrpTotal += (curr.mrp * order.cardQuantity[curr.id])
       acc.offerTotal += curr.offer_price;
+      discountGet += curr.mrp - curr.offer_price;
       return acc;
     },
+
     {
       mrpTotal: 0,
       offerTotal: 0,
     },
   );
 
-
+  // console.log(priceTotal);
+  totalDiscount.textContent = `-₹${(Math.floor((priceTotal.mrpTotal * discountGet) / 100))}`
   productAmount.textContent = `₹${priceTotal.mrpTotal}`;
-  totalDiscount.textContent = `- ₹${priceTotal.mrpTotal - priceTotal.offerTotal}`;
-  totalPrice.textContent = `₹${priceTotal.mrpTotal - (priceTotal.mrpTotal - priceTotal.offerTotal)}`;
+  totalPrice.textContent = `₹${priceTotal.mrpTotal}`;
   priceText.textContent = `Price (${cartId.length} items)`;
+  // saveMessage.textContent = `You will save ₹${priceTotal.mrpTotal - priceTotal.offerTotal} on this order`;
+
+
 
 }
