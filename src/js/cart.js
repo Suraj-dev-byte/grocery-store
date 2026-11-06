@@ -267,7 +267,7 @@ function totalAddCart(cartItem) {
   productAmount.textContent = `₹${priceTotal.mrpTotal}`;
   totalPrice.textContent = `₹${priceTotal.mrpTotal}`;
   priceText.textContent = `Price (${cartId.length} items)`;
-  saveMessage.textContent = `You will save ₹${priceTotal.mrpTotal - priceTotal.offerTotal} on this order`;
+  saveMessage.textContent = `You will save ₹${(Math.floor((priceTotal.mrpTotal * discountGet) / 100))} on this order`;
 
 
 

@@ -6,20 +6,19 @@ const itemContainer = document.querySelector(".itemContainer");
 let cartId = JSON.parse(localStorage.getItem("addCart"));
 const orderIdDiv = document.querySelector('.orderId')
 const orderDateElement = document.querySelector('.orderDate')
-const orderProgress = document.querySelector('.orderProgress')
 const productAmount = document.querySelector(".amount");
 const totalDiscount = document.querySelector(".totalDiscount");
 const totalPrice = document.querySelector(".totalPrice");
 const priceText = document.querySelector(".itemCount");
+const orderProgress = document.querySelector('.orderProgress')
+
 
 
 const selectOrder = getOrders.find((el) => {
   return el.orderId === orderId
 })
 
-getOrders.forEach((el) => {
-  dateAndProgressBar(el)
-})
+dateAndProgressBar(selectOrder)
 function dateAndProgressBar(orderDate) {
   orderIdDiv.textContent = orderId
   const OMID = document.querySelector('.oM-Id')
@@ -33,12 +32,17 @@ function dateAndProgressBar(orderDate) {
     year: 'numeric'
   })
   orderDateElement.textContent = `Placed On ${formattedDate}`
-
-
   const elapsedTime = Date.now() - placedTime;
   const elapseMinutes = elapsedTime / (1000 * 60);
   const percentage = Math.min((elapseMinutes / 40) * 100, 100)
-  orderProgress.style.width = `${percentage}%`
+
+  const deliveryProgress = JSON.parse(localStorage.getItem('deliveryProgress')) || {}
+  deliveryProgress[orderDate.orderId] = Math.floor(percentage)
+
+  localStorage.setItem("deliveryProgress", JSON.stringify(deliveryProgress));
+  orderProgress.style.width = `${percentage}% `
+
+
 
 }
 
