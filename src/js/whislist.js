@@ -35,6 +35,7 @@ async function api() {
     })
 
     newData = data
+    addTwoCart()
   } catch (error) {
     console.log(error);
   }
@@ -92,6 +93,7 @@ function wishlistProducts(product) {
   removeBtn.classList.add('wishlist-btn-remove')
 
   removeBtn.dataset.id = product.id
+  adddBtn.dataset.id = product.id
   adddBtn.textContent = 'ADD'
   removeBtn.textContent = 'Remove'
   btnDiv.append(adddBtn, removeBtn)
@@ -128,3 +130,58 @@ function wishlistProducts(product) {
   });
 }
 
+const addToCart = document.querySelector(".addToCart");
+let addToCartId = JSON.parse(localStorage.getItem("addCart")) || [];
+window.addEventListener("pageshow", () => {
+  addToCartId = JSON.parse(localStorage.getItem("addCart")) || [];
+  addToCart.classList.add("bgGreen");
+  addToCart.textContent = addToCartId.length;
+  if (addToCartId.length === 0) {
+    addToCart.textContent = "";
+    addToCart.classList.remove("bgGreen");
+  }
+});
+
+
+
+function addTwoCart() {
+
+  const addBtn = document.querySelectorAll(".wishlist-btn-add");
+  const itemAddedToast = document.querySelector(".itemAddedToast");
+  const toastMessage = document.querySelector(".toastMessage");
+
+  console.log(addBtn);
+
+  let intervalID = null;
+  addBtn.forEach((el) => {
+    el.addEventListener("click", (e) => {
+      if (addToCartId.includes(el.dataset.id)) {
+        if (intervalID) return;
+        intervalID = setTimeout(() => {
+          itemAddedToast.classList.add("hidden");
+          intervalID = null;
+        }, 2000);
+        itemAddedToast.classList.remove("hidden");
+        toastMessage.classList.add('text-orange-500');
+
+        return toastMessage.textContent = 'item already added'
+      } else {
+        clearTimeout(intervalID)
+        intervalID = setTimeout(() => {
+          itemAddedToast.classList.add('hidden')
+          intervalID = null
+        }, 2000);
+        itemAddedToast.classList.remove('hidden')
+        toastMessage.classList.remove('text-orange-500');
+        toastMessage.textContent = 'item added'
+
+      }
+
+
+      addToCartId.push(e.currentTarget.dataset.id);
+      localStorage.setItem("addCart", JSON.stringify(addToCartId));
+      addToCart.classList.add("bgGreen");
+      addToCart.textContent = addToCartId.length;
+    });
+  });
+}

@@ -237,6 +237,7 @@ function cardTwo(valTwo) {
     saveMessage.textContent = '';
     totalAddCart(filterProduct)
   });
+
   layoutDiv.addEventListener("click", () => {
     window.location.href = `product.html?id=${valTwo.id}`;
   });
