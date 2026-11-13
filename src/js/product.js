@@ -4,6 +4,7 @@ const inputValue = document.querySelector(".inputValue");
 const formEvent = document.querySelector(".formBtn");
 const mainContainerTwo = document.querySelector(".mainContainerTwo");
 const addToCart = document.querySelector(".addToCart");
+const getQuantity = JSON.parse(localStorage.getItem("quantity")) || {};
 
 let addToCartId = JSON.parse(localStorage.getItem("addCart")) || [];
 window.addEventListener("pageshow", () => {
@@ -52,10 +53,14 @@ async function api() {
 
 api();
 
+
 function productCard(val) {
+
+
   if (val.offer_price == val.mrp) {
     val.offer_price = 1;
   }
+
   const addToCartBtn = document.querySelector(".addButton");
   const miniImg = document.querySelectorAll(".miniImg");
   const mainImg = document.querySelector(".mainImg img");
@@ -66,6 +71,8 @@ function productCard(val) {
   const productQuantity = document.querySelector(".quantity");
   const productDiscount = document.querySelector(".discountOffer");
   const deliveryTime = document.querySelector(".deliveryDuration");
+
+
 
   miniImg.forEach((el) => {
     el.src = val.images[0];
@@ -80,13 +87,21 @@ function productCard(val) {
   deliveryTime.textContent = `Delivery by ${val.platform.sla}`;
   addToCartBtn.dataset.id = val.id;
 
-  const inputQty = document.querySelector(".inputQty");
+  maxLimitAlert(val)
+}
+
+
+function maxLimitAlert(valId) {
+  let timeoutId;
+  let timeoutIdTwo;
   const plusBtn = document.querySelector(".plusBtn");
   const minusBtn = document.querySelector(".minsBtn");
+  const inputQty = document.querySelector(".inputQty");
+  const maxLimitBox = document.querySelector(".maxLimitBox");
+  const quantityUpdateMessage = document.getElementById('qty-updated-toast')
+  console.log(quantityUpdateMessage);
+  inputQty.value = getQuantity[valId.id] ?? 1
 
-  console.log(inputQty);
-  console.log(plusBtn);
-  console.log(minusBtn);
   plusBtn.addEventListener("click", () => {
     if (inputQty.value == 5) {
       if (timeoutId) return;
@@ -97,140 +112,116 @@ function productCard(val) {
       }, 2000);
       return;
     }
+    if (timeoutIdTwo) return;
+    setTimeout(() => {
+      quantityUpdateMessage.classList.add('hidden')
+      timeoutIdTwo = null;
+    }, 2000);
 
     inputQty.value++;
-    getQuantity[valTwo.id] = Number(inputQty.value) || 1;
+    quantityUpdateMessage.classList.remove('hidden')
+    getQuantity[valId.id] = Number(inputQty.value) || 1;
     localStorage.setItem("quantity", JSON.stringify(getQuantity));
-    productAmount.textContent = '';
-    totalDiscount.textContent = '';
-    totalPrice.textContent = '';
-    priceText.textContent = '';
-    saveMessage.textContent = '';
-    totalAddCart(filterProduct)
+
+
   });
   minusBtn.addEventListener("click", () => {
     if (inputQty.value == 1) return;
 
     inputQty.value--;
-    getQuantity[valTwo.id] = Number(inputQty.value) || 1;
+    getQuantity[valId.id] = Number(inputQty.value) || 1;
     localStorage.setItem("quantity", JSON.stringify(getQuantity));
-    productAmount.textContent = '';
-    totalDiscount.textContent = '';
-    totalPrice.textContent = '';
-    priceText.textContent = '';
-    saveMessage.textContent = '';
-    totalAddCart(filterProduct)
-  }); axLimitAlert() {
-    let timeoutId;
-    const plusBtn = document.querySelector(".plusBtn");
-    const minusBtn = document.querySelector(".minsBtn");
-    const inputQty = document.querySelector(".inputQty");
-    const maxLimitBox = document.querySelector(".maxLimitBox");
 
-    plusBtn.addEventListener("click", () => {
-      if (inputQty.value == 5) {
-        if (timeoutId) return;
-        maxLimitBox.classList.remove("hidden");
-        timeoutId = setTimeout(() => {
-          maxLimitBox.classList.add("hidden");
-          timeoutId = null;
+
+  });
+}
+
+
+
+function cardTwo(valTwo) {
+  const card = document.createElement("div");
+  card.className = "card";
+
+  const discount = document.createElement("span");
+  discount.className = "discount";
+  discount.textContent = `-50%`;
+
+  const imageContainer = document.createElement("div");
+  imageContainer.className = "imageContainer";
+
+  const image = document.createElement("img");
+  image.className = "imgClassTwo";
+  image.src = valTwo.images[0];
+  image.alt = "Ruplestrime";
+
+  const title = document.createElement("h3");
+  title.className = "title";
+  title.textContent = valTwo.name;
+
+  const quantity = document.createElement("p");
+  quantity.className = "quantity";
+  quantity.textContent = valTwo.quantity;
+
+  const bottom = document.createElement("div");
+  bottom.className = "bottom";
+
+  const price = document.createElement("span");
+  price.className = "price";
+  price.textContent = `₹${valTwo.mrp}`;
+
+  const button = document.createElement("button");
+  button.className = "addButton";
+  button.textContent = "ADD";
+  button.dataset.id = valTwo.id;
+
+  imageContainer.append(image);
+  bottom.append(price, button);
+  card.append(discount, imageContainer, title, quantity, bottom);
+  mainContainerTwo.append(card);
+
+
+
+  imageContainer.addEventListener("click", () => {
+    window.location.href = `product.html?id=${valTwo.id}`;
+  });
+}
+
+function addTwoCart() {
+  const addBtn = document.querySelectorAll(".addButton");
+  const itemAddedToast = document.querySelector(".itemAddedToast");
+  const toastMessage = document.querySelector(".toastMessage");
+
+
+  let intervalID = null;
+  addBtn.forEach((el) => {
+    el.addEventListener("click", (e) => {
+      if (addToCartId.includes(el.dataset.id)) {
+        if (intervalID) return;
+        intervalID = setTimeout(() => {
+          itemAddedToast.classList.add("hidden");
+          intervalID = null;
         }, 2000);
-        return;
+        itemAddedToast.classList.remove("hidden");
+        toastMessage.classList.add('text-orange-500');
+
+        return toastMessage.textContent = 'item already added'
+      } else {
+        clearTimeout(intervalID)
+        intervalID = setTimeout(() => {
+          itemAddedToast.classList.add('hidden')
+          intervalID = null
+        }, 2000);
+        itemAddedToast.classList.remove('hidden')
+        toastMessage.classList.remove('text-orange-500');
+        toastMessage.textContent = 'item added'
+
       }
-      inputQty.value++;
+
+
+      addToCartId.push(e.currentTarget.dataset.id);
+      localStorage.setItem("addCart", JSON.stringify(addToCartId));
+      addToCart.classList.add("bgGreen");
+      addToCart.textContent = addToCartId.length;
     });
-    minusBtn.addEventListener("click", () => {
-      if (inputQty.value == 1) return;
-      inputQty.value--;
-    });
-  }
-
-  MaxLimitAlert();
-
-  function cardTwo(valTwo) {
-    const card = document.createElement("div");
-    card.className = "card";
-
-    const discount = document.createElement("span");
-    discount.className = "discount";
-    discount.textContent = `-50%`;
-
-    const imageContainer = document.createElement("div");
-    imageContainer.className = "imageContainer";
-
-    const image = document.createElement("img");
-    image.className = "imgClassTwo";
-    image.src = valTwo.images[0];
-    image.alt = "Ruplestrime";
-
-    const title = document.createElement("h3");
-    title.className = "title";
-    title.textContent = valTwo.name;
-
-    const quantity = document.createElement("p");
-    quantity.className = "quantity";
-    quantity.textContent = valTwo.quantity;
-
-    const bottom = document.createElement("div");
-    bottom.className = "bottom";
-
-    const price = document.createElement("span");
-    price.className = "price";
-    price.textContent = `₹${valTwo.mrp}`;
-
-    const button = document.createElement("button");
-    button.className = "addButton";
-    button.textContent = "ADD";
-    button.dataset.id = valTwo.id;
-
-    imageContainer.append(image);
-    bottom.append(price, button);
-    card.append(discount, imageContainer, title, quantity, bottom);
-    mainContainerTwo.append(card);
-
-
-
-    imageContainer.addEventListener("click", () => {
-      window.location.href = `product.html?id=${valTwo.id}`;
-    });
-  }
-
-  function addTwoCart() {
-    const addBtn = document.querySelectorAll(".addButton");
-    const itemAddedToast = document.querySelector(".itemAddedToast");
-    const toastMessage = document.querySelector(".toastMessage");
-
-
-    let intervalID = null;
-    addBtn.forEach((el) => {
-      el.addEventListener("click", (e) => {
-        if (addToCartId.includes(el.dataset.id)) {
-          if (intervalID) return;
-          intervalID = setTimeout(() => {
-            itemAddedToast.classList.add("hidden");
-            intervalID = null;
-          }, 2000);
-          itemAddedToast.classList.remove("hidden");
-          toastMessage.classList.add('text-orange-500');
-
-          return toastMessage.textContent = 'item already added'
-        } else {
-          clearTimeout(intervalID)
-          intervalID = setTimeout(() => {
-            itemAddedToast.classList.add('hidden')
-            intervalID = null
-          }, 2000);
-          itemAddedToast.classList.remove('hidden')
-          toastMessage.classList.remove('text-orange-500');
-          toastMessage.textContent = 'item added'
-
-        }
-
-
-        addToCartId.push(e.currentTarget.dataset.id);
-        localStorage.setItem("addCart", JSON.stringify(addToCartId));
-        addToCart.classList.add("bgGreen");
-        addToCart.textContent = addToCartId.length;
-      });
-    });
-  }
+  });
+}
