@@ -64,6 +64,8 @@
     --container-md: 28rem;
     --container-xl: 36rem;
     --container-2xl: 42rem;
+    --container-3xl: 48rem;
+    --container-4xl: 56rem;
     --container-5xl: 64rem;
     --container-6xl: 72rem;
     --text-xs: 0.75rem;
@@ -664,6 +666,12 @@
   .max-w-2xl {
     max-width: var(--container-2xl);
   }
+  .max-w-3xl {
+    max-width: var(--container-3xl);
+  }
+  .max-w-4xl {
+    max-width: var(--container-4xl);
+  }
   .max-w-5xl {
     max-width: var(--container-5xl);
   }
@@ -766,6 +774,9 @@
   .flex-row {
     flex-direction: row;
   }
+  .flex-nowrap {
+    flex-wrap: nowrap;
+  }
   .flex-wrap {
     flex-wrap: wrap;
   }
@@ -855,8 +866,14 @@
     margin-block-start: calc(calc(var(--spacing) * 6) * var(--tw-space-y-reverse));
     margin-block-end: calc(calc(var(--spacing) * 6) * calc(1 - var(--tw-space-y-reverse)));
   }
+  .gap-x-2 {
+    column-gap: calc(var(--spacing) * 2);
+  }
   .gap-x-4 {
     column-gap: calc(var(--spacing) * 4);
+  }
+  .gap-x-14 {
+    column-gap: calc(var(--spacing) * 14);
   }
   :where(.space-x-2 > :not(:last-child)) {
     --tw-space-x-reverse: 0;
@@ -1295,6 +1312,12 @@
   }
   .px-8 {
     padding-inline: calc(var(--spacing) * 8);
+  }
+  .px-12 {
+    padding-inline: calc(var(--spacing) * 12);
+  }
+  .px-13 {
+    padding-inline: calc(var(--spacing) * 13);
   }
   .py-0 {
     padding-block: 0px;
@@ -1970,6 +1993,9 @@
     .sm\:flex-row {
       flex-direction: row;
     }
+    .sm\:flex-wrap {
+      flex-wrap: wrap;
+    }
     .sm\:items-start {
       align-items: flex-start;
     }
@@ -2037,6 +2063,21 @@
     .md\:-left-2 {
       left: calc(var(--spacing) * -2);
     }
+    .md\:order-1 {
+      order: 1;
+    }
+    .md\:order-2 {
+      order: 2;
+    }
+    .md\:order-3 {
+      order: 3;
+    }
+    .md\:order-4 {
+      order: 4;
+    }
+    .md\:order-6 {
+      order: 6;
+    }
     .md\:order-none {
       order: 0;
     }
@@ -2103,6 +2144,12 @@
     .md\:flex-row {
       flex-direction: row;
     }
+    .md\:flex-nowrap {
+      flex-wrap: nowrap;
+    }
+    .md\:flex-wrap {
+      flex-wrap: wrap;
+    }
     .md\:items-center {
       align-items: center;
     }
@@ -2130,6 +2177,9 @@
     .md\:gap-6 {
       gap: calc(var(--spacing) * 6);
     }
+    .md\:gap-14 {
+      gap: calc(var(--spacing) * 14);
+    }
     .md\:gap-16 {
       gap: calc(var(--spacing) * 16);
     }
@@ -2141,6 +2191,9 @@
     }
     .md\:p-8 {
       padding: calc(var(--spacing) * 8);
+    }
+    .md\:px-0 {
+      padding-inline: 0px;
     }
     .md\:px-2 {
       padding-inline: calc(var(--spacing) * 2);
@@ -2156,6 +2209,9 @@
     }
     .md\:px-12 {
       padding-inline: calc(var(--spacing) * 12);
+    }
+    .md\:px-15 {
+      padding-inline: calc(var(--spacing) * 15);
     }
     .md\:px-16 {
       padding-inline: calc(var(--spacing) * 16);
@@ -2214,11 +2270,32 @@
     }
   }
   @media (width >= 64rem) {
+    .lg\:top-24 {
+      top: calc(var(--spacing) * 24);
+    }
+    .lg\:order-3 {
+      order: 3;
+    }
+    .lg\:order-none {
+      order: 0;
+    }
     .lg\:col-span-4 {
       grid-column: span 4 / span 4;
     }
     .lg\:col-span-8 {
       grid-column: span 8 / span 8;
+    }
+    .lg\:flex {
+      display: flex;
+    }
+    .lg\:w-64 {
+      width: calc(var(--spacing) * 64);
+    }
+    .lg\:w-auto {
+      width: auto;
+    }
+    .lg\:flex-1 {
+      flex: 1;
     }
     .lg\:grid-cols-3 {
       grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -2229,14 +2306,32 @@
     .lg\:grid-cols-12 {
       grid-template-columns: repeat(12, minmax(0, 1fr));
     }
+    .lg\:flex-nowrap {
+      flex-wrap: nowrap;
+    }
+    .lg\:flex-wrap {
+      flex-wrap: wrap;
+    }
     .lg\:p-8 {
       padding: calc(var(--spacing) * 8);
     }
     .lg\:px-12 {
       padding-inline: calc(var(--spacing) * 12);
     }
+    .lg\:px-16 {
+      padding-inline: calc(var(--spacing) * 16);
+    }
     .lg\:px-24 {
       padding-inline: calc(var(--spacing) * 24);
+    }
+    .lg\:text-\[14px\] {
+      font-size: 14px;
+    }
+    .lg\:text-\[24px\] {
+      font-size: 24px;
+    }
+    .lg\:text-\[44px\] {
+      font-size: 44px;
     }
     .lg\:text-\[56px\] {
       font-size: 56px;
@@ -2249,6 +2344,9 @@
     .xl\:left-6 {
       left: calc(var(--spacing) * 6);
     }
+    .xl\:order-none {
+      order: 0;
+    }
     .xl\:flex {
       display: flex;
     }
@@ -2258,11 +2356,20 @@
     .xl\:w-\[380px\] {
       width: 380px;
     }
+    .xl\:w-auto {
+      width: auto;
+    }
+    .xl\:flex-1 {
+      flex: 1;
+    }
     .xl\:grid-cols-5 {
       grid-template-columns: repeat(5, minmax(0, 1fr));
     }
     .xl\:flex-row {
       flex-direction: row;
+    }
+    .xl\:flex-nowrap {
+      flex-wrap: nowrap;
     }
     .xl\:py-8 {
       padding-block: calc(var(--spacing) * 8);
