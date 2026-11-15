@@ -127,7 +127,12 @@ function maxLimitAlert(valId) {
   });
   minusBtn.addEventListener("click", () => {
     if (inputQty.value == 1) return;
-
+    quantityUpdateMessage.classList.remove('hidden')
+    if (timeoutIdTwo) return;
+    setTimeout(() => {
+      quantityUpdateMessage.classList.add('hidden')
+      timeoutIdTwo = null;
+    }, 2000);
     inputQty.value--;
     getQuantity[valId.id] = Number(inputQty.value) || 1;
     localStorage.setItem("quantity", JSON.stringify(getQuantity));
