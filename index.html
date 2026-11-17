@@ -14,7 +14,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.3.1/css/all.min.css" />
 </head>
 
-<body class=" bg-black text-white font-['Poppins']">
+<body class="font-['Poppins']">
 
   <div class="Loading bg-[#102334] hidden">
     <!-- Full-screen centered loading overlay with premium gradient background -->
@@ -261,65 +261,105 @@
           </button>
         </div>
       </div>
+
+      <div class=" w-full mx-auto px-4 sm:px-6 py-8  ">
+
+        <!-- Header -->
+        <div class="flex items-center justify-between mb-5">
+          <h2 class="text-xl sm:text-2xl font-bold text-gray-800 flex items-center gap-2.5">
+            <span class="w-8 h-8 rounded-full bg-emerald-50 text-emerald-700 flex items-center justify-center text-sm">
+              <i class="fa-solid fa-clock-rotate-left"></i>
+            </span>
+            Recently Viewed
+          </h2>
+
+          <a href="#"
+            class="text-sm font-semibold text-emerald-700 hover:text-emerald-800 flex items-center gap-1.5 group">
+            View All
+            <i class="fa-solid fa-arrow-right text-xs transition-transform group-hover:translate-x-1"></i>
+          </a>
+        </div>
+
+        <!-- Cards Container (Yahan JS se multiple cards append honge) -->
+        <div id="recently-viewed-container" class="flex gap-4 overflow-x-auto pb-3 scroll-smooth ">
+
+          <!-- Single Product Card -->
+          <div class="product-card">
+
+            <!-- Image & Delivery Tag -->
+            <div class="product-image-box">
+              <span class="delivery-badge">
+                12 mins
+              </span>
+              <img src="https://placehold.co/120x120/png?text=Yogurt" alt="Greek Yogurt" class="product-image">
+            </div>
+
+            <!-- Title & Weight -->
+            <div class="product-info">
+              <p class="product-weight">100 gm</p>
+              <h3 class="product-title">Greek Yogurt</h3>
+            </div>
+
+            <!-- Price & Add Button -->
+            <div class="product-footer">
+              <span class="product-price">₹30</span>
+              <button type="button" class="add-to-cart-btn">
+                <i class=""></i> Add
+              </button>
+            </div>
+
+          </div>
+
+        </div>
+      </div>
       <div class="p-8 flex justify-center bg-[#f9f9f8] items-center flex-wrap">
 
-        <div class="max-w-2xl w-full mt-4">
-          <!-- Recently Viewed Section -->
-          <div class=" mx-auto px-4 sm:px-6 py-8  ">
+        <!-- Deals you don't want to miss boxs -->
+        <section class="max-w-5xl mx-auto px-4 py-8 bg-[#f9f8f6]">
+          <p class="text-sm md:text-base text-neutral-700 font-medium">Special Offers</p>
+          <h2 class="text-2xl md:text-3xl font-bold text-neutral-900 mt-1 mb-6">
+            Deals you don't want to miss
+          </h2>
 
-            <!-- Header -->
-            <div class="flex items-center justify-between mb-5">
-              <h2 class="text-xl sm:text-2xl font-bold text-gray-800 flex items-center gap-2.5">
-                <span
-                  class="w-8 h-8 rounded-full bg-emerald-50 text-emerald-700 flex items-center justify-center text-sm">
-                  <i class="fa-solid fa-clock-rotate-left"></i>
-                </span>
-                Recently Viewed
-              </h2>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
 
-              <a href="#"
-                class="text-sm font-semibold text-emerald-700 hover:text-emerald-800 flex items-center gap-1.5 group">
-                View All
-                <i class="fa-solid fa-arrow-right text-xs transition-transform group-hover:translate-x-1"></i>
-              </a>
-            </div>
-
-            <!-- Cards Container (Yahan JS se multiple cards append honge) -->
-            <div id="recently-viewed-container" class="flex gap-4 overflow-x-auto pb-3 scroll-smooth">
-
-              <!-- Single Product Card -->
-              <div
-                class="w-44 sm:w-52 shrink-0 bg-white border border-gray-100 rounded-2xl p-3.5 shadow-sm hover:shadow-md hover:border-emerald-200 transition-all flex flex-col justify-between group">
-
-                <!-- Image & Delivery Tag -->
-                <div class="relative bg-gray-50 rounded-xl p-3 mb-3 flex items-center justify-center h-32">
-                  <span
-                    class="absolute top-2 left-2 bg-emerald-100 text-emerald-800 text-[10px] font-bold px-2 py-0.5 rounded-full">
-                    12 mins
-                  </span>
-                  <img src="https://placehold.co/120x120/png?text=Yogurt" alt="Greek Yogurt"
-                    class="h-24 object-contain group-hover:scale-105 transition-transform duration-300">
-                </div>
-
-                <!-- Title & Weight -->
-                <div class="mb-3">
-                  <p class="text-xs text-gray-400 font-medium mb-0.5">100 gm</p>
-                  <h3 class="text-sm font-semibold text-gray-800 truncate">Greek Yogurt</h3>
-                </div>
-
-                <!-- Price & Add Button -->
-                <div class="flex items-center justify-between pt-2 border-t border-gray-50">
-                  <span class="text-base font-bold text-gray-900">₹30</span>
-                  <button type="button"
-                    class="bg-emerald-700 hover:bg-emerald-800 active:scale-95 text-white text-xs font-semibold px-3.5 py-1.5 rounded-lg transition-all flex items-center gap-1.5 cursor-pointer">
-                    <i class="fa-solid fa-plus text-[10px]"></i> Add
-                  </button>
-                </div>
-
+            <!-- Left Card -->
+            <div
+              class="bg-[#e8e1d7] rounded-2xl p-6 pb-0 flex items-center justify-between overflow-hidden min-h-[190px]">
+              <div class="pb-6">
+                <span class="block text-base md:text-lg font-semibold text-neutral-900">Up to</span>
+                <span class="block text-4xl md:text-5xl font-extrabold text-neutral-900 leading-tight">40%</span>
+                <span class="block text-2xl md:text-3xl font-bold text-neutral-900">OFF</span>
               </div>
 
+              <img src="https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&w=400&q=80"
+                alt="Grocery Basket" class="w-40 md:w-48 h-40 object-cover object-top self-end rounded-t-xl" />
             </div>
+
+            <!-- Right Card -->
+            <div class="bg-[#e8e1d7] rounded-2xl p-6 grid grid-cols-2 items-center min-h-[190px]">
+              <div class="pr-4 border-r border-neutral-400/50">
+                <span class="block text-3xl md:text-4xl font-extrabold text-neutral-900">₹100</span>
+                <span class="block text-xl md:text-2xl font-bold text-neutral-900 leading-snug">OFF</span>
+                <p class="text-sm md:text-base font-medium text-neutral-800 leading-tight mt-0.5">
+                  on your first order
+                </p>
+              </div>
+
+              <div class="pl-6">
+                <p class="text-2xl md:text-3xl font-extrabold text-neutral-900 leading-tight">
+                  Buy 2<br />
+                  Get 1<br />
+                  Free
+                </p>
+              </div>
+            </div>
+
           </div>
+        </section>
+
+        <div class="max-w-2xl w-full mt-4">
+
           <!-- Header Section -->
           <div class="mb-6">
             <p class="text-2xl text-gray-800 font-normal mb-1">Shop by Need</p>

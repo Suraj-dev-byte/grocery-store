@@ -1,4 +1,5 @@
 
+
 const cardContainer = document.querySelector(".cardContainer");
 const loadingScreen = document.querySelector(".Loading");
 const secondBody = document.querySelector(".secondBody");
@@ -6,6 +7,7 @@ const inputValue = document.querySelector(".inputValue");
 const formEvent = document.querySelector(".formBtn");
 const mainContainerTwo = document.querySelector(".mainContainerTwo");
 const filterContainer = document.querySelectorAll('.filteringDiv input')
+const recentCardContainer = document.getElementById('recently-viewed-container')
 
 
 function headingAnimation() {
@@ -114,6 +116,7 @@ async function apiCall() {
     elements.forEach((el) => {
       card(el);
       cardTwo(el);
+      recentViewCards(el)
     });
     hideLoading();
     addTwoCart();
@@ -358,3 +361,54 @@ function addTwoCart() {
     });
   });
 }
+
+
+function recentViewCards(dataVal) {
+
+  const cardDiv = document.createElement('div');
+  cardDiv.classList.add('product-card')
+  // image & delivery tag
+  const imageAnddeliveryDiv = document.createElement('div');
+  imageAnddeliveryDiv.classList.add('product-image-box');
+  const deliverySpan = document.createElement('span');
+  deliverySpan.classList.add('delivery-badge')
+  const img = document.createElement('img')
+  img.classList.add('product-image')
+  img.src = dataVal.images
+  imageAnddeliveryDiv.append(deliverySpan, img);
+
+  // Title & Quantity
+
+  const titleAndQuantityDiv = document.createElement('div');
+  titleAndQuantityDiv.classList.add('product-info')
+  const title = document.createElement('p');
+  title.classList.add('product-title')
+  title.textContent = dataVal.name
+  const Quantity = document.createElement('h3');
+  Quantity.classList.add('product-weight')
+  Quantity.textContent = dataVal.quantity
+  titleAndQuantityDiv.append(Quantity, title);
+
+
+
+  // Price & Add Button
+
+  const priceAndButtonDiv = document.createElement('div');
+  priceAndButtonDiv.classList.add('product-footer')
+  const price = document.createElement('span');
+  price.classList.add('product-price')
+  price.textContent = `₹${dataVal.mrp}`
+  const button = document.createElement('button');
+  button.classList.add('add-to-cart-btn')
+  button.textContent = 'Add'
+  const li = document.createElement('li')
+  li.classList.add('fa-solid', 'fa-plus')
+  button.append(li)
+  priceAndButtonDiv.append(price, button)
+
+  cardDiv.append(imageAnddeliveryDiv, titleAndQuantityDiv, priceAndButtonDiv)
+  console.log(cardDiv);
+
+  recentCardContainer.append(cardDiv)
+}
+
