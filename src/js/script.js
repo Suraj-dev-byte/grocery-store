@@ -8,7 +8,7 @@ const formEvent = document.querySelector(".formBtn");
 const mainContainerTwo = document.querySelector(".mainContainerTwo");
 const filterContainer = document.querySelectorAll('.filteringDiv input')
 const recentCardContainer = document.getElementById('recently-viewed-container')
-
+const recentView = JSON.parse(localStorage.getItem('storeRecentView')) || []
 
 function headingAnimation() {
   const mainHeading = document.querySelector('.heading')
@@ -78,12 +78,21 @@ async function apiCall() {
 
         filtering.forEach((product) => {
 
-          card(product);
+          cards(product);
         });
 
 
       });
     });
+
+    const getRecentProducts = fetchData.filter((el) => {
+
+      return recentView.includes(el.id)
+    })
+
+    getRecentProducts.forEach((el) => {
+      recentsCards(el)
+    })
 
     // Search Filter logic -
     inputValue.addEventListener("input", () => {
@@ -102,7 +111,7 @@ async function apiCall() {
                 `;
       }
       searchFilter.forEach((el) => {
-        card(el);
+        cards(el);
       });
     });
     formEvent.addEventListener("submit", (e) => {
@@ -114,13 +123,14 @@ async function apiCall() {
     });
 
     elements.forEach((el) => {
-      card(el);
+      cards(el);
       cardTwo(el);
-      recentViewCards(el)
+
     });
     hideLoading();
     addTwoCart();
     wishlistCart()
+    recentviewStore()
   } catch (error) {
     setTimeout(() => {
       hideLoading();
@@ -153,24 +163,105 @@ function errorMessage() {
   });
 }
 
-function card(val) {
-  const innerContainer = document.createElement("div");
-  innerContainer.classList.add("innerContainer");
-  const div = document.createElement("div");
-  div.classList.add("class");
-  div.dataset.id = val.id;
-  const img = document.createElement("img");
-  img.classList.add("imgClass");
-  img.src = val.images[0];
-  const p = document.createElement("p");
-  p.classList.add("paragraph");
-  p.textContent = val.name;
-  div.append(img);
-  innerContainer.append(div, p);
-  cardContainer.append(innerContainer);
+function cards(val) {
 
-  div.addEventListener("click", () => {
+  const cardDiv = document.createElement('div');
+  cardDiv.classList.add('product-card')
+  // image & delivery tag
+  const imageAnddeliveryDiv = document.createElement('div');
+  imageAnddeliveryDiv.classList.add('product-image-box');
+  imageAnddeliveryDiv.dataset.id = val.id
+  const deliverySpan = document.createElement('span');
+  deliverySpan.classList.add('delivery-badge')
+  const img = document.createElement('img')
+  img.classList.add('product-image')
+  img.src = val.images
+  imageAnddeliveryDiv.append(deliverySpan, img);
+
+  // Title & Quantity
+
+  const titleAndQuantityDiv = document.createElement('div');
+  titleAndQuantityDiv.classList.add('product-info')
+  const title = document.createElement('p');
+  title.classList.add('product-title')
+  title.textContent = val.name
+  const Quantity = document.createElement('h3');
+  Quantity.classList.add('product-weight')
+  Quantity.textContent = val.quantity
+  titleAndQuantityDiv.append(Quantity, title);
+
+
+
+  // Price & Add Button
+
+  const priceAndButtonDiv = document.createElement('div');
+  priceAndButtonDiv.classList.add('product-footer')
+  const price = document.createElement('span');
+  price.classList.add('product-price')
+  price.textContent = `₹${val.mrp}`
+  const button = document.createElement('button');
+  button.classList.add('add-to-cart-btn')
+  button.textContent = 'Add'
+  const li = document.createElement('li')
+  li.classList.add('fa-solid', 'fa-plus')
+  button.append(li)
+  priceAndButtonDiv.append(price, button)
+
+  cardDiv.append(imageAnddeliveryDiv, titleAndQuantityDiv, priceAndButtonDiv)
+
+
+  cardContainer.append(cardDiv)
+
+  imageAnddeliveryDiv.addEventListener("click", () => {
     window.location.href = `product.html?id=${val.id}`;
+    console.log(val);
+  })
+
+
+
+
+}
+
+
+
+
+function recentviewStore() {
+  const addClick = document.querySelectorAll(".product-image-box");
+  const itemAddedToast = document.querySelector(".itemAddedToast");
+  const toastMessage = document.querySelector(".toastMessage");
+
+
+  let intervalID = null;
+  addClick.forEach((el) => {
+    el.addEventListener("click", (e) => {
+      if (recentView.includes(el.dataset.id)) {
+        if (intervalID) return;
+        intervalID = setTimeout(() => {
+          itemAddedToast.classList.add("hidden");
+          intervalID = null;
+        }, 2000);
+        itemAddedToast.classList.remove("hidden");
+        toastMessage.classList.add('text-orange-500');
+
+        return toastMessage.textContent = 'item already added'
+      } else {
+        clearTimeout(intervalID)
+        intervalID = setTimeout(() => {
+          itemAddedToast.classList.add('hidden')
+          intervalID = null
+        }, 2000);
+        itemAddedToast.classList.remove('hidden')
+        toastMessage.classList.remove('text-orange-500');
+        toastMessage.textContent = 'item added'
+
+      }
+
+
+      recentView.push(e.currentTarget.dataset.id);
+      localStorage.setItem("storeRecentView", JSON.stringify(recentView));
+      addToCart.classList.add("bgGreen");
+      addToCart.textContent = recentView.length;
+    });
   });
 }
 
@@ -363,52 +454,21 @@ function addTwoCart() {
 }
 
 
-function recentViewCards(dataVal) {
+function recentsCards(dataVal) {
+  const innerContainer = document.createElement("div");
+  innerContainer.classList.add("innerContainer");
+  const div = document.createElement("div");
+  div.classList.add("class");
+  div.dataset.id = dataVal.id;
+  const img = document.createElement("img");
+  img.classList.add("imgClass");
+  img.src = dataVal.images[0];
+  const p = document.createElement("p");
+  p.classList.add("paragraph");
+  p.textContent = dataVal.name;
+  div.append(img);
+  innerContainer.append(div, p);
+  recentCardContainer.append(innerContainer);
 
-  const cardDiv = document.createElement('div');
-  cardDiv.classList.add('product-card')
-  // image & delivery tag
-  const imageAnddeliveryDiv = document.createElement('div');
-  imageAnddeliveryDiv.classList.add('product-image-box');
-  const deliverySpan = document.createElement('span');
-  deliverySpan.classList.add('delivery-badge')
-  const img = document.createElement('img')
-  img.classList.add('product-image')
-  img.src = dataVal.images
-  imageAnddeliveryDiv.append(deliverySpan, img);
-
-  // Title & Quantity
-
-  const titleAndQuantityDiv = document.createElement('div');
-  titleAndQuantityDiv.classList.add('product-info')
-  const title = document.createElement('p');
-  title.classList.add('product-title')
-  title.textContent = dataVal.name
-  const Quantity = document.createElement('h3');
-  Quantity.classList.add('product-weight')
-  Quantity.textContent = dataVal.quantity
-  titleAndQuantityDiv.append(Quantity, title);
-
-
-
-  // Price & Add Button
-
-  const priceAndButtonDiv = document.createElement('div');
-  priceAndButtonDiv.classList.add('product-footer')
-  const price = document.createElement('span');
-  price.classList.add('product-price')
-  price.textContent = `₹${dataVal.mrp}`
-  const button = document.createElement('button');
-  button.classList.add('add-to-cart-btn')
-  button.textContent = 'Add'
-  const li = document.createElement('li')
-  li.classList.add('fa-solid', 'fa-plus')
-  button.append(li)
-  priceAndButtonDiv.append(price, button)
-
-  cardDiv.append(imageAnddeliveryDiv, titleAndQuantityDiv, priceAndButtonDiv)
-  console.log(cardDiv);
-
-  recentCardContainer.append(cardDiv)
 }
 

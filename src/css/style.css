@@ -611,7 +611,7 @@
 
 /* recently Cards Classes */
 .product-card {
-  width: 11rem;
+  width: 10rem;
   flex-shrink: 0;
   background-color: #ffffff;
   border: 1px solid #f3f4f6;
@@ -626,7 +626,7 @@
 
 @media (min-width: 640px) {
   .product-card {
-    width: 13rem;
+    width: 10rem;
   }
 }
 

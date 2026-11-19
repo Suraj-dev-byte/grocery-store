@@ -839,14 +839,14 @@
   .overflow-hidden {
     overflow: hidden;
   }
+  .overflow-scroll {
+    overflow: scroll;
+  }
   .overflow-x-auto {
     overflow-x: auto;
   }
   .overflow-y-auto {
     overflow-y: auto;
-  }
-  .scroll-smooth {
-    scroll-behavior: smooth;
   }
   .rounded {
     border-radius: 0.25rem;
@@ -3137,7 +3137,7 @@
   }
 }
 .product-card {
-  width: 11rem;
+  width: 10rem;
   flex-shrink: 0;
   background-color: #ffffff;
   border: 1px solid #f3f4f6;
@@ -3151,7 +3151,7 @@
 }
 @media (min-width: 640px) {
   .product-card {
-    width: 13rem;
+    width: 10rem;
   }
 }
 .product-card:hover {
