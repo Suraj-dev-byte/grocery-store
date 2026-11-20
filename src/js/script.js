@@ -1,18 +1,18 @@
-
-
 const cardContainer = document.querySelector(".cardContainer");
 const loadingScreen = document.querySelector(".Loading");
 const secondBody = document.querySelector(".secondBody");
 const inputValue = document.querySelector(".inputValue");
 const formEvent = document.querySelector(".formBtn");
 const mainContainerTwo = document.querySelector(".mainContainerTwo");
-const filterContainer = document.querySelectorAll('.filteringDiv input')
-const recentCardContainer = document.getElementById('recently-viewed-container')
-const recentView = JSON.parse(localStorage.getItem('storeRecentView')) || []
+const filterContainer = document.querySelectorAll(".filteringDiv input");
+const recentCardContainer = document.getElementById(
+  "recently-viewed-container",
+);
+let recentView = JSON.parse(localStorage.getItem("storeRecentView")) || [];
 
 function headingAnimation() {
-  const mainHeading = document.querySelector('.heading')
-  let wordList = ['Fresh Groceries,'];
+  const mainHeading = document.querySelector(".heading");
+  let wordList = ["Fresh Groceries,"];
   let listWord = 0;
   let wordLetter = 0;
   let reverseType = false;
@@ -36,13 +36,13 @@ function headingAnimation() {
       reverseType = false;
       listWord = (listWord + 1) % wordList.length;
     }
-
   }, 200);
 }
-headingAnimation()
+headingAnimation();
 
 let fetchData = [];
 let searchData = [];
+let recentValue = [];
 
 async function apiCall() {
   loadingScreen.classList.remove("hidden");
@@ -56,11 +56,11 @@ async function apiCall() {
     const data = await response.json();
 
     fetchData = data.data.products;
-    const elements = fetchData.slice(0, 12)
+    const elements = fetchData.slice(0, 12);
     // filtering logic -
     filterContainer.forEach((el) => {
-      el.addEventListener('change', () => {
-        cardContainer.innerHTML = '';
+      el.addEventListener("change", () => {
+        cardContainer.innerHTML = "";
 
         const values = Array.from(filterContainer)
           .filter((input) => input.checked)
@@ -69,30 +69,23 @@ async function apiCall() {
         const filtering = fetchData.filter((fl) => {
           return (
             values.length === 0 ||
-            values.some((value) =>
-              fl.name.toLowerCase().includes(value)
-            )
+            values.some((value) => fl.name.toLowerCase().includes(value))
           );
         });
 
-
         filtering.forEach((product) => {
-
           cards(product);
         });
-
-
       });
     });
 
     const getRecentProducts = fetchData.filter((el) => {
-
-      return recentView.includes(el.id)
-    })
+      return recentView.includes(el.id);
+    });
 
     getRecentProducts.forEach((el) => {
-      recentsCards(el)
-    })
+      recentsCards(el);
+    });
 
     // Search Filter logic -
     inputValue.addEventListener("input", () => {
@@ -100,7 +93,6 @@ async function apiCall() {
       const searchFilter = fetchData.filter((find) => {
         return find.name.toLowerCase().includes(inputValue.value.toLowerCase());
       });
-
 
       if (searchFilter.length === 0) {
         cardContainer.classList.add("noResult");
@@ -125,12 +117,11 @@ async function apiCall() {
     elements.forEach((el) => {
       cards(el);
       cardTwo(el);
-
     });
     hideLoading();
     addTwoCart();
-    wishlistCart()
-    recentviewStore()
+    wishlistCart();
+    recentviewStore();
   } catch (error) {
     setTimeout(() => {
       hideLoading();
@@ -138,9 +129,7 @@ async function apiCall() {
     }, 2000);
     console.log(error);
   }
-
 }
-
 
 apiCall();
 
@@ -164,98 +153,58 @@ function errorMessage() {
 }
 
 function cards(val) {
-
-  const cardDiv = document.createElement('div');
-  cardDiv.classList.add('product-card')
+  const cardDiv = document.createElement("div");
+  cardDiv.classList.add("product-card");
   // image & delivery tag
-  const imageAnddeliveryDiv = document.createElement('div');
-  imageAnddeliveryDiv.classList.add('product-image-box');
-  imageAnddeliveryDiv.dataset.id = val.id
-  const deliverySpan = document.createElement('span');
-  deliverySpan.classList.add('delivery-badge')
-  const img = document.createElement('img')
-  img.classList.add('product-image')
-  img.src = val.images
+  const imageAnddeliveryDiv = document.createElement("div");
+  imageAnddeliveryDiv.classList.add("product-image-box");
+  imageAnddeliveryDiv.dataset.id = val.id;
+  const deliverySpan = document.createElement("span");
+  deliverySpan.classList.add("delivery-badge");
+  const img = document.createElement("img");
+  img.classList.add("product-image");
+  img.src = val.images;
   imageAnddeliveryDiv.append(deliverySpan, img);
 
   // Title & Quantity
 
-  const titleAndQuantityDiv = document.createElement('div');
-  titleAndQuantityDiv.classList.add('product-info')
-  const title = document.createElement('p');
-  title.classList.add('product-title')
-  title.textContent = val.name
-  const Quantity = document.createElement('h3');
-  Quantity.classList.add('product-weight')
-  Quantity.textContent = val.quantity
+  const titleAndQuantityDiv = document.createElement("div");
+  titleAndQuantityDiv.classList.add("product-info");
+  const title = document.createElement("p");
+  title.classList.add("product-title");
+  title.textContent = val.name;
+  const Quantity = document.createElement("h3");
+  Quantity.classList.add("product-weight");
+  Quantity.textContent = val.quantity;
   titleAndQuantityDiv.append(Quantity, title);
-
-
 
   // Price & Add Button
 
-  const priceAndButtonDiv = document.createElement('div');
-  priceAndButtonDiv.classList.add('product-footer')
-  const price = document.createElement('span');
-  price.classList.add('product-price')
-  price.textContent = `₹${val.mrp}`
-  const button = document.createElement('button');
-  button.classList.add('add-to-cart-btn')
-  button.textContent = 'Add'
-  const li = document.createElement('li')
-  li.classList.add('fa-solid', 'fa-plus')
-  button.append(li)
-  priceAndButtonDiv.append(price, button)
+  const priceAndButtonDiv = document.createElement("div");
+  priceAndButtonDiv.classList.add("product-footer");
+  const price = document.createElement("span");
+  price.classList.add("product-price");
+  price.textContent = `₹${val.mrp}`;
+  const button = document.createElement("button");
+  button.classList.add("add-to-cart-btn");
+  button.textContent = "Add";
+  priceAndButtonDiv.append(price, button);
 
-  cardDiv.append(imageAnddeliveryDiv, titleAndQuantityDiv, priceAndButtonDiv)
+  cardDiv.append(imageAnddeliveryDiv, titleAndQuantityDiv, priceAndButtonDiv);
 
-
-  cardContainer.append(cardDiv)
+  cardContainer.append(cardDiv);
 
   imageAnddeliveryDiv.addEventListener("click", () => {
     window.location.href = `product.html?id=${val.id}`;
-    console.log(val);
-  })
-
-
-
-
+  });
 }
-
-
-
 
 function recentviewStore() {
   const addClick = document.querySelectorAll(".product-image-box");
-  const itemAddedToast = document.querySelector(".itemAddedToast");
-  const toastMessage = document.querySelector(".toastMessage");
 
-
-  let intervalID = null;
   addClick.forEach((el) => {
     el.addEventListener("click", (e) => {
-      if (recentView.includes(el.dataset.id)) {
-        if (intervalID) return;
-        intervalID = setTimeout(() => {
-          itemAddedToast.classList.add("hidden");
-          intervalID = null;
-        }, 2000);
-        itemAddedToast.classList.remove("hidden");
-        toastMessage.classList.add('text-orange-500');
-
-        return toastMessage.textContent = 'item already added'
-      } else {
-        clearTimeout(intervalID)
-        intervalID = setTimeout(() => {
-          itemAddedToast.classList.add('hidden')
-          intervalID = null
-        }, 2000);
-        itemAddedToast.classList.remove('hidden')
-        toastMessage.classList.remove('text-orange-500');
-        toastMessage.textContent = 'item added'
-
-      }
-
+      if (recentView.includes(el.dataset.id)) return;
 
       recentView.push(e.currentTarget.dataset.id);
       localStorage.setItem("storeRecentView", JSON.stringify(recentView));
@@ -295,17 +244,17 @@ function cardTwo(valTwo) {
   const price = document.createElement("span");
   price.className = "price";
   price.textContent = `₹${valTwo.mrp}`;
-  const buttonDiv = document.createElement('div')
-  buttonDiv.classList.add('buttonDiv')
-  const li = document.createElement('li')
+  const buttonDiv = document.createElement("div");
+  buttonDiv.classList.add("buttonDiv");
+  const li = document.createElement("li");
   li.classList.add("fa-solid", "fa-heart");
-  li.classList.add('wishlist')
-  li.dataset.id = valTwo.id
+  li.classList.add("wishlist");
+  li.dataset.id = valTwo.id;
   const button = document.createElement("button");
   button.className = "addButton";
   button.textContent = "ADD";
   button.dataset.id = valTwo.id;
-  buttonDiv.append(li, button)
+  buttonDiv.append(li, button);
   imageContainer.append(image);
   bottom.append(price, buttonDiv);
   card.append(discount, imageContainer, title, quantity, bottom);
@@ -342,15 +291,25 @@ const addToCart = document.querySelector(".addToCart");
 let addToCartId = JSON.parse(localStorage.getItem("addCart")) || [];
 let addWishlistId = JSON.parse(localStorage.getItem("addCartWishlist")) || [];
 window.addEventListener("pageshow", () => {
+  const recentProductAfterReload = fetchData.filter((el) => {
+    return recentView.includes(el.id);
+  });
+  recentCardContainer.innerHTML = "";
+  recentProductAfterReload.forEach((el) => {
+    recentsCards(el);
+  });
+  // recentView = JSON.parse(localStorage.getItem('storeRecentView')) || []
+  console.log(recentView);
   const wishlist = document.querySelectorAll(".wishlist");
-  addWishlistId = JSON.parse(localStorage.getItem("addCartWishlist")) || []
+  addWishlistId = JSON.parse(localStorage.getItem("addCartWishlist")) || [];
+
   wishlist.forEach((el) => {
     if (addWishlistId.includes(el.dataset.id)) {
-      el.style.color = 'red'
+      el.style.color = "red";
     } else {
-      el.style.color = 'grey'
+      el.style.color = "grey";
     }
-  })
+  });
   addToCartId = JSON.parse(localStorage.getItem("addCart")) || [];
   addToCart.classList.add("bgGreen");
   addToCart.textContent = addToCartId.length;
@@ -360,9 +319,6 @@ window.addEventListener("pageshow", () => {
   }
 });
 
-
-
-
 function wishlistCart() {
   const wishlist = document.querySelectorAll(".wishlist");
   const itemAddedToast = document.querySelector(".itemAddedToast");
@@ -370,11 +326,11 @@ function wishlistCart() {
 
   wishlist.forEach((el) => {
     if (addWishlistId.includes(el.dataset.id)) {
-      el.style.color = 'red'
+      el.style.color = "red";
     } else {
-      el.style.color = 'grey'
+      el.style.color = "grey";
     }
-  })
+  });
 
   let intervalID = null;
   wishlist.forEach((el) => {
@@ -386,38 +342,31 @@ function wishlistCart() {
           intervalID = null;
         }, 2000);
         itemAddedToast.classList.remove("hidden");
-        toastMessage.classList.add('text-orange-500');
+        toastMessage.classList.add("text-orange-500");
 
-        return toastMessage.textContent = 'item already in Wishlist'
+        return (toastMessage.textContent = "item already in Wishlist");
       } else {
-        clearTimeout(intervalID)
+        clearTimeout(intervalID);
         intervalID = setTimeout(() => {
-          itemAddedToast.classList.add('hidden')
-          intervalID = null
+          itemAddedToast.classList.add("hidden");
+          intervalID = null;
         }, 2000);
-        itemAddedToast.classList.remove('hidden')
-        toastMessage.classList.remove('text-orange-500');
-        toastMessage.textContent = 'Added in Wishlist ❤️'
-        el.style.color = 'red'
-
+        itemAddedToast.classList.remove("hidden");
+        toastMessage.classList.remove("text-orange-500");
+        toastMessage.textContent = "Added in Wishlist ❤️";
+        el.style.color = "red";
       }
-
 
       addWishlistId.push(e.currentTarget.dataset.id);
       localStorage.setItem("addCartWishlist", JSON.stringify(addWishlistId));
-
-
     });
   });
 }
 
-
 function addTwoCart() {
-
   const addBtn = document.querySelectorAll(".addButton");
   const itemAddedToast = document.querySelector(".itemAddedToast");
   const toastMessage = document.querySelector(".toastMessage");
-
 
   let intervalID = null;
   addBtn.forEach((el) => {
@@ -429,21 +378,19 @@ function addTwoCart() {
           intervalID = null;
         }, 2000);
         itemAddedToast.classList.remove("hidden");
-        toastMessage.classList.add('text-orange-500');
+        toastMessage.classList.add("text-orange-500");
 
-        return toastMessage.textContent = 'item already added'
+        return (toastMessage.textContent = "item already added");
       } else {
-        clearTimeout(intervalID)
+        clearTimeout(intervalID);
         intervalID = setTimeout(() => {
-          itemAddedToast.classList.add('hidden')
-          intervalID = null
+          itemAddedToast.classList.add("hidden");
+          intervalID = null;
         }, 2000);
-        itemAddedToast.classList.remove('hidden')
-        toastMessage.classList.remove('text-orange-500');
-        toastMessage.textContent = 'item added'
-
+        itemAddedToast.classList.remove("hidden");
+        toastMessage.classList.remove("text-orange-500");
+        toastMessage.textContent = "item added";
       }
-
 
       addToCartId.push(e.currentTarget.dataset.id);
       localStorage.setItem("addCart", JSON.stringify(addToCartId));
@@ -452,7 +399,6 @@ function addTwoCart() {
     });
   });
 }
-
 
 function recentsCards(dataVal) {
   const innerContainer = document.createElement("div");
@@ -469,6 +415,4 @@ function recentsCards(dataVal) {
   div.append(img);
   innerContainer.append(div, p);
   recentCardContainer.append(innerContainer);
-
 }
-
