@@ -155,37 +155,84 @@
 
 
       <div class="bg-[#f9f9f8] w-full py-20 md:px-16 px-3">
-        <div class=" md:w-64 w-34  absolute right-3 lg:top-24 z-10 top-36">
-          <details class=" group bg-[#F5F4EF]    shadow-amber-600 rounded-lg border border-gray-200 shadow-sm">
+        <div class=" md:w-64 w-34 absolute right-3 lg:top-24 z-10 top-36 ">
+          <!-- Main Grid Div -->
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4 items-start">
 
-            <summary
-              class="flex justify-between items-center p-3  font-semibold cursor-pointer list-none select-none [&::-webkit-details-marker]:hidden text-gray-500  text-xs">
-              Filters Products <i
-                class="fas fa-chevron-down text-gray-400 text-xs transition-transform group-open:rotate-180"></i>
-            </summary>
+            <!-- 1. Filter Products -->
+            <details class="group bg-[#F5F4EF] shadow-amber-600 rounded-lg border border-gray-200 shadow-sm">
 
-            <div class="filteringDiv px-3 pb-3 border-t border-gray-100 flex flex-col gap-2.5 pt-3">
-              <label class="flex items-center gap-2.5 text-sm text-gray-600 hover:text-gray-900 cursor-pointer"><input
-                  type="checkbox" class="w-4 h-4 accent-green-600 cursor-pointer" value="cow" /> Cow Milk</label>
-              <label class="flex items-center gap-2.5 text-sm text-gray-600 hover:text-gray-900 cursor-pointer"><input
-                  type="checkbox" class="w-4 h-4 accent-green-600 cursor-pointer" value="Buffalo" /> Buffalo
-                Milk</label>
-              <label class="flex items-center gap-2.5 text-sm text-gray-600 hover:text-gray-900 cursor-pointer"><input
-                  type="checkbox" class="w-4 h-4 accent-green-600 cursor-pointer" value="Toned" /> Toned
-                Milk</label>
-              <label class="flex items-center gap-2.5 text-sm text-gray-600 hover:text-gray-900 cursor-pointer"><input
-                  type="checkbox" class="w-4 h-4 accent-green-600 cursor-pointer" value="Gold" /> Full Cream
-                Milk</label>
-              <label class="flex items-center gap-2.5 text-sm text-gray-600 hover:text-gray-900 cursor-pointer"><input
-                  type="checkbox" class="w-4 h-4 accent-green-600 cursor-pointer" value="Protein" /> Protein
-                Milk</label>
+              <summary
+                class="flex justify-between items-center p-3 font-semibold cursor-pointer list-none select-none [&::-webkit-details-marker]:hidden text-gray-500 text-[10px]">
+                Filters Products <i
+                  class="fas fa-chevron-down text-gray-400 text-xs transition-transform group-open:rotate-180"></i>
+              </summary>
 
-              <button
-                class="text-xs text-green-600 font-semibold cursor-pointer text-left mt-1 pt-2 border-t border-gray-100">Clear
-                Filters</button>
-            </div>
+              <div class="filteringDiv px-3 pb-3 border-t border-gray-100 flex flex-col gap-2.5 pt-3">
+                <label class="flex items-center gap-2.5 text-xs text-gray-600 hover:text-gray-900 cursor-pointer"><input
+                    type="checkbox" class="w-4 h-4 accent-green-600 cursor-pointer" value="cow" /> Cow Milk</label>
+                <label class="flex items-center gap-2.5 text-xs text-gray-600 hover:text-gray-900 cursor-pointer"><input
+                    type="checkbox" class="w-4 h-4 accent-green-600 cursor-pointer" value="Buffalo" /> Buffalo
+                  Milk</label>
+                <label class="flex items-center gap-2.5 text-xs text-gray-600 hover:text-gray-900 cursor-pointer"><input
+                    type="checkbox" class="w-4 h-4 accent-green-600 cursor-pointer" value="Toned" /> Toned
+                  Milk</label>
+                <label class="flex items-center gap-2.5 text-xs text-gray-600 hover:text-gray-900 cursor-pointer"><input
+                    type="checkbox" class="w-4 h-4 accent-green-600 cursor-pointer" value="Gold" /> Full Cream
+                  Milk</label>
+                <label class="flex items-center gap-2.5 text-xs text-gray-600 hover:text-gray-900 cursor-pointer"><input
+                    type="checkbox" class="w-4 h-4 accent-green-600 cursor-pointer" value="Protein" /> Protein
+                  Milk</label>
 
-          </details>
+                <!-- Click karte hi saare checkboxes uncheck ho jayenge -->
+                <button type="button"
+                  onclick="this.closest('details').querySelectorAll('input').forEach(el => el.checked = false)"
+                  class="text-xs text-green-600 font-semibold cursor-pointer text-left mt-1 pt-2 border-t border-gray-100">
+                  Clear Filters
+                </button>
+              </div>
+
+            </details>
+
+            <!-- 2. Sort By UI -->
+            <details class="group bg-[#F5F4EF] rounded-lg shadow-amber-600 border border-gray-200 shadow-sm">
+
+              <summary
+                class="flex justify-between items-center p-3 font-semibold cursor-pointer list-none select-none [&::-webkit-details-marker]:hidden text-gray-500 text-[11px]">
+                Sort By <i
+                  class="fas fa-chevron-down text-gray-400 text-xs transition-transform group-open:rotate-180"></i>
+              </summary>
+
+              <div class="sortingDiv px-3 pb-3 border-t border-gray-100 flex flex-col gap-2.5 pt-3">
+
+                <label class="flex items-center gap-2.5 text-xs text-gray-600 hover:text-gray-900 cursor-pointer">
+                  <input type="radio" name="sort" class="w-4 h-4 accent-green-600 cursor-pointer" value="price-asc" />
+                  Price: Low to High
+                </label>
+                <label class="flex items-center gap-2.5 text-xs text-gray-600 hover:text-gray-900 cursor-pointer">
+                  <input type="radio" name="sort" class="w-4 h-4 accent-green-600 cursor-pointer" value="price-desc" />
+                  Price: High to Low
+                </label>
+                <label class="flex items-center gap-2.5 text-xs text-gray-600 hover:text-gray-900 cursor-pointer">
+                  <input type="radio" name="sort" class="w-4 h-4 accent-green-600 cursor-pointer" value="rating" />
+                  Customer Rating
+                </label>
+                <label class="flex items-center gap-2.5 text-xs text-gray-600 hover:text-gray-900 cursor-pointer">
+                  <input type="radio" name="sort" class="w-4 h-4 accent-green-600 cursor-pointer" value="newest" />
+                  Newest Arrivals
+                </label>
+
+                <!-- Click karte hi selected radio uncheck ho jayega -->
+                <button type="button"
+                  onclick="this.closest('details').querySelectorAll('input').forEach(el => el.checked = false)"
+                  class="text-xs text-green-600 font-semibold cursor-pointer text-left mt-1 pt-2 border-t border-gray-100">
+                  Reset Sort
+                </button>
+              </div>
+
+            </details>
+
+          </div>
         </div>
         <div class="w-full flex flex-col md:flex-row gap-10 items-start ">
           <!-- Left Side: Text and Button -->
