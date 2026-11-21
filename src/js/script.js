@@ -119,7 +119,7 @@ async function apiCall() {
       cardTwo(el);
     });
     hideLoading();
-    addTwoCart();
+
     wishlistCart();
     recentviewStore();
   } catch (error) {
@@ -188,6 +188,7 @@ function cards(val) {
   const button = document.createElement("button");
   button.classList.add("add-to-cart-btn");
   button.textContent = "Add";
+  button.dataset.id = val.id
   priceAndButtonDiv.append(price, button);
 
   cardDiv.append(imageAnddeliveryDiv, titleAndQuantityDiv, priceAndButtonDiv);
@@ -197,6 +198,9 @@ function cards(val) {
   imageAnddeliveryDiv.addEventListener("click", () => {
     window.location.href = `product.html?id=${val.id}`;
   });
+
+  recentviewStore()
+  addTwoCart(button)
 }
 
 function recentviewStore() {
@@ -263,6 +267,7 @@ function cardTwo(valTwo) {
   imageContainer.addEventListener("click", () => {
     window.location.href = `product.html?id=${valTwo.id}`;
   });
+  addTwoCart(button)
 }
 
 function carousel() {
@@ -363,41 +368,40 @@ function wishlistCart() {
   });
 }
 
-function addTwoCart() {
-  const addBtn = document.querySelectorAll(".addButton");
+function addTwoCart(buttons) {
   const itemAddedToast = document.querySelector(".itemAddedToast");
   const toastMessage = document.querySelector(".toastMessage");
 
   let intervalID = null;
-  addBtn.forEach((el) => {
-    el.addEventListener("click", (e) => {
-      if (addToCartId.includes(el.dataset.id)) {
-        if (intervalID) return;
-        intervalID = setTimeout(() => {
-          itemAddedToast.classList.add("hidden");
-          intervalID = null;
-        }, 2000);
-        itemAddedToast.classList.remove("hidden");
-        toastMessage.classList.add("text-orange-500");
 
-        return (toastMessage.textContent = "item already added");
-      } else {
-        clearTimeout(intervalID);
-        intervalID = setTimeout(() => {
-          itemAddedToast.classList.add("hidden");
-          intervalID = null;
-        }, 2000);
-        itemAddedToast.classList.remove("hidden");
-        toastMessage.classList.remove("text-orange-500");
-        toastMessage.textContent = "item added";
-      }
+  buttons.addEventListener("click", (e) => {
+    if (addToCartId.includes(buttons.dataset.id)) {
+      if (intervalID) return;
+      intervalID = setTimeout(() => {
+        itemAddedToast.classList.add("hidden");
+        intervalID = null;
+      }, 2000);
+      itemAddedToast.classList.remove("hidden");
+      toastMessage.classList.add("text-orange-500");
 
-      addToCartId.push(e.currentTarget.dataset.id);
-      localStorage.setItem("addCart", JSON.stringify(addToCartId));
-      addToCart.classList.add("bgGreen");
-      addToCart.textContent = addToCartId.length;
-    });
+      return (toastMessage.textContent = "item already added");
+    } else {
+      clearTimeout(intervalID);
+      intervalID = setTimeout(() => {
+        itemAddedToast.classList.add("hidden");
+        intervalID = null;
+      }, 2000);
+      itemAddedToast.classList.remove("hidden");
+      toastMessage.classList.remove("text-orange-500");
+      toastMessage.textContent = "item added";
+    }
+
+    addToCartId.push(e.currentTarget.dataset.id);
+    localStorage.setItem("addCart", JSON.stringify(addToCartId));
+    addToCart.classList.add("bgGreen");
+    addToCart.textContent = addToCartId.length;
   });
+
 }
 
 function recentsCards(dataVal) {
@@ -415,4 +419,5 @@ function recentsCards(dataVal) {
   div.append(img);
   innerContainer.append(div, p);
   recentCardContainer.append(innerContainer);
+
 }
