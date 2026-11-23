@@ -9,6 +9,8 @@ const recentCardContainer = document.getElementById(
   "recently-viewed-container",
 );
 let recentView = JSON.parse(localStorage.getItem("storeRecentView")) || [];
+const sortingInput = document.querySelectorAll('.sortingDiv input')
+
 
 function headingAnimation() {
   const mainHeading = document.querySelector(".heading");
@@ -122,6 +124,7 @@ async function apiCall() {
 
     wishlistCart();
     recentviewStore();
+    productsSorting(fetchData)
   } catch (error) {
     setTimeout(() => {
       hideLoading();
@@ -132,6 +135,45 @@ async function apiCall() {
 }
 
 apiCall();
+
+
+function productsSorting(SortVal) {
+  const sortingResetBtn = document.querySelector('.sortReset')
+  const priceAsc = [...SortVal].sort((a, b) => a.mrp - b.mrp)
+  const priceDsc = [...SortVal].sort((a, b) => b.mrp - a.mrp)
+
+  sortingInput.forEach((el) => {
+    sortingResetBtn.addEventListener('click', () => {
+      el.checked = false
+      cards(fetchData)
+      return;
+    })
+    console.log(el.checked);
+    el.addEventListener('change', (e) => {
+      if (e.target.value === 'rating' || e.target.value === 'newest') return;
+      cardContainer.innerHTML = ''
+      if (e.target.value === 'price-asc') {
+
+        return priceAsc.forEach((el) => {
+          cards(el)
+
+        })
+      } else if (e.target.value === 'price-desc') {
+
+        return priceDsc.forEach((el) => {
+
+          cards(el)
+        })
+      }
+    })
+
+  })
+
+
+
+}
+
+
 
 function hideLoading() {
   loadingScreen.classList.add("hidden");
@@ -304,7 +346,7 @@ window.addEventListener("pageshow", () => {
     recentsCards(el);
   });
   // recentView = JSON.parse(localStorage.getItem('storeRecentView')) || []
-  console.log(recentView);
+
   const wishlist = document.querySelectorAll(".wishlist");
   addWishlistId = JSON.parse(localStorage.getItem("addCartWishlist")) || [];
 
