@@ -9,8 +9,8 @@ const recentCardContainer = document.getElementById(
   "recently-viewed-container",
 );
 let recentView = JSON.parse(localStorage.getItem("storeRecentView")) || [];
-const sortingInput = document.querySelectorAll('.sortingDiv input')
-
+const sortingInput = document.querySelectorAll(".sortingDiv input");
+const sortingResetBtn = document.querySelector(".sortReset");
 
 function headingAnimation() {
   const mainHeading = document.querySelector(".heading");
@@ -58,7 +58,7 @@ async function apiCall() {
     const data = await response.json();
 
     fetchData = data.data.products;
-    const elements = fetchData.slice(0, 12);
+    const elements = fetchData.slice(0, 12)
     // filtering logic -
     filterContainer.forEach((el) => {
       el.addEventListener("change", () => {
@@ -88,6 +88,8 @@ async function apiCall() {
     getRecentProducts.forEach((el) => {
       recentsCards(el);
     });
+
+    // sorting Reset button logic -
 
     // Search Filter logic -
     inputValue.addEventListener("input", () => {
@@ -124,7 +126,7 @@ async function apiCall() {
 
     wishlistCart();
     recentviewStore();
-    productsSorting(fetchData)
+    productsSorting(fetchData);
   } catch (error) {
     setTimeout(() => {
       hideLoading();
@@ -136,44 +138,37 @@ async function apiCall() {
 
 apiCall();
 
-
 function productsSorting(SortVal) {
-  const sortingResetBtn = document.querySelector('.sortReset')
-  const priceAsc = [...SortVal].sort((a, b) => a.mrp - b.mrp)
-  const priceDsc = [...SortVal].sort((a, b) => b.mrp - a.mrp)
+
+  const priceAsc = [...SortVal].sort((a, b) => a.mrp - b.mrp);
+  const priceDsc = [...SortVal].sort((a, b) => b.mrp - a.mrp);
 
   sortingInput.forEach((el) => {
-    sortingResetBtn.addEventListener('click', () => {
-      el.checked = false
-      cards(fetchData)
-      return;
-    })
-    console.log(el.checked);
-    el.addEventListener('change', (e) => {
-      if (e.target.value === 'rating' || e.target.value === 'newest') return;
-      cardContainer.innerHTML = ''
-      if (e.target.value === 'price-asc') {
-
+    el.addEventListener("change", (e) => {
+      if (e.target.value === "rating" || e.target.value === "newest") return;
+      cardContainer.innerHTML = "";
+      if (e.target.value === "price-asc") {
         return priceAsc.forEach((el) => {
-          cards(el)
-
-        })
-      } else if (e.target.value === 'price-desc') {
-
+          cards(el);
+        });
+      } else if (e.target.value === "price-desc") {
         return priceDsc.forEach((el) => {
-
-          cards(el)
-        })
+          cards(el);
+        });
       }
+    });
+  });
+
+  sortingResetBtn.addEventListener("click", () => {
+    cardContainer.innerHTML = ""
+    sortingInput.forEach((el) => {
+      el.checked = false;
+    });
+    SortVal.forEach((el) => {
+      cards(el)
     })
-
-  })
-
-
-
+  });
 }
-
-
 
 function hideLoading() {
   loadingScreen.classList.add("hidden");
@@ -230,7 +225,7 @@ function cards(val) {
   const button = document.createElement("button");
   button.classList.add("add-to-cart-btn");
   button.textContent = "Add";
-  button.dataset.id = val.id
+  button.dataset.id = val.id;
   priceAndButtonDiv.append(price, button);
 
   cardDiv.append(imageAnddeliveryDiv, titleAndQuantityDiv, priceAndButtonDiv);
@@ -241,8 +236,8 @@ function cards(val) {
     window.location.href = `product.html?id=${val.id}`;
   });
 
-  recentviewStore()
-  addTwoCart(button)
+  recentviewStore();
+  addTwoCart(button);
 }
 
 function recentviewStore() {
@@ -309,7 +304,7 @@ function cardTwo(valTwo) {
   imageContainer.addEventListener("click", () => {
     window.location.href = `product.html?id=${valTwo.id}`;
   });
-  addTwoCart(button)
+  addTwoCart(button);
 }
 
 function carousel() {
@@ -443,7 +438,6 @@ function addTwoCart(buttons) {
     addToCart.classList.add("bgGreen");
     addToCart.textContent = addToCartId.length;
   });
-
 }
 
 function recentsCards(dataVal) {
@@ -461,5 +455,4 @@ function recentsCards(dataVal) {
   div.append(img);
   innerContainer.append(div, p);
   recentCardContainer.append(innerContainer);
-
 }
