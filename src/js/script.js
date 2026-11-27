@@ -12,6 +12,7 @@ let recentView = JSON.parse(localStorage.getItem("storeRecentView")) || [];
 const sortingInput = document.querySelectorAll(".sortingDiv input");
 const sortingResetBtn = document.querySelector(".sortReset");
 
+
 function headingAnimation() {
   const mainHeading = document.querySelector(".heading");
   let wordList = ["Fresh Groceries,"];
@@ -42,6 +43,7 @@ function headingAnimation() {
 }
 headingAnimation();
 
+
 let fetchData = [];
 let searchData = [];
 let recentValue = [];
@@ -61,21 +63,29 @@ async function apiCall() {
     const elements = fetchData.slice(0, 12)
     // filtering logic -
     filterContainer.forEach((el) => {
+
       el.addEventListener("change", () => {
+
+        console.log(el);
         cardContainer.innerHTML = "";
 
         const values = Array.from(filterContainer)
+
           .filter((input) => input.checked)
           .map((input) => input.value.toLowerCase());
 
         const filtering = fetchData.filter((fl) => {
+
           return (
             values.length === 0 ||
             values.some((value) => fl.name.toLowerCase().includes(value))
+
           );
         });
 
+        productsSorting(filtering)
         filtering.forEach((product) => {
+
           cards(product);
         });
       });
@@ -89,12 +99,13 @@ async function apiCall() {
       recentsCards(el);
     });
 
-    // sorting Reset button logic -
+
 
     // Search Filter logic -
     inputValue.addEventListener("input", () => {
       cardContainer.innerHTML = "";
       const searchFilter = fetchData.filter((find) => {
+        // you should change para name to find.
         return find.name.toLowerCase().includes(inputValue.value.toLowerCase());
       });
 
@@ -106,10 +117,15 @@ async function apiCall() {
 
                 `;
       }
+
+
+      productsSorting(searchFilter)
       searchFilter.forEach((el) => {
         cards(el);
       });
     });
+
+    productsSorting(fetchData)
     formEvent.addEventListener("submit", (e) => {
       e.preventDefault();
       const inputVal = inputValue.value.trim();
@@ -121,12 +137,13 @@ async function apiCall() {
     elements.forEach((el) => {
       cards(el);
       cardTwo(el);
+
     });
     hideLoading();
 
     wishlistCart();
     recentviewStore();
-    productsSorting(fetchData);
+
   } catch (error) {
     setTimeout(() => {
       hideLoading();
@@ -142,9 +159,10 @@ function productsSorting(SortVal) {
 
   const priceAsc = [...SortVal].sort((a, b) => a.mrp - b.mrp);
   const priceDsc = [...SortVal].sort((a, b) => b.mrp - a.mrp);
-
+  console.log(SortVal);
   sortingInput.forEach((el) => {
     el.addEventListener("change", (e) => {
+
       if (e.target.value === "rating" || e.target.value === "newest") return;
       cardContainer.innerHTML = "";
       if (e.target.value === "price-asc") {
@@ -159,7 +177,9 @@ function productsSorting(SortVal) {
     });
   });
 
+  // sorting Reset button logic -
   sortingResetBtn.addEventListener("click", () => {
+
     cardContainer.innerHTML = ""
     sortingInput.forEach((el) => {
       el.checked = false;
@@ -238,6 +258,7 @@ function cards(val) {
 
   recentviewStore();
   addTwoCart(button);
+
 }
 
 function recentviewStore() {
