@@ -47,6 +47,12 @@ headingAnimation();
 let fetchData = [];
 let searchData = [];
 let recentValue = [];
+let storeFiltering = []
+let sortData = []
+
+const isSortingActive = Array.from(sortingInput).some((el) => {
+  return el.checked
+})
 
 async function apiCall() {
   loadingScreen.classList.remove("hidden");
@@ -66,7 +72,7 @@ async function apiCall() {
 
       el.addEventListener("change", () => {
 
-        console.log(el);
+
         cardContainer.innerHTML = "";
 
         const values = Array.from(filterContainer)
@@ -83,11 +89,19 @@ async function apiCall() {
           );
         });
 
-        productsSorting(filtering)
-        filtering.forEach((product) => {
+        storeFiltering = filtering
+        if (!isSortingActive) {
+          sortData = storeFiltering
+          filtering.forEach((product) => {
+            cards(product);
+          });
+        } else {
+          sortingLogicfn(filtering)
 
-          cards(product);
-        });
+        }
+
+
+
       });
     });
 
@@ -118,14 +132,20 @@ async function apiCall() {
                 `;
       }
 
+      storeFiltering = searchFilter
+      if (!isSortingActive) {
+        sortData = storeFiltering
+        searchFilter.forEach((el) => {
+          cards(el);
+        });
+      } else {
+        sortingLogicfn(searchFilter)
+      }
 
-      productsSorting(searchFilter)
-      searchFilter.forEach((el) => {
-        cards(el);
-      });
+
     });
 
-    productsSorting(fetchData)
+    sortingLogicfn(fetchData)
     formEvent.addEventListener("submit", (e) => {
       e.preventDefault();
       const inputVal = inputValue.value.trim();
@@ -155,41 +175,64 @@ async function apiCall() {
 
 apiCall();
 
-function productsSorting(SortVal) {
 
+
+
+
+function sortingLogicfn(SortVal) {
+
+  sortData = SortVal
   const priceAsc = [...SortVal].sort((a, b) => a.mrp - b.mrp);
   const priceDsc = [...SortVal].sort((a, b) => b.mrp - a.mrp);
-  console.log(SortVal);
-  sortingInput.forEach((el) => {
-    el.addEventListener("change", (e) => {
 
-      if (e.target.value === "rating" || e.target.value === "newest") return;
-      cardContainer.innerHTML = "";
-      if (e.target.value === "price-asc") {
+
+
+
+
+  sortingInput.forEach((e) => {
+
+    if (e.checked) {
+      cardContainer.innerHTML = ""
+      if (e.value === "rating" || e.value === "newest") return;
+      if (e.value === "price-asc") {
+
         return priceAsc.forEach((el) => {
           cards(el);
         });
-      } else if (e.target.value === "price-desc") {
+      } else if (e.value === "price-desc") {
+        cardContainer.innerHTML = ""
         return priceDsc.forEach((el) => {
           cards(el);
         });
       }
-    });
-  });
+    }
 
-  // sorting Reset button logic -
-  sortingResetBtn.addEventListener("click", () => {
+  })
 
-    cardContainer.innerHTML = ""
-    sortingInput.forEach((el) => {
-      el.checked = false;
-    });
-    SortVal.forEach((el) => {
-      cards(el)
-    })
-  });
 }
 
+sortingInput.forEach((e) => {
+
+  e.addEventListener('click', () => {
+
+    if (e.value === "rating" || e.value === "newest") return;
+    cardContainer.innerHTML = ""
+    sortingLogicfn(sortData)
+  })
+})
+
+// sorting Reset button logic -
+sortingResetBtn.addEventListener("click", () => {
+
+  cardContainer.innerHTML = ""
+  sortingInput.forEach((el) => {
+    el.checked = false;
+  });
+  sortData.forEach((el) => {
+    cards(el)
+  })
+});
+// sortingLogicfn()
 function hideLoading() {
   loadingScreen.classList.add("hidden");
   secondBody.classList.remove("hidden");
